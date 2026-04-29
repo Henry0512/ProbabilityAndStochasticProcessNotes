@@ -1,0 +1,361 @@
+\chapter{Events and Their Probabilities}
+
+\section{Experiment, Sample Space, and Random Event}
+
+\begin{definition}[Sample Space]\index{sample space}
+  The set for all possible outcomes of an random experiment (if we could know all possible outcomes) is known as the \emph{sample space}.
+\end{definition}
+
+\begin{definition}[Random Event]\index{random event}\index{event}
+  Any subset of the sample space \(S\) (or \(\Omega\)) is known as an \emph{random event} or \emph{event}.
+\end{definition}
+Events are usually denoted by capital letters.
+
+\begin{itemize}
+  \index{inevitable event}\index{impossible event}
+  \item Inevitable event: \(S\) or \(\Omega\)
+  \item Impossible event: \(\varnothing\)
+\end{itemize}
+\begin{remark}
+An event with probability 0 is not necessarily an impossible event, and an event with probability 1 is not necessarily an inevitable event.
+\end{remark}
+\begin{example}
+  Consider generating a random number \(X\) uniformly distributed on the interval \([0, 1]\). The event \(A = \{X = 0.5\}\) has probability 0, but it is not an impossible event since it can occur.
+\end{example}
+
+Some events can be expressed in terms of other events. For example, if \(A\) and \(B\) are two events, then we can define the following events:
+\begin{enumerate}
+  \index{subset}\index{union}\index{intersection}\index{set difference}\index{disjoint events}\index{complement}
+  \item \(A \subset B\) means if event \(A\) occurs, then event \(B\) also occurs.
+  \item \(A = B\) means \(A \subset B\) and \(B \subset A\), i.e., \(A\) and \(B\) are the same event.
+  \item \(A \cup B\) occurs if either event \(A\) or event \(B\) (or both) occur.
+  \item \(A B\) or \(A \cap B\) occurs if both event \(A\) and event \(B\) occur.
+  \item \(A \setminus B\) occurs if event \(A\) occurs but event \(B\) does not occur.
+  \item \(A B = \varnothing\) means events \(A\) and \(B\) are \emph{disjoint} or \emph{mutually exclusive}, i.e., they cannot occur at the same time.
+  \item \(A^c\) or \(\overline{A}\) is the \emph{complement} of event \(A\), \(A \cup \overline{A} = \Omega\) and \(A \overline{A} = \varnothing\).
+\end{enumerate}
+
+\begin{example}
+  Select points randomly from unit circle. Let
+  \[
+  A_n = \left\{(x,y) \vert x^2 + y^2 < \frac{1}{n^2}\right\}, n = 1, 2, \dots
+  \]
+  then
+  \[
+    \bigcap_{n=1}^\infty A_n = \{(0, 0)\},
+  \]
+  but
+  \[
+    \bigcup_{n=1}^\infty A_n = \left\{(x,y) \vert x^2 + y^2 < 1\right\}.
+  \]
+\end{example}
+
+\begin{proposition}
+  Let \(A\), \(B\) and \(C\) be the random events. Then we have the following properties:
+  \begin{enumerate}\index{De Morgan's Laws}
+    \item Commutativity: \(A \cup B = B \cup A\), \(A B = B A\)
+    \item Associativity: \(A \cup (B \cup C) = (A \cup B) \cup C = A \cup B \cup C\), \(A (B C) = (A B) C = A B C\)
+    \item Distributivity: \(A (B \cup C) = A B \cup A C\), \(A \cup (B C) = (A \cup B)(A \cup C)\)
+    \item De Morgan's Laws: \((A \cup B)^c = \overline{A} \cap \overline{B}\), \((A \cap B)^c = \overline{A} \cup \overline{B}\), \(\left(\bigcup_{i=1}^n A_i\right)^c = \bigcap_{i=1}^n \overline{A}_i\), \(\left(\bigcap_{i=1}^n A_i\right)^c = \bigcup_{i=1}^n \overline{A}_i\)
+    \item \(A \cup B = A \cup \overline{A} B\), \(A \cup B \cup C = A \cup \overline{A} B \cup \overline{A} \overline{B} C\)
+  \end{enumerate}
+\end{proposition}
+
+\section{Probabilities of Defined on Events}
+
+\begin{definition}[Classical Random Experiment]\index{classical random experiment}\index{simple space}
+  A random experiment \(E\) is \emph{classical} if
+  \begin{enumerate}
+    \item \(E\) contains only different finite sample points, i.e., \(\Omega = \{\omega_1, \omega_2, \dots, \omega_n\}\). We call this kind of sample space \emph{simple space}.
+    \item All outcomes are equally likely to occur.
+  \end{enumerate}
+\end{definition}
+
+If \(A\) is comprised by \(k\) different elementary events, then
+\[
+  P(A) = \frac{k}{n}.
+\]
+
+\begin{definition}[Geometric Random Experiment]\index{geometric random experiment}
+  A random experiment \(E\) is \emph{geometric} if
+  \begin{enumerate}
+    \item The sample space is measurable (such as length, area, volume, etc.) region, i.e., \(0 < \mathrm{L}(\Omega) < \infty\).
+    \item The probability of every event \(A \subseteq \Omega\) is proportional to the measure \(L(A)\) and has nothing to do with its position and shape.
+  \end{enumerate}
+\end{definition}
+
+In a geometric random experiment, the probability of an event \(A\) is given by
+\[
+  P(A) = \frac{\mathrm{L}(A)}{\mathrm{L}(\Omega)}.
+\]
+
+Bertrand's paradox is a famous problem in geometric probability, which shows that the probability of an event can depend on the method of random selection, even if the underlying geometric conditions are the same.
+
+\begin{definition}[Relative Frequency]\index{relative frequency}
+  Let \(E\) be an random experiment, \(A\) be an ramdom event. Suppose that \(E\) was repeated \(n\) times under similiar conditions. Let \(f_n(A)\) be the times that \(A\) occurs. The ratio \(\frac{f_n(A)}{n}\) is called the \emph{relative frequency} of event \(A\) in \(n\) trials.
+\end{definition}
+
+\begin{theorem}
+  For classical random experiment \(E\), the probability has the following properties:
+  \begin{enumerate}
+    \item for every event \(A\), \(P(A) \geq 0\);
+    \item \(P(\Omega) = 1\);
+    \item (finite additivity) for every sequence of disjoint events \(A_1, A_2, \dots, A_m\), we have
+    \[
+      P\left(\bigcup_{i=1}^m A_i\right) = \sum_{i=1}^m P(A_i), \quad m = 1, 2, \dots, n.
+    \]
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+  For geometric random experiment \(E\), the probability has the following properties:
+  \begin{enumerate}
+    \item for every event \(A\), \(P(A) \geq 0\);
+    \item \(P(\Omega) = 1\);
+    \item (countable additivity) for every sequence of disjoint events \(A_1, A_2, \dots\), we have
+    \[
+      P\left(\bigcup_{i=1}^\infty A_i\right) = \sum_{i=1}^\infty P(A_i).
+    \]
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+  For a random experiment \(E\), the frequency has the following properties:
+  \begin{enumerate}
+    \item for every event \(A\), \(F_n(A) \geq 0\);
+    \item \(F_n(\Omega) = 1\);
+    \item (finite additivity) for every sequence of disjoint events \(A_1, A_2, \dots, A_m\),
+    \[
+      F_n\left(\bigcup_{i=1}^m A_i\right) = \sum_{i=1}^m F_n(A_i), \quad m = 1, 2, \dots, n.
+    \]
+  \end{enumerate}
+\end{theorem}
+
+\begin{definition}[\(\sigma\)-algebra]\index{\(\sigma\)-algebra}
+  A collection \(\mathcal{F}\) of subsets of \(\Omega\) is a \emph{\(\sigma\)-algebra} if
+  \begin{enumerate}
+    \item \(\Omega \in \mathcal{F}\);
+    \item if \(A \in \mathcal{F}\), then \(\overline{A} \in \mathcal{F}\);
+    \item if \(A_n \in \mathcal{F}\) for \(n = 1, 2, \dots\), then \(\bigcup_{n=1}^\infty A_n \in \mathcal{F}\).
+  \end{enumerate}
+\end{definition}
+
+That is, a \(\sigma\)-algebra is a collection of subsets of \(\Omega\) that contains \(\Omega\) itself, is closed under complementation, and is closed under countable unions.
+
+\begin{example}
+  Let the experiment be a coin toss. Then \(\Omega = \{H, T\}\). Let \(\mathcal{F}_1 = \{\varnothing, \{H\}, \{T\}, \Omega\}\) and \(\mathcal{F}_2 = \{\varnothing, \Omega\}\). Then both \(\mathcal{F}_1\) and \(\mathcal{F}_2\) are \(\sigma\)-algebras on \(\Omega\).
+\end{example}
+
+\begin{proposition}
+  If \(\mathcal{F}\) is a \(\sigma\)-algebra on \(\Omega\), then it has the following properties:
+  \begin{enumerate}
+    \item \(\varnothing \in \mathcal{F}\);
+    \item if \(A, B \in \mathcal{F}\), then \(A B \in \mathcal{F}\) and \(A \setminus B \in \mathcal{F}\);
+    \item if \(A_i \in \mathcal{F} (i = 1, 2, \dots, n)\), then \(\bigcup_{i=1}^n A_i \in \mathcal{F}\) and \(\bigcap_{i=1}^n A_i \in \mathcal{F}\);
+    \item if \(A_i \in \mathcal{F} (i = 1, 2, \dots)\), then \(\bigcap_{i=1}^\infty A_i \in \mathcal{F}\).
+  \end{enumerate}
+\end{proposition}
+
+\section{Axiomatic Definition of Probability}
+
+\begin{definition}[Probability]\index{probability}\index{probability space}
+  Let \(P(A) (A \in \mathcal{F})\) be a non-negative set function on the \(\sigma\)-algebra \(\mathcal{F}\). Then \(P(A)\) is called the \emph{probability of event \(A\)} if it satisfies the following axioms:
+  \begin{enumerate}
+    \item \(P(A) \geq 0\) for every event \(A \in \mathcal{F}\);
+    \item \(P(\Omega) = 1\);
+    \item (countable additivity) for every infinite sequence of countably disjoint events \(A_1, A_2, \dots\), we have
+    \[
+      P\left(\bigcup_{i=1}^\infty A_i\right) = \sum_{i=1}^\infty P(A_i).
+    \]
+  \end{enumerate}
+  The sets in \(\mathcal{F}\) are called \emph{events}, and \(\mathcal{F}\) is called the \emph{algebra of events}. The triple \((\Omega, \mathcal{F}, P)\) is called a \emph{probability space} or \emph{probability triplet}.
+\end{definition}
+
+\begin{proposition}
+  Some properties of probability can be derived from the axioms:
+  \begin{enumerate}
+    \item \(P(\varnothing) = 0\);
+    \item for every finite sequence of disjoint events \(A_1, A_2, \dots, A_n\), we have
+    \[
+      P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n P(A_i),
+    \]
+    \item \(P(A) = 1 - P(\overline{A})\);
+    \item if \(A \subseteq B\), then \(P(B \setminus A) = P(B) - P(A)\) and \(P(A) \leq P(B)\);
+    \item \(P(A \cup B) = P(A) + P(B) - P(A B)\), similarly, for every finite sequence of events \(A_1, A_2, \dots, A_n\), we have
+    \[
+      P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n P(A_i) - \sum_{1 \leq i < j \leq n} P(A_i A_j) + \dots + (-1)^{n-1} P\left(\bigcap_{i=1}^n A_i\right),
+    \]
+    \item Continuity: If \(A_n \uparrow A\) (i.e., \(A_1 \subseteq A_2 \subseteq \cdots\) and \(A = \bigcup_{n=1}^\infty A_n\)), then \(P(A) = \lim_{n \to \infty} P(A_n)\); if \(A_n \downarrow A\) (i.e., \(A_1 \supseteq A_2 \supseteq \cdots\) and \(A = \bigcap_{n=1}^\infty A_n\)), then \(P(A) = \lim_{n \to \infty} P(A_n)\).
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  We only prove the continuity property for \(A_n \uparrow A\), the other case can be proved similarly.
+  If \(A_n \uparrow A\), then
+  \[
+  A = \bigcup_{n=1}^\infty A_n = A_1 \cup A_2 \overline{A}_1 \cup A_3 \overline{A}_2 \cup \cdots,
+  \]
+  and
+  \[
+  A_1 \cup A_2 \overline{A}_1 \cup A_3 \overline{A}_2 \cup \dots \cup A_n \overline{A}_{n-1} = A_n.
+  \]
+  Let \(B_1 = A_1\) and \(B_n = A_n \overline{A}_{n-1}\) for \(n \geq 2\). Then
+  \begin{align*}
+    P(A) & = P\left(\bigcup_{n=1}^\infty B_n\right) = \sum_{n=1}^\infty P(B_n) = \lim_{n \to \infty} \sum_{i=1}^n P(B_i) \\
+         & = \lim_{n \to \infty} P \left(\bigcup_{i=1}^n B_i\right) = \lim_{n \to \infty} P(A_n). \qedhere
+  \end{align*}
+\end{proof}
+
+\section{Conditional Probability}
+
+\begin{definition}[Conditional Probability]\index{conditional probability}
+  Given two events \(A\) and \(B\) with \(P(B) > 0\), the \emph{conditional probability} of \(A\) given \(B\) is defined as
+  \[
+    P(A \vert B) = \frac{P(A B)}{P(B)}.
+  \]
+\end{definition}
+
+\begin{theorem}
+  If \(P(B) > 0\), then the conditional probability is also a probability, that is,
+  \begin{enumerate}
+    \item for every event \(A\), \(P(A \vert B) \geq 0\);
+    \item \(P(\Omega \vert B) = 1\);
+    \item for every infinite sequence of countably disjoint events \(A_1, A_2, \dots\), we have
+    \[
+      P\left(\bigcup_{i=1}^\infty A_i \vert B\right) = \sum_{i=1}^\infty P(A_i \vert B).
+    \]
+  \end{enumerate}
+\end{theorem}
+
+\begin{proposition}
+  Some properties of conditional probability can be derived from the axioms:
+  \begin{enumerate}
+    \item \(P(\varnothing \vert B) = 0\);
+    \item for every finite sequence of disjoint events \(A_1, A_2, \dots, A_n\), we have
+    \[
+      P\left(\bigcup_{i=1}^n A_i \vert B\right) = \sum_{i=1}^n P(A_i \vert B),
+    \]
+    \item \(P(A \vert B) = 1 - P(\overline{A} \vert B)\);
+    \item if \(A \subseteq C\), then \(P(C \setminus A \vert B) = P(C \vert B) - P(A \vert B)\) and \(P(A \vert B) \leq P(C \vert B)\);
+    \item \(P(A \cup C \vert B) = P(A \vert B) + P(C \vert B) - P(A C \vert B)\).
+  \end{enumerate}
+\end{proposition}
+
+\begin{theorem}
+  Assume that \(P(B) > 0\). Then
+  \[
+    P(A B) = P(B) P(A \vert B).
+  \]
+\end{theorem}
+
+\begin{theorem}
+  Suppose that \(A_1, A_2, \dots, A_n\) are events with \(P\left(\bigcap_{i=1}^{n-1} A_i\right) > 0\). Then
+  \[
+    P\left(\bigcap_{i=1}^n A_i\right) = P(A_1) P(A_2 \vert A_1) P(A_3 \vert A_1 A_2) \cdots P\left(A_n \vert \bigcap_{i=1}^{n-1} A_i\right).
+  \]
+\end{theorem}
+
+\begin{example}
+  Suppose that an urn box contains $r$ red balls and $b$ black balls ($r, b \geq 2$). We randomly select 1 ball from the box, and then put it back along with $c$ balls of the same color into the box. Then we randomly select another ball from the box. Determine the probability of obtaining the sequence of colors \texttt{red-red-black-black}.
+\end{example}
+
+\begin{solution}
+  Let \(R_i\) be the event that the \(i\)-th selected ball is red, and let \(B_i\) be the event that the \(i\)-th selected ball is black. Then
+  \begin{align*}
+    P(R_1 R_2 B_3 B_4) & = P(R_1) P(R_2 \vert R_1) P(B_3 \vert R_1 R_2) P(B_4 \vert R_1 R_2 B_3) \\
+                       & = \frac{r}{r + b} \cdot \frac{r + c}{r + b + c} \cdot \frac{b}{r + b + 2c} \cdot \frac{b + c}{r + b + 3c}. \qedhere
+  \end{align*}
+\end{solution}
+
+\begin{theorem}[Total Probability Theorem]\index{total probability theorem}
+  Suppose that \(B_1, B_2, \dots, B_n\) form a partition of the sample space \(\Omega\), and \(P(B_i) > 0\) for \(i = 1, 2, \dots, n\). Then
+  \[
+    P(A) = \sum_{i=1}^n P(B_i) P(A \vert B_i).
+  \]
+\end{theorem}
+
+\begin{theorem}[Bayes' Theorem]\index{Bayes' theorem}
+  Suppose that \(B_1, B_2, \dots, B_n\) form a partition of the sample space \(\Omega\), and \(P(B_i) > 0\) for \(i = 1, 2, \dots, n\). Let \(A\) be an event with \(P(A) > 0\). Then for every \(i = 1, 2, \dots, n\), we have
+  \[
+    P(B_i \vert A) = \frac{P(B_i) P(A \vert B_i)}{\sum_{j=1}^n P(B_j) P(A \vert B_j)}.
+  \]
+\end{theorem}
+
+Bayes' Theorem can be rewritten as
+\[
+  \underbrace{P(C \vert A)}_{\text{posterior probability}} = \frac{\overbrace{P(C)}^{\text{prior probability}} \overbrace{P(A \vert C)}^{\text{conditional likelihood}}}{\underbrace{P(A)}_{\text{marginal likelihood}}}.
+\]
+
+\section{Independence of Events}
+
+\begin{definition}[Independence]\index{independent events}
+  Two events \(A\) and \(B\) are \emph{independent} if \(P(A B) = P(A) P(B)\).
+\end{definition}
+
+If \(P(B) > 0\), then \(A\) and \(B\) are independent if and only if \(P(A \vert B) = P(A)\). That is, the occurrence of event \(B\) does not affect the probability of event \(A\).
+
+\begin{theorem}
+  If \(A\) and \(B\) are independent, then \(A\) and \(\overline{B}\) are independent, \(\overline{A}\) and \(B\) are independent, and \(\overline{A}\) and \(\overline{B}\) are independent.
+\end{theorem}
+
+\begin{proof}
+  We only prove that \(A\) and \(\overline{B}\) are independent, the other cases can be proved similarly. Since \(A\) and \(B\) are independent, we have
+  \[
+    P(A \overline{B}) = P(A) - P(A B) = P(A) - P(A) P(B) = P(A)(1 - P(B)) = P(A) P(\overline{B}). \qedhere
+  \]
+\end{proof}
+
+\begin{example}
+  Suppose that \(P(A) = 1\) and \(B \in \mathcal{F}\), we want to determine whether \(A\) and \(B\) are independent. Since \(P(A) = 1\), we have
+  \[
+    0 \leq P(\overline{A} B) \leq P(\overline{A}) = 0,
+  \]
+  which implies \(P(\overline{A} B) = 0\).
+  Therefore, \(P(A B) = P(B) - P(\overline{A} B) = P(B) = P(A) P(B)\), and \(A\) and \(B\) are independent.
+\end{example}
+
+\begin{definition}[Mutual Independence]\index{mutual independence}\index{pairwise independence}
+  Three events \(A\), \(B\) and \(C\) are \emph{mutually independent} (or \emph{independent}) if
+  \begin{align*}
+    P(A B) & = P(A) P(B), \\
+    P(A C) & = P(A) P(C), \\
+    P(B C) & = P(B) P(C), \\
+    P(A B C) & = P(A) P(B) P(C).
+  \end{align*}
+  Events \(A\), \(B\) and \(C\) are \emph{pairwise independent} if only the first three conditions hold.
+\end{definition}
+
+\begin{definition}[Mutual Independence]\index{mutual independence}
+  Events \(A_1, A_2, \dots, A_n\) are \emph{independent} if for every subset \(\{i_1, i_2, \dots, i_k\} \subseteq \{1, 2, \dots, n\}\) with \(k \geq 2\), we have
+  \[
+    P\left(\bigcap_{j=1}^k A_{i_j}\right) = \prod_{j=1}^k P(A_{i_j}).
+  \]
+\end{definition}
+
+\begin{theorem}
+  Events \(A_1, A_2, \dots, A_n\) are independent if and only if for every subset \(\{i_1, i_2, \dots, i_k\} \subseteq \{1, 2, \dots, n\}\) with \(k \geq 2\), we have
+  \[
+    P\left(\bigcap_{j=1}^k A_{i_j}^*\right) = \prod_{j=1}^k P(A_{i_j}^*),
+  \]
+  where \(A_i^*\) denotes \(A_i\) or \(\overline{A}_i\) for \(i = 1, 2, \dots, n\).
+\end{theorem}
+
+If events \(A_1, A_2, \dots, A_n\) are independent, by De Morgan's Laws, we have
+\[
+  P\left(\bigcup_{i=1}^n A_i\right) = 1 - P\left(\bigcap_{i=1}^n \overline{A}_i\right) = 1 - \prod_{i=1}^n (1 - P(A_i)),
+\]
+and
+\[
+  P\left(\bigcup_{i=1}^n \overline{A}_i\right) = 1 - P\left(\bigcap_{i=1}^n A_i\right) = 1 - \prod_{i=1}^n P(A_i).
+\]
+
+\begin{definition}[Bernoulli Trial]\index{Bernoulli trial}\index{Bernoulli process}
+  A Bernoulli trial is a random experiment with only two possible outcomes, usually denoted as "success" and "failure". The probability of success is denoted by \(p\) and the probability of failure is denoted by \(q = 1 - p\). A sequence of independent Bernoulli trials is called a Bernoulli process.
+\end{definition}
+
+\begin{theorem}
+  The probability that the outcome of an experiment that consists of \(n\) Bernoulli trials contains exactly \(k\) successes is given by the binomial distribution:
+  \[
+    P(X = k) = \binom{n}{k} p^k q^{n-k}, \quad k = 0, 1, \dots, n.
+  \]
+\end{theorem}

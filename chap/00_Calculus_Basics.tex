@@ -1,0 +1,129 @@
+\chapter{Calculus Basics}
+
+\section{Limits and Series}
+
+\begin{theorem}[Important Limits]
+  The following limits are fundamental in calculus and analysis:
+  \begin{enumerate}
+    \item $\displaystyle \lim_{n \to \infty} \left(1 + \frac{x}{n}\right)^n = e^x$, for any $x \in \mathbb{R}$.
+    \item $\displaystyle \lim_{x \to 0} \frac{\sin x}{x} = 1$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Taylor Series]\index{Taylor series}
+  The Taylor series expansion of some common functions are:
+  \begin{enumerate}
+    \item Exponential function: $\displaystyle e^x = \sum_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots$
+    \item Geometric series: For $|x| < 1$, $\displaystyle \frac{1}{1-x} = \sum_{n=0}^\infty x^n = 1 + x + x^2 + \cdots$
+    \item Logarithmic function: For $-1 < x \le 1$, $\displaystyle \ln(1+x) = \sum_{n=1}^\infty \frac{(-1)^{n-1} x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots$
+  \end{enumerate}
+\end{theorem}
+
+\section{Integration Techniques}
+
+\begin{theorem}[Integration by Parts]\index{integration by parts}
+  Let $u$ and $v$ be differentiable functions. Then
+  \[
+    \int u\,\mathrm{d}v = u v - \int v\,\mathrm{d}u.
+  \]
+\end{theorem}
+
+\begin{theorem}[Substitution Rule]\index{substitution rule}
+  If $x = g(t)$ is a continuously differentiable function, and $f$ is continuous on the range of $g$, then for indefinite integrals:
+  \[
+    \int f(x)\,\mathrm{d}x = \int f(g(t)) g'(t)\,\mathrm{d}t.
+  \]
+  For definite integrals, this becomes:
+  \[
+    \int_{g(c)}^{g(d)} f(x)\,\mathrm{d}x = \int_c^d f(g(t)) g'(t)\,\mathrm{d}t.
+  \]
+\end{theorem}
+
+\begin{theorem}[Fundamental Theorem of Calculus]\index{fundamental theorem of calculus}
+  If $f$ is continuous on $[a,b]$ and $F$ is an antiderivative of $f$ on $[a,b]$, then
+  \[
+    \int_a^b f(x)\,\mathrm{d}x = F(b) - F(a).
+  \]
+\end{theorem}
+
+\begin{theorem}[Leibniz Integral Rule]\index{Leibniz integral rule}\index{variable limits}
+  For a definite integral with variable limits $a(x)$ and $b(x)$, the derivative with respect to $x$ is given by:
+  \[
+    \frac{\mathrm{d}}{\mathrm{d}x} \int_{a(x)}^{b(x)} f(t)\,\mathrm{d}t = f(b(x)) b'(x) - f(a(x)) a'(x).
+  \]
+  More generally, if the integrand also depends on $x$, i.e., $f(x, t)$, and both $f$ and $\frac{\partial f}{\partial x}$ are continuous:
+  \[
+    \frac{\mathrm{d}}{\mathrm{d}x} \int_{a(x)}^{b(x)} f(x, t)\,\mathrm{d}t = f(x, b(x)) b'(x) - f(x, a(x)) a'(x) + \int_{a(x)}^{b(x)} \frac{\partial f}{\partial x}(x, t)\,\mathrm{d}t.
+  \]
+\end{theorem}
+
+\section{Multivariate Calculus}
+
+\begin{definition}[Double Integral]\index{double integral}
+  The \emph{double integral} of a function $f(x, y)$ over a region $R$ in the $xy$-plane is defined as
+  \[
+    \iint_R f(x, y)\,\mathrm{d}x\,\mathrm{d}y = \lim_{m, n \to \infty} \sum_{i=1}^m \sum_{j=1}^n f(x_{ij}, y_{ij}) \Delta x \Delta y,
+  \]
+  where $R$ is partitioned into $m$ subintervals in the $x$-direction and $n$ subintervals in the $y$-direction, and $(x_{ij}, y_{ij})$ is a sample point in the $(i,j)$-th subrectangle.
+\end{definition}
+
+\begin{theorem}[Fubini's Theorem]\index{Fubini's theorem}
+  If $f(x, y)$ is continuous on a rectangular region $R = [a, b] \times [c, d]$, then
+  \[
+    \iint_R f(x, y)\,\mathrm{d}x\,\mathrm{d}y = \int_a^b \left( \int_c^d f(x, y)\,\mathrm{d}y \right) \mathrm{d}x = \int_c^d \left( \int_a^b f(x, y)\,\mathrm{d}x \right) \mathrm{d}y.
+  \]
+\end{theorem}
+
+\begin{theorem}[Double Integrals in Polar Coordinates]\index{polar coordinates}
+  To evaluate a double integral over a region $R$ in the $xy$-plane using polar coordinates $(r, \theta)$, we use the transformation $x = r\cos\theta$ and $y = r\sin\theta$. The area element becomes $\mathrm{d}x\,\mathrm{d}y = r\,\mathrm{d}r\,\mathrm{d}\theta$. Then
+  \[
+    \iint_R f(x, y)\,\mathrm{d}x\,\mathrm{d}y = \iint_S f(r\cos\theta, r\sin\theta) r\,\mathrm{d}r\,\mathrm{d}\theta,
+  \]
+  where $S$ is the region in the $r\theta$-plane corresponding to $R$.
+\end{theorem}
+
+\begin{definition}[Jacobian]\index{Jacobian}
+  Let $x = g(u, v)$ and $y = h(u, v)$ be a transformation. The \emph{Jacobian} of this transformation is given by the determinant
+  \[
+    J(u, v) = \frac{\partial(x, y)}{\partial(u, v)} = \det \begin{pmatrix}
+      \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\
+      \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+    \end{pmatrix}.
+  \]
+  The transformation of double integrals is then
+  \[
+    \iint_R f(x, y)\,\mathrm{d}x\,\mathrm{d}y = \iint_S f(g(u, v), h(u, v)) |J(u, v)|\,\mathrm{d}u\,\mathrm{d}v.
+  \]
+\end{definition}
+
+\section{Special Functions}
+
+\begin{definition}[Gamma Function]\index{Gamma function}
+  The \emph{Gamma function}, denoted by $\Gamma(z)$, is an extension of the factorial function to complex (and real) numbers. For $z > 0$, it is defined by the integral
+  \[
+    \Gamma(z) = \int_0^\infty t^{z-1} e^{-t}\,\mathrm{d}t.
+  \]
+\end{definition}
+
+\begin{proposition}
+  The Gamma function has the following properties:
+  \begin{enumerate}
+    \item $\Gamma(z+1) = z \Gamma(z)$ for any $z > 0$.
+    \item If $n$ is a positive integer, $\Gamma(n) = (n-1)!$.
+    \item $\Gamma(1/2) = \sqrt{\pi}$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{definition}[Beta Function]\index{Beta function}
+  The \emph{Beta function}, denoted by $\mathrm{B}(x, y)$, is defined for $x, y > 0$ by the integral
+  \[
+    \mathrm{B}(x, y) = \int_0^1 t^{x-1} (1-t)^{y-1}\,\mathrm{d}t.
+  \]
+\end{definition}
+
+\begin{proposition}
+  The Beta function is related to the Gamma function by
+  \[
+    \mathrm{B}(x, y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}.
+  \]
+\end{proposition}

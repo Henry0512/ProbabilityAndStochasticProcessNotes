@@ -1,0 +1,31 @@
+\chapter{Random Vector}
+
+\section{Bivariate Random Variables}
+
+\begin{definition}[Bivariate Random Variable]\index{bivariate random variable}
+  A pair of random variables \((X, Y)\) is called a \emph{bivariate random variable}.
+\end{definition}
+
+\begin{definition}[Joint Distribution Function]\index{joint distribution function}
+  The \emph{joint distribution function} (joint d.f.\@) of a bivariate random variable \((X, Y)\) is defined as
+  \[
+    F(x, y) = P\!\left(\{X \leq x\} \cap \{Y \leq y\}\right) = P(X \leq x, Y \leq y).
+  \]
+\end{definition}
+
+\begin{proposition}
+  Some properties of the joint d.f.\@ \(F(x, y)\) of a bivariate random variable \((X, Y)\) are as follows:
+  \begin{enumerate}
+    \item (Monotonicity) If \(y_2 > y_1\), then \(F(x, y_2) \geq F(x, y_1)\) for any \(x\); if \(x_2 > x_1\), then \(F(x_2, y) \geq F(x_1, y)\) for any \(y\).
+    \item (Right-continuity) \(\lim_{x \to x_0^+} F(x, y) = F(x_0, y)\) for any \(y\); \(\lim_{y \to y_0^+} F(x, y) = F(x, y_0)\) for any \(x\).
+    \item \(0 \leq F(x, y) \leq 1\) for all \(x, y \in \mathbb{R}\), and
+    \begin{align*}
+      F(x, -\infty) = \lim_{y \to -\infty} F(x, y) = 0, &\quad F(-\infty, y) = \lim_{x \to -\infty} F(x, y) = 0, \\
+      F(-\infty, -\infty) = \lim_{x \to -\infty} \lim_{y \to -\infty} F(x, y) = 0, &\quad F(\infty, \infty) = \lim_{x \to \infty} \lim_{y \to \infty} F(x, y) = 1.
+    \end{align*}
+    \item (Non-negativity) For any \(x_1 < x_2\) and \(y_1 < y_2\), we have
+    \[
+      F(x_2, y_2) - F(x_2, y_1) - F(x_1, y_2) + F(x_1, y_1) \geq 0.
+    \]
+  \end{enumerate}
+\end{proposition}

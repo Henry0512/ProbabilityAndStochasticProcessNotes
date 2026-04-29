@@ -1,0 +1,58 @@
+\documentclass[a4paper]{report}
+
+\usepackage[latte]{catppuccinpalette}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{definition}{\textcolor{CtpLatteBlue}{Definition}}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}{\textcolor{CtpLatteRed}{Theorem}}[section]
+\newtheorem{proposition}{\textcolor{CtpLatteMaroon}{Proposition}}[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{\textcolor{CtpLatteYellow}{Remark}}
+\newtheorem{example}{\textcolor{CtpLatteGreen}{Example}}[section]
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+
+\usepackage{newpx}
+
+\usepackage{imakeidx}
+\makeindex[options=-s main.ist]
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{booktabs}
+\usepackage[hidelinks,pdftitle={Notes on Probability and Stochastic Process},pdfauthor={Henry Tan}]{hyperref}
+
+\title{Notes on Probability and Stochastic Process}
+\author{Henry Tan}
+\date{Spring Semester, 2026\\(Updated on \today)}
+
+\begin{document}
+
+\sloppy
+
+\maketitle
+
+\pagestyle{headings}
+
+\pagenumbering{roman}
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Contents}
+\tableofcontents
+\cleardoublepage
+
+\pagenumbering{arabic}
+
+\setcounter{chapter}{-1}
+\input{chap/00_Calculus_Basics.tex}
+\input{chap/01_Events_and_Their_Probabilities.tex}
+\input{chap/02_Random_Variable.tex}
+\input{chap/03_Random_Vector.tex}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Index}
+\printindex
+
+\end{document}
