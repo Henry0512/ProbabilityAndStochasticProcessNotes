@@ -270,10 +270,9 @@ The marginal p.d.f.\@ of \(X\) and \(Y\) is given by
     &= \frac{1}{2\pi \sigma_1 \sigma_2 \sqrt{1 - \rho^2}} e^{-\frac{(x - \mu_1)^2}{2\sigma_1^2}} \int_{-\infty}^\infty e^{-\frac{1}{2(1 - \rho^2)}\left(\frac{y - \mu_2}{\sigma_2} - \rho \frac{x - \mu_1}{\sigma_1}\right)^2} \, \mathrm{d}y.
   \end{align*}
   Let \(t = \frac{1}{\sqrt{1 - \rho^2}} \left(\frac{y - \mu_2}{\sigma_2} - \rho \frac{x - \mu_1}{\sigma_1}\right)\), then \(\mathrm{d}t = \frac{1}{\sqrt{1 - \rho^2}} \frac{1}{\sigma_2} \, \mathrm{d}y\). Therefore,
-  \begin{align*}
-    f_X(x) &= \frac{1}{2\pi \sigma_1} e^{-\frac{(x - \mu_1)^2}{2\sigma_1^2}} \int_{-\infty}^\infty e^{-\frac{t^2}{2}} \, \mathrm{d}t \\
-    &= \frac{1}{\sqrt{2\pi} \sigma_1} e^{-\frac{(x - \mu_1)^2}{2\sigma_1^2}}.
-  \end{align*}
+  \[
+    f_X(x) = \frac{1}{2\pi \sigma_1} e^{-\frac{(x - \mu_1)^2}{2\sigma_1^2}} \int_{-\infty}^\infty e^{-\frac{t^2}{2}} \, \mathrm{d}t = \frac{1}{\sqrt{2\pi} \sigma_1} e^{-\frac{(x - \mu_1)^2}{2\sigma_1^2}}.
+  \]
   So \(X \sim \mathrm{N}(\mu_1, \sigma_1^2)\). By symmetry, we can also show that \(Y \sim \mathrm{N}(\mu_2, \sigma_2^2)\).
 \end{proof}
 
@@ -296,23 +295,278 @@ The marginal p.d.f.\@ of \(X\) and \(Y\) is given by
 \end{definition}
 
 \begin{definition}[Conditional Probability Density Function]\index{conditional probability density function}
-  For a jointly continuous bivariate random variable \((X, Y)\) with joint p.d.f.\@ \(f(x, y)\), the \emph{conditional probability density function} of \(X\) given \(Y = y\) is defined as
+  For a jointly continuous bivariate random variable \((X, Y)\) with joint p.d.f.\@ \(f(x, y)\), the \emph{conditional probability density function} (conditional p.d.f.\@) of \(X\) given \(Y = y\) is defined as
   \[
     f_{X|Y}(x | y) = \frac{f(x, y)}{f_Y(y)},
   \]
   where \(f_Y(y)\) is the marginal p.d.f.\@ of \(Y\), provided that \(f_Y(y) > 0\).
 \end{definition}
 
+For a continuous random variable $Y$, the probability of exactly observing $Y = y$ is zero ($P(Y=y) = 0$). To define the conditional distribution of $X$ given $Y=y$, we must therefore consider an interval around $y$ and take the limit as the interval length goes to zero to capture the behavior of $X$ as $Y$ approaches $y$.
+
 \begin{definition}[Conditional Distribution Function]\index{conditional distribution function}
   In the case of a jointly continuous bivariate random variable \((X, Y)\) with joint p.d.f.\@ \(f(x, y)\), for any \(x\), the limit
   \[
-    \lim_{\varepsilon \to 0^+} P\{X \leq x | y - \varepsilon < Y \leq y + \varepsilon\} = \int_{-\infty}^{x} \frac{f(u, y)}{f_Y(y)} \, \mathrm{d}u
+    F_{X | Y}(x | y) = \lim_{\varepsilon \to 0^+} P\{X \leq x | y - \varepsilon < Y \leq y + \varepsilon\} = \int_{-\infty}^{x} \frac{f(u, y)}{f_Y(y)} \, \mathrm{d}u
   \]
-  is called \emph{conditional distribution function} (conditional d.f.\@) of \(X\) given \(Y = y\) if it exists, provided that \(f_Y(y) > 0\). Denote it by \(F_{X | Y}(x | y)\).
+  is called \emph{conditional distribution function} (conditional d.f.\@) of \(X\) given \(Y = y\) if it exists, provided that \(f_Y(y) > 0\).
 \end{definition}
 
-Notice that the integral can be rewritten as
+\begin{example}
+  Suppose that the number \(X\) is taken randomly from the interval \((0, 1)\). When \(X = x (0 < x < 1)\) is given, the number \(Y\) is taken randomly from the interval \((x, 1)\). Find the marginal p.d.f.\@ \(f_Y(y)\) of \(Y\).
+\end{example}
+\begin{solution}
+  Since \(X\) is taken randomly from the interval \((0, 1)\), the p.d.f.\@ of \(X\) is given by
+  \[
+    f_X(x) = \begin{cases}
+      1, & 0 < x < 1, \\
+      0, & \text{otherwise}.
+    \end{cases}
+  \]
+  For any \(0 < x < 1\), when \(X = x\) is given, the p.d.f.\@ of \(Y\) is given by
+  \[
+    f_{Y|X}(y | x) = \begin{cases}
+      \frac{1}{1 - x}, & x < y < 1, \\
+      0, & \text{otherwise}.
+    \end{cases}
+  \]
+  Therefore, the joint p.d.f.\@ of \(X\) and \(Y\) is given by
+  \[
+    f(x, y) = f_X(x) f_{Y|X}(y | x) = \begin{cases}
+      \frac{1}{1 - x}, & 0 < x < y < 1, \\
+      0, & \text{otherwise}.
+    \end{cases}
+  \]
+  Thus, the marginal p.d.f.\@ of \(Y\) is given by
+  \[
+    f_Y(y) = \int_{-\infty}^\infty f(x, y) \, \mathrm{d}x = \begin{cases}
+      \int_0^y \frac{1}{1 - x} \, \mathrm{d}x = -\ln(1 - y), & 0 < y < 1, \\
+      0, & \text{otherwise}.
+    \end{cases} \qedhere
+  \]
+\end{solution}
+
+\begin{example}
+  Suppose that the joint p.d.f.\@ of \(X, Y\) is given by
+  \[
+    f(x, y) = \begin{cases}
+      3x, & 0 < x < 1, 0 < y < x, \\
+      0, & \text{otherwise}.
+    \end{cases}
+  \]
+  \begin{enumerate}
+    \item Find the marginal p.d.f.\@ of \(X\) and \(Y\).
+    \item Find the conditional p.d.f.\@ of \(X\) and \(Y\).
+  \end{enumerate}
+\end{example}
+\begin{solution}
+  \begin{enumerate}
+    \item The marginal p.d.f.\@ of \(X\) is given by
+    \[
+      f_X(x) = \int_{-\infty}^\infty f(x, y) \, \mathrm{d}y = \int_0^x 3x \, \mathrm{d}y = 3x^2, \quad 0 < x < 1,
+    \]
+    and the marginal p.d.f.\@ of \(Y\) is given by
+    \[
+      f_Y(y) = \int_{-\infty}^\infty f(x, y) \, \mathrm{d}x = \int_y^1 3x \, \mathrm{d}x = \frac{3}{2}(1 - y^2), \quad 0 < y < 1.
+    \]
+    For other values of \(x\) and \(y\), the marginal p.d.f.\@s are zero.
+    \item If \(0 < y < 1\), the conditional p.d.f.\@ of \(X\) given \(Y = y\) is given by
+    \[
+      f_{X|Y}(x | y) = \frac{f(x, y)}{f_Y(y)} = \begin{cases}
+        \frac{2x}{1 - y^2}, & y < x < 1, \\
+        0, & \text{otherwise}.
+      \end{cases}
+    \]
+    If \(0 < x < 1\), the conditional p.d.f.\@ of \(Y\) given \(X = x\) is given by
+    \[
+      f_{Y|X}(y | x) = \frac{f(x, y)}{f_X(x)} = \begin{cases}
+        \frac{1}{x}, & 0 < y < x, \\
+        0, & \text{otherwise}.
+      \end{cases} \qedhere
+    \]
+  \end{enumerate}
+\end{solution}
+
+\begin{proposition}
+  Suppose that \((X, Y) \sim \mathrm{N}(\mu_1, \mu_2; \sigma_1^2, \sigma_2^2; \rho)\). Then the conditional distribution of \(X\) given \(Y = y\) is a normal distribution with mean \(\mu_1 + \rho \frac{\sigma_1}{\sigma_2} (y - \mu_2)\) and variance \((1 - \rho^2) \sigma_1^2\).
+\end{proposition}
+
+\section{Independence of Variables}
+
+\begin{definition}[Independence]\index{independence}
+  A bivariate random variable \((X, Y)\) is said to be \emph{independent} if for any \(x, y \in \mathbb{R}\), we have
+  \[
+    P(X \leq x, Y \leq y) = P(X \leq x) P(Y \leq y),
+  \]
+  or equivalently,
+  \[
+    F(x, y) = F_X(x) F_Y(y).
+  \]
+\end{definition}
+
+\begin{proposition}
+  A discrete bivariate random variable \((X, Y)\) with joint p.f.\@ \(p_{ij} = P(X = x_i, Y = y_j)\) is independent if and only if there exist two sequences of non-negative numbers \(\{p_{i \cdot}\}\) and \(\{p_{\cdot j}\}\) such that \(p_{ij} = p_{i \cdot} p_{\cdot j}\) for all \(i, j\).
+\end{proposition}
+\begin{proof}
+  \((\Rightarrow)\) Suppose that \((X, Y)\) is independent. Then for any \(x_1 < x_2\) and \(y_1 < y_2\), we have
+  \[
+    P\{x_1 < X \leq x_2, y_1 < Y \leq y_2\} = P\{x_1 < X \leq x_2\} P\{y_1 < Y \leq y_2\}.
+  \]
+  For any \(i, j\), we have
+  \begin{align*}
+    p_{ij} &= P\{X = x_i, Y = y_j\} \\
+    &= \lim_{n, m \to \infty} P\{x_i - \frac{1}{n} < X \leq x_i, y_j - \frac{1}{m} < Y \leq y_j\} \\
+    &= \lim_{n \to \infty} P\{x_i - \frac{1}{n} < X \leq x_i\} \lim_{m \to \infty} P\{y_j - \frac{1}{m} < Y \leq y_j\} \\
+    &= P\{X = x_i\} P\{Y = y_j\} = p_{i \cdot} p_{\cdot j}.
+  \end{align*}
+
+  \((\Leftarrow)\) Suppose that there exist two sequences of non-negative numbers \(\{p_{i \cdot}\}\) and \(\{p_{\cdot j}\}\) such that \(p_{ij} = p_{i \cdot} p_{\cdot j}\) for all \(i, j\). Then for any \(x, y \in \mathbb{R}\), we have
+  \[
+    F(x, y) = \sum_{x_i \leq x} \sum_{y_j \leq y} p_{ij} = \sum_{x_i \leq x} \sum_{y_j \leq y} p_{i \cdot} p_{\cdot j} = \left(\sum_{x_i \leq x} p_{i \cdot}\right) \left(\sum_{y_j \leq y} p_{\cdot j}\right) = F_X(x) F_Y(y). \qedhere
+  \]
+\end{proof}
+
+\begin{proposition}
+  A jointly continuous bivariate random variable \((X, Y)\) with joint p.d.f.\@ \(f(x, y)\) is independent if and only if there exist two non-negative functions \(f_X(x)\) and \(f_Y(y)\) such that \(f(x, y) = f_X(x) f_Y(y)\) at any continuous point of \(f(x, y)\).
+\end{proposition}
+\begin{proof}
+  \((\Rightarrow)\) Suppose that \((X, Y)\) is independent. Then for any continuous point \((x, y)\) of \(f(x, y)\), we have
+  \[
+    f(x, y) = \frac{\partial^2 F(x, y)}{\partial x \partial y} = \frac{\partial^2 F_X(x) F_Y(y)}{\partial x \partial y} = \frac{\mathrm{d} F_X(x)}{\mathrm{d}x} \cdot \frac{\mathrm{d} F_Y(y)}{\mathrm{d}y} = f_X(x) f_Y(y).
+  \]
+
+  \((\Leftarrow)\) Suppose that \(f(x, y) = f_X(x) f_Y(y)\) at any continuous point of \(f(x, y)\). Then for any \(x, y \in \mathbb{R}\), we have
+  \begin{align*}
+    F(x, y) &= \int_{-\infty}^x \int_{-\infty}^y f(u, v) \, \mathrm{d}v \, \mathrm{d}u = \int_{-\infty}^x \int_{-\infty}^y f_X(u) f_Y(v) \, \mathrm{d}v \, \mathrm{d}u \\
+    &= \left(\int_{-\infty}^x f_X(u) \, \mathrm{d}u\right) \left(\int_{-\infty}^y f_Y(v) \, \mathrm{d}v\right) = F_X(x) F_Y(y). \qedhere
+  \end{align*}
+\end{proof}
+
+\begin{proposition}
+  If \((X, Y) \sim \mathrm{N}(\mu_1, \mu_2; \sigma_1^2, \sigma_2^2; \rho)\), then \(X\) and \(Y\) are independent if and only if \(\rho = 0\).
+\end{proposition}
+
+\begin{theorem}
+  Let \(a, b, c\) and \(d\) be given values such that \(-\infty \leq a < b \leq \infty\) and \(-\infty \leq c < d \leq \infty\), and let \(S\) be a rectangle in the plane defined by
+  \[
+   S = \{(x, y) | a \leq x \leq b, c \leq y \leq d\}.
+  \]
+  Suppose that \(f(x, y) = 0\) for all \((x, y) \notin S\). Then the continuous (discrete) bivariate random variable \((X, Y)\) with joint p.d.f.\@ (joint p.f.\@) \(f(x, y)\) is independent if and only if there exist two non-negative functions \(f_X(x)\) and \(f_Y(y)\) such that
+  \[
+    f(x, y) = f_X(x) f_Y(y)
+  \]
+  for all \((x, y) \in S\).
+\end{theorem}
+
+\section{Functions of Bivariate Random Variables}
+
+\begin{proposition}
+  If \(X \sim \mathrm{B}(n_1, p)\) and \(Y \sim \mathrm{B}(n_2, p)\) are independent, then \(X + Y \sim \mathrm{B}(n_1 + n_2, p)\).
+\end{proposition}
+
+\begin{proposition}
+  If \(X \sim \mathrm{Poi}(\lambda_1)\) and \(Y \sim \mathrm{Poi}(\lambda_2)\) are independent, then \(X + Y \sim \mathrm{Poi}(\lambda_1 + \lambda_2)\).
+\end{proposition}
+
+\paragraph{The Convolution Formula.}
+Suppose that the joint p.d.f.\@ of \(X, Y\) is \(f(x, y)\). Let \(Z = X + Y\). We want to find the p.d.f.\@ of \(Z\).
+
+The d.f.\@ of \(Z\) is given by
 \[
-  F_{X | Y}(x | y) = \int_{-\infty}^{x} f_{X|Y}(u | y) \, \mathrm{d}u,
+  F_Z(z) = P(Z \leq z) = \iint_{x + y \leq z} f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \int_{-\infty}^\infty \mathrm{d}x \int_{-\infty}^{z - x} f(x, y) \, \mathrm{d}y.
 \]
-which shows that the conditional p.d.f.\@ acts exactly as the density for the conditional d.f.
+Let \(u = y + x\), then \(\mathrm{d}u = \mathrm{d}y\). Therefore,
+\[
+  F_Z(z) = \int_{-\infty}^\infty \mathrm{d}x \int_{-\infty}^{z} f(x, u - x) \, \mathrm{d}u = \int_{-\infty}^z \mathrm{d}u \int_{-\infty}^\infty f(x, u - x) \, \mathrm{d}x.
+\]
+By differentiating \(F_Z(z)\) with respect to \(z\), we can obtain the p.d.f.\@ of \(Z\) as follows:
+\[
+  f_Z(z) = \int_{-\infty}^\infty f(x, z - x) \, \mathrm{d}x.
+\]
+By symmetry, we can also show that
+\[
+  f_Z(z) = \int_{-\infty}^\infty f(z - y, y) \, \mathrm{d}y.
+\]
+
+If \(X\) and \(Y\) are independent, then \(f(x, y) = f_X(x) f_Y(y)\). In this case, the p.d.f.\@ of \(Z\) can be expressed as
+\[
+  f_Z(z) = \int_{-\infty}^\infty f_X(x) f_Y(z - x) \, \mathrm{d}x = \int_{-\infty}^\infty f_X(z - y) f_Y(y) \, \mathrm{d}y.
+\]
+
+\begin{proposition}
+  If \(X \sim \mathrm{N}(\mu_1, \sigma_1^2)\) and \(Y \sim \mathrm{N}(\mu_2, \sigma_2^2)\) are independent, then \(X + Y \sim \mathrm{N}(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)\).
+\end{proposition}
+
+\paragraph{The Distribution of \(M = \max\{X, Y\}\) and \(N = \min\{X, Y\}\).} Suppose that \(X\) and \(Y\) are independent with marginal d.f.\@ \(F_X(x)\) and \(F_Y(y)\) and marginal p.d.f.\@ \(f_X(x)\) and \(f_Y(y)\). We want to find the distribution of \(M = \max\{X, Y\}\) and \(N = \min\{X, Y\}\).
+
+Since \(M = \max\{X, Y\} \leq m \Leftrightarrow X \leq m, Y \leq m\), we have
+\[
+  F_{M}(m) = P(M \leq m) = P(X \leq m, Y \leq m) = F_X(m) F_Y(m).
+\]
+Thus,
+\[
+  f_{M}(m) = f_X(m) F_Y(m) + f_Y(m) F_X(m).
+\]
+
+Since \(N = \min\{X, Y\} > n \Leftrightarrow X > n, Y > n\), we have
+\begin{align*}
+  F_{N}(n) &= P(N \leq n) = P(\min\{X, Y\} \leq n) = 1 - P(\min\{X, Y\} > n) \\
+  &= 1 - P(X > n, Y > n) = 1 - [1 - F_X(n)][1 - F_Y(n)] \\
+  &= F_X(n) + F_Y(n) - F_X(n) F_Y(n).
+\end{align*}
+Thus,
+\[
+  f_{N}(n) = f_X(n) [1 - F_Y(n)] + f_Y(n) [1 - F_X(n)].
+\]
+
+\section{Numerical Characteristics of Random Vectors}
+
+\begin{theorem}
+  Let \((X\) and \(Y)\) be jointly distributed random variables with p.f.\@ \(p(x, y)\) or p.d.f.\@ \(f(x, y)\). Then the expected value of a function \(h(X, Y)\), denoted by \(\mathbb{E}[h(X, Y)]\), is given by
+  \[
+    \mathbb{E}[h(X, Y)] = \begin{cases}
+      \sum_{x} \sum_{y} h(x, y) p(x, y), & \text{if } (X, Y) \text{ is discrete}, \\
+      \int_{-\infty}^\infty \int_{-\infty}^\infty h(x, y) f(x, y) \, \mathrm{d}x \, \mathrm{d}y, & \text{if } (X, Y) \text{ is continuous}.
+    \end{cases}
+  \]
+  The expectation exists if and only if the corresponding series or integral converges absolutely.
+\end{theorem}
+
+\begin{proposition}
+  \(\mathbb{E} \left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \mathbb{E}(X_i)\).
+\end{proposition}
+
+\begin{proposition}
+  If \(X_1, X_2, \dots, X_n\) are independent, then
+  \[
+    \mathbb{E} \left(\prod_{i=1}^n X_i\right) = \prod_{i=1}^n \mathbb{E}(X_i).
+  \]
+\end{proposition}
+
+\begin{proposition}
+  If \(X_1, X_2, \dots, X_n\) are independent, then
+  \[
+    \mathrm{Var} \left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \mathrm{Var}(X_i).
+  \]
+\end{proposition}
+
+\begin{definition}[Covariance]\index{covariance}
+  The \emph{covariance} of two random variables \(X\) and \(Y\) is defined as
+  \[
+    \mathrm{Cov}(X, Y) = \mathbb{E}[(X - \mathbb{E}(X))(Y - \mathbb{E}(Y))].
+  \]
+\end{definition}
+
+\begin{proposition}
+  Some properties of covariance are as follows:
+  \begin{enumerate}
+    \item \(\mathrm{Cov}(X, X) = \mathrm{Var}(X)\).
+    \item \(\mathrm{Cov}(X, Y) = \mathrm{Cov}(Y, X)\).
+    \item \(\mathrm{Cov}(X, C) = 0\) for any constant \(C\).
+    \item \(\mathrm{Cov}(X, Y) = \mathbb{E}(XY) - \mathbb{E}(X) \mathbb{E}(Y)\).
+    \item If \(X\) and \(Y\) are independent, then \(\mathrm{Cov}(X, Y) = 0\).
+    \item \(\mathrm{Cov}(aX + b, cY + d) = ac \mathrm{Cov}(X, Y)\) for any constants \(a, b, c\) and \(d\).
+    \item \(\mathrm{Cov}(X_1 + X_2, Y) = \mathrm{Cov}(X_1, Y) + \mathrm{Cov}(X_2, Y)\).
+    \item \(\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2 \mathrm{Cov}(X, Y)\).
+  \end{enumerate}
+\end{proposition}

@@ -511,19 +511,15 @@ The p.d.f.\@ of the standard normal distribution is given by
   \caption{The p.d.f.\@ and d.f.\@ of the standard normal distribution.}
 \end{figure}
 
-The p.d.f.\@ of the normal distribution is obviously non-negative. We can show that the integral of the normal p.d.f.\@ is 1 by using the polar coordinate transformation. In fact, we have
+The p.d.f.\@ of the normal distribution is obviously non-negative. We can show that the integral of the normal p.d.f.\@ is 1 by using the substitution \(z = \frac{x - \mu}{\sigma}\):
 \[
   \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x - \mu)^2}{2\sigma^2}}\,\mathrm{d}x = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{-\frac{z^2}{2}}\,\mathrm{d}z \quad (z = \frac{x - \mu}{\sigma})
 \]
-Let \(I = \int_{-\infty}^\infty e^{-\frac{z^2}{2}}\,\mathrm{d}z\), then
+By Theorem~\ref{thm:important_integrals}, we have
 \[
-  I^2 = \left(\int_{-\infty}^\infty e^{-\frac{x^2}{2}}\,\mathrm{d}x\right)\left(\int_{-\infty}^\infty e^{-\frac{y^2}{2}}\,\mathrm{d}y\right) = \iint_{-\infty}^\infty e^{-\frac{x^2 + y^2}{2}}\,\mathrm{d}x\,\mathrm{d}y.
+  \int_{-\infty}^\infty e^{-\frac{z^2}{2}}\,\mathrm{d}z = 2 \int_{0}^{\infty} e^{-\frac{z^2}{2}}\,\mathrm{d}z = \sqrt{2\pi}.
 \]
-By using the polar coordinate transformation \(x = r \cos \theta\), \(y = r \sin \theta\), we have
-\[
-  I^2 = \int_0^{2\pi} \int_0^\infty e^{-\frac{r^2}{2}} r\,\mathrm{d}r\,\mathrm{d}\theta = 2\pi \int_0^\infty e^{-\frac{r^2}{2}} r\,\mathrm{d}r = 2\pi.
-\]
-Therefore, \(I = \sqrt{2\pi}\), and the integral of the standard normal p.d.f.\@ is 1.
+Therefore, the integral of the normal p.d.f.\@ is 1.
 
 The d.f.\@ of \(X \sim \mathrm{N}(\mu, \sigma^2)\) is given by
 \[
@@ -587,7 +583,9 @@ and the d.f.\@ of the standard normal distribution is given by
   Solving the equations, we have \(\mu = 1.80\) and \(\sigma \approx 4.01\).
 \end{solution}
 
-\paragraph{The function of random variables.} Mapping a discrete r.v.\@ to another discrete r.v.\@ will not change the nature of the distribution, i.e., the new r.v.\@ is still a discrete r.v.\@. However, mapping a continuous r.v.\@ to another r.v.\@ may not yield a continuous r.v.\@.
+\section{Functions of Random Variables}
+
+Mapping a discrete r.v.\@ to another discrete r.v.\@ will not change the nature of the distribution, i.e., the new r.v.\@ is still a discrete r.v.\@. However, mapping a continuous r.v.\@ to another r.v.\@ may not yield a continuous r.v.
 \begin{example}
   Let \(X \sim \mathrm{N}(0, 1)\), \(Y = X^+\), i.e., \(Y = \max\{X, 0\}\). Then \(Y\) is not a continuous r.v.\@ since \(P(Y = 0) = P(X \leq 0) = \frac{1}{2} > 0\).
 \end{example}
@@ -721,7 +719,7 @@ Let \(y = \frac{x - \mu}{\sigma}\), then
     \item \(\mathbb{E}(c) = c\) for any constant \(c\).
     \item \(\mathbb{E}(cX) = c \mathbb{E}(X)\) for any constant \(c\).
     \item \(\mathbb{E}(X + Y) = \mathbb{E}(X) + \mathbb{E}(Y)\) for any r.v.\@ \(X\) and \(Y\).
-    \item \(\mathbb{E}(X - \mathbb{E}(X))^2 = \mathbb{E}(X^2) - (\mathbb{E}(X))^2\).
+    \item \(\mathbb{E}[X - \mathbb{E}(X)]^2 = \mathbb{E}[X^2 - 2X\mathbb{E}(X) + (\mathbb{E}(X))^2] = \mathbb{E}(X^2) - [\mathbb{E}(X)]^2\).
   \end{enumerate}
 \end{proposition}
 
@@ -740,7 +738,7 @@ Let \(y = \frac{x - \mu}{\sigma}\), then
 \begin{definition}[Variance]\index{variance}
   The \emph{variance} of a r.v.\@ \(X\) is defined as
   \[
-    \mathrm{Var}(X) = \mathbb{E}(X - \mathbb{E}(X))^2,
+    \mathrm{Var}(X) = \mathbb{E}[X - \mathbb{E}(X)]^2 = \mathbb{E}(X^2) - [\mathbb{E}(X)]^2,
   \]
   if the expectation exists.
 \end{definition}
