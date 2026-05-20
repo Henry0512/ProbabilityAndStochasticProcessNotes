@@ -533,7 +533,7 @@ Thus,
 \end{theorem}
 
 \begin{proposition}
-  \(\mathbb{E} \left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \mathbb{E}(X_i)\).
+  \(\displaystyle \mathbb{E} \left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \mathbb{E}(X_i)\).
 \end{proposition}
 
 \begin{proposition}
@@ -553,7 +553,7 @@ Thus,
 \begin{definition}[Covariance]\index{covariance}
   The \emph{covariance} of two random variables \(X\) and \(Y\) is defined as
   \[
-    \mathrm{Cov}(X, Y) = \mathbb{E}[(X - \mathbb{E}(X))(Y - \mathbb{E}(Y))].
+    \mathrm{Cov}(X, Y) = \mathbb{E}[(X - \mathbb{E}(X))(Y - \mathbb{E}(Y))] = \mathbb{E}(XY) - \mathbb{E}(X) \mathbb{E}(Y).
   \]
 \end{definition}
 
@@ -563,10 +563,257 @@ Thus,
     \item \(\mathrm{Cov}(X, X) = \mathrm{Var}(X)\).
     \item \(\mathrm{Cov}(X, Y) = \mathrm{Cov}(Y, X)\).
     \item \(\mathrm{Cov}(X, C) = 0\) for any constant \(C\).
-    \item \(\mathrm{Cov}(X, Y) = \mathbb{E}(XY) - \mathbb{E}(X) \mathbb{E}(Y)\).
     \item If \(X\) and \(Y\) are independent, then \(\mathrm{Cov}(X, Y) = 0\).
-    \item \(\mathrm{Cov}(aX + b, cY + d) = ac \mathrm{Cov}(X, Y)\) for any constants \(a, b, c\) and \(d\).
+    \item\label{prop:covariance:linear} \(\mathrm{Cov}(aX + b, cY + d) = ac \mathrm{Cov}(X, Y)\) for any constants \(a, b, c\) and \(d\).
     \item \(\mathrm{Cov}(X_1 + X_2, Y) = \mathrm{Cov}(X_1, Y) + \mathrm{Cov}(X_2, Y)\).
     \item \(\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2 \mathrm{Cov}(X, Y)\).
   \end{enumerate}
 \end{proposition}
+
+\begin{proof}[Proof of Property \ref{prop:covariance:linear}]
+  We have
+  \begin{align*}
+    \mathrm{Cov}(aX + b, cY + d) &= \mathbb{E}[(aX + b - \mathbb{E}(aX + b))(cY + d - \mathbb{E}(cY + d))] \\
+    &= \mathbb{E}[(aX - a\mathbb{E}(X))(cY - c\mathbb{E}(Y))] \\
+    &= ac \mathbb{E}[(X - \mathbb{E}(X))(Y - \mathbb{E}(Y))] = ac \mathrm{Cov}(X, Y). \qedhere
+  \end{align*}
+\end{proof}
+
+\begin{definition}[Correlation Coefficient]\index{correlation coefficient}
+  The \emph{correlation coefficient} of two random variables \(X\) and \(Y\) is defined as
+  \[
+    \rho(X, Y) = \frac{\mathrm{Cov}(X, Y)}{\sqrt{\mathrm{Var}(X)} \sqrt{\mathrm{Var}(Y)}}.
+  \]
+\end{definition}
+
+The correlation coefficient \(\rho(X, Y)\) is a measure of the linear relationship between \(X\) and \(Y\). It takes values in the interval \([-1, 1]\), where \(\rho(X, Y) = 1\) indicates a perfect positive linear relationship, i.e., $P\{Y = aX + b\} = 1$ for some constants \(a > 0\) and \(b\); \(\rho(X, Y) = -1\) indicates a perfect negative linear relationship, i.e., $P\{Y = aX + b\} = 1$ for some constants \(a < 0\) and \(b\); and \(\rho(X, Y) = 0\) indicates no linear relationship between \(X\) and \(Y\).
+
+\begin{example}
+  Toss a coin for 2026 times. Let \(X\) be the number of heads and \(Y\) be the number of tails. Then \(\rho(X, Y) = -1\) since \(Y = 2026 - X\).
+\end{example}
+
+\begin{example}
+  Suppose that the joint p.d.f.\@ of \(X, Y\) is given by
+  \[
+    f(x, y) = \begin{cases}
+      3x, & 0 < y < x < 1, \\
+      0, & \text{otherwise}.
+    \end{cases}
+  \]
+  Find \(\rho(X, Y)\).
+\end{example}
+\begin{solution}
+  \begin{align*}
+    \mathbb{E}(X) &= \int_{-\infty}^\infty \int_{-\infty}^\infty x f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \int_0^1 3x^2 \, \mathrm{d}x \int_0^x \mathrm{d}y = \frac{3}{4}, \\
+    \mathbb{E}(X^2) &= \int_{-\infty}^\infty \int_{-\infty}^\infty x^2 f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \int_0^1 3x^3 \, \mathrm{d}x \int_0^x \mathrm{d}y = \frac{3}{5}, \\
+    \mathbb{E}(Y) &= \int_{-\infty}^\infty \int_{-\infty}^\infty y f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \int_0^1 3x \,\mathrm{d}x \int_0^x y \, \mathrm{d}y = \frac{3}{8}, \\
+    \mathbb{E}(Y^2) &= \int_{-\infty}^\infty \int_{-\infty}^\infty y^2 f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \int_0^1 3x \,\mathrm{d}x \int_0^x y^2 \, \mathrm{d}y = \frac{1}{5}, \\
+    \mathbb{E}(XY) &= \int_{-\infty}^\infty \int_{-\infty}^\infty xy f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \int_0^1 3x^2 \,\mathrm{d}x \int_0^x y \, \mathrm{d}y = \frac{3}{10}.
+  \end{align*}
+  Therefore,
+  \begin{align*}
+    \mathrm{Cov}(X, Y) &= \mathbb{E}(XY) - \mathbb{E}(X) \mathbb{E}(Y) = \frac{3}{10} - \frac{3}{4} \cdot \frac{3}{8} = \frac{3}{160}, \\
+    \mathrm{Var}(X) &= \mathbb{E}(X^2) - (\mathbb{E}(X))^2 = \frac{3}{5} - \left(\frac{3}{4}\right)^2 = \frac{3}{80}, \\
+    \mathrm{Var}(Y) &= \mathbb{E}(Y^2) - (\mathbb{E}(Y))^2 = \frac{1}{5} - \left(\frac{3}{8}\right)^2 = \frac{19}{320}.
+  \end{align*}
+  Thus,
+  \[
+    \rho(X, Y) = \frac{\mathrm{Cov}(X, Y)}{\sqrt{\mathrm{Var}(X)} \sqrt{\mathrm{Var}(Y)}} = \frac{\frac{3}{160}}{\sqrt{\frac{3}{80}} \sqrt{\frac{19}{320}}} = \frac{3}{\sqrt{57}}. \qedhere
+  \]
+\end{solution}
+
+\begin{example}
+  Suppose that \(\xi = aX + b (a > 0)\), \(\eta = cY + d (c > 0)\). Prove that \(\rho(\xi, \eta) = \rho(X, Y)\).
+\end{example}
+\begin{proof}
+  Since \(\xi = aX + b\) and \(\eta = cY + d\), we have
+  \begin{align*}
+    \mathrm{Cov}(\xi, \eta) &= \mathrm{Cov}(aX + b, cY + d) = ac \mathrm{Cov}(X, Y), \\
+    \mathrm{Var}(\xi) &= \mathrm{Var}(aX + b) = a^2 \mathrm{Var}(X), \\
+    \mathrm{Var}(\eta) &= \mathrm{Var}(cY + d) = c^2 \mathrm{Var}(Y).
+  \end{align*}
+  Therefore,
+  \[
+    \rho(\xi, \eta) = \frac{\mathrm{Cov}(\xi, \eta)}{\sqrt{\mathrm{Var}(\xi)} \sqrt{\mathrm{Var}(\eta)}} = \frac{ac \mathrm{Cov}(X, Y)}{\sqrt{a^2 \mathrm{Var}(X)} \sqrt{c^2 \mathrm{Var}(Y)}} = \rho(X, Y). \qedhere
+  \]
+\end{proof}
+
+\begin{theorem}
+  If two random variables \(X\) and \(Y\) are independent, then they are uncorrelated. However, the converse is not necessarily true.
+\end{theorem}
+
+\begin{example}
+  Suppose that the joint p.d.f.\@ of \(X, Y\) is given by
+  \[
+    f(x, y) = \begin{cases}
+      \frac{1}{\pi}, & x^2 + y^2 \leq 1, \\
+      0, & \text{otherwise}.
+    \end{cases}
+  \]
+  \begin{enumerate}
+    \item Prove that \(X\) and \(Y\) are uncorrelated.
+    \item Prove that \(X\) and \(Y\) are not independent.
+  \end{enumerate}
+\end{example}
+\begin{proof}
+  \begin{enumerate}
+    \item Evaluating the following integrals using the result of Theorem \ref{thm:important_integrals}, we have
+    \begin{align*}
+      \mathbb{E}(X) &= \int_{-\infty}^\infty \int_{-\infty}^\infty x f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \frac{1}{\pi} \int_{-1}^1 x \, \mathrm{d}x \int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} \, \mathrm{d}y = 0, \\
+      \mathbb{E}(X^2) &= \int_{-\infty}^\infty \int_{-\infty}^\infty x^2 f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \frac{1}{\pi} \int_{0}^{2\pi} \int_{0}^{1} r^3 \cos^2 \theta \, \mathrm{d}r \, \mathrm{d}\theta = \frac{1}{4}.
+    \end{align*}
+    Then,
+    \[
+      \mathrm{Var}(X) = \mathbb{E}(X^2) - (\mathbb{E}(X))^2 = \frac{1}{4}.
+    \]
+    By symmetry, we also have \(\mathbb{E}(Y) = 0\), \(\mathbb{E}(Y^2) = \frac{1}{4}\) and \(\mathrm{Var}(Y) = \frac{1}{4}\). Moreover,
+    \[
+      \mathbb{E}(XY) = \int_{-\infty}^\infty \int_{-\infty}^\infty xy f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \frac{1}{\pi} \int_{0}^{2\pi} \int_{0}^{1} r^3 \cos \theta \sin \theta \, \mathrm{d}r \, \mathrm{d}\theta = 0.
+    \]
+    Therefore,
+    \[
+      \mathrm{Cov}(X, Y) = \mathbb{E}(XY) - \mathbb{E}(X) \mathbb{E}(Y) = 0 - 0 = 0.
+    \]
+    Then
+    \[
+      \rho(X, Y) = \frac{\mathrm{Cov}(X, Y)}{\sqrt{\mathrm{Var}(X)} \sqrt{\mathrm{Var}(Y)}} = 0,
+    \]
+    which means that \(X\) and \(Y\) are uncorrelated.
+    \item The marginal p.d.f.\@ of \(X\) is given by
+    \[
+      f_X(x) = \int_{-\infty}^\infty f(x, y) \, \mathrm{d}y = \begin{cases}
+        \frac{2}{\pi}\sqrt{1 - x^2}, & -1 < x < 1, \\
+        0, & \text{otherwise},
+      \end{cases}
+    \]
+    and
+    \[
+      f_Y(y) = \int_{-\infty}^\infty f(x, y) \, \mathrm{d}x = \begin{cases}
+        \frac{2}{\pi}\sqrt{1 - y^2}, & -1 < y < 1, \\
+        0, & \text{otherwise}.
+      \end{cases}
+    \]
+    Obviously, \(f(\frac{1}{2}, \frac{1}{2}) \neq f_X(\frac{1}{2}) f_Y(\frac{1}{2})\). Thus, \(X\) and \(Y\) are not independent. \qedhere
+  \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+  If \((X, Y) \sim \mathrm{N}(\mu_1, \mu_2; \sigma_1^2, \sigma_2^2; \rho)\), then \(\rho(X, Y) = \rho\).
+\end{proposition}
+
+\begin{definition}[Origin Moment]\index{origin moment}
+  The \(n\)-th \emph{origin moment} of a random variable \(X\) is defined as
+  \[
+    m_n = \mathbb{E}(X^n).
+  \]
+  The \(n\)-th \emph{mixed origin moment} of two random variables \(X\) and \(Y\) is defined as
+  \[
+    m_{n_1, n_2} = \mathbb{E}(X^{n_1} Y^{n_2}).
+  \]
+\end{definition}
+
+\begin{definition}[Central Moment]\index{central moment}
+  The \(n\)-th \emph{central moment} of a random variable \(X\) is defined as
+  \[
+    \mu_n = \mathbb{E}[(X - \mathbb{E}(X))^n].
+  \]
+  The \(n\)-th \emph{mixed central moment} of two random variables \(X\) and \(Y\) is defined as
+  \[
+    \mu_{n_1, n_2} = \mathbb{E}[(X - \mathbb{E}(X))^{n_1} (Y - \mathbb{E}(Y))^{n_2}].
+  \]
+\end{definition}
+
+\begin{definition}[Covariance Matrix]\index{covariance matrix}
+  For a random vector \(\mathbf{X} = (X_1, X_2, \dots, X_n)\), the \emph{covariance matrix} of \(\mathbf{X}\) is defined as
+  \[
+    \Sigma = \begin{bmatrix}
+      c_{11} & c_{12} & \cdots & c_{1n} \\
+      c_{21} & c_{22} & \cdots & c_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      c_{n1} & c_{n2} & \cdots & c_{nn}
+    \end{bmatrix},
+  \]
+  if all the covariances \(c_{ij} = \mathrm{Cov}(X_i, X_j)\) exist for \(i, j = 1, 2, \dots, n\).
+\end{definition}
+
+\begin{definition}[Multivariate Normal Distribution]\index{multivariate normal distribution}
+  A random vector \(\mathbf{X} = (X_1, X_2, \dots, X_n)\) with mean vector \(\mu\) and covariance matrix \(\Sigma\) is said to have a \emph{multivariate normal distribution} if its joint p.d.f.\@ is given by
+  \[
+    f_{\mathbf{X}}(\mathbf{x}) = \frac{1}{(2\pi)^{\frac{n}{2}} |\Sigma|^{\frac{1}{2}}} \exp\left(-\frac{1}{2} (\mathbf{x} - \mu)^T \Sigma^{-1} (\mathbf{x} - \mu)\right),
+  \]
+  where \(\mathbf{x} = (x_1, x_2, \dots, x_n)\) and \(|\Sigma|\) is the determinant of \(\Sigma\).  
+\end{definition}
+
+\begin{proposition}\label{prop:multivariate-normal-linear-combination}
+  Suppose that \(X_1, X_2, \dots, X_n\) are \(n\) random variables. Then \((X_1, X_2, \dots, X_n)\) has a multivariate normal distribution if and only if any linear combination of \(X_1, X_2, \dots, X_n\) has a normal distribution.
+\end{proposition}
+
+\begin{proposition}\label{prop:multivariate-normal-linear-transformation}
+  If \(\mathbf{Y} = \mathbf{A}\mathbf{X} + b\), where \(\mathbf{A}\) is an \(n \times n\) non-singular matrix and \(b\) is a (column) \(n\)-dimensional vector of constants, then \(\mathbf{Y} \sim \mathrm{N}(\mathbf{A}\mu + b, \mathbf{A} \Sigma \mathbf{A}^T)\), where \(\mu = \mathbb{E}(\mathbf{X})\) and \(\Sigma\) is the covariance matrix of the multivariate normal random variable \(\mathbf{X}\).
+\end{proposition}
+
+\begin{proposition}
+  If \(\mathbf{X} = (X_1, X_2, \dots, X_n)\) has \(n\) dimensional normal distribution, then \(X_j (j = 1, 2, \dots, n)\) has a normal distribution. Conversely, if \(X_1, X_2, \dots, X_n\) have normal distributions and are independent, then \((X_1, X_2, \dots, X_n)\) has \(n\) dimensional multivariate normal distribution.
+\end{proposition}
+
+\begin{proposition}
+  Suppose that \((X_1, X_2, \dots, X_n)\) has a multivariate normal distribution. Then \(X_1, X_2, \dots, X_n\) are independent if and only if \(X_1, X_2, \dots, X_n\) are pairwise uncorrelated.
+\end{proposition}
+
+\begin{example}
+  Suppose that \(X \sim \mathrm{N}(1, 2)\), \(Y \sim \mathrm{N}(0, 1)\) and \(X\) and \(Y\) are independent. Find the p.d.f.\@ of \(Z = 2X - Y + 3\).
+\end{example}
+\begin{solution}
+  Since \(X \sim \mathrm{N}(1, 2)\), \(Y \sim \mathrm{N}(0, 1)\) and \(X\) and \(Y\) are independent, we have
+  \begin{align*}
+    \mathbb{E}(Z) &= 2 \mathbb{E}(X) - \mathbb{E}(Y) + 3 = 2 \cdot 1 - 0 + 3 = 5, \\
+    \mathrm{Var}(Z) &= 2^2 \mathrm{Var}(X) + (-1)^2 \mathrm{Var}(Y) = 2^2 \cdot 2 + (-1)^2 \cdot 1 = 3^3.
+  \end{align*}
+  By Proposition \ref{prop:multivariate-normal-linear-combination}, \(Z\) has a normal distribution, i.e.,
+  \[
+    Z = 2X - Y + 3 \sim \mathrm{N}(5, 3^3).
+  \]
+  Thus, the p.d.f.\@ of \(Z\) is given by
+  \[
+    f_Z(z) = \frac{1}{3\sqrt{2 \pi}} e^{-\frac{(z - 5)^2}{18}}. \qedhere
+  \]
+\end{solution}
+
+\begin{example}
+  Suppose that \(X \sim \mathrm{N}(0, 1)\), \(Y \sim \mathrm{N}(0, 1)\) and \(X\) and \(Y\) are independent. Calculate the value of \(\mathbb{E}(|X - Y|)\).
+\end{example}
+\begin{solution}
+  Let \(Z = X - Y\). Then \(Z \sim \mathrm{N}(0, 2)\), i.e.,
+  \[
+    f_Z(z) = \frac{1}{2\sqrt{\pi}} e^{-\frac{z^2}{4}}.
+  \]
+  Therefore,
+  \[
+    \mathbb{E}(|X - Y|) = \mathbb{E}(|Z|) = \int_{-\infty}^\infty |z| \frac{1}{2\sqrt{\pi}} e^{-\frac{z^2}{4}} \, \mathrm{d}z = \frac{1}{\sqrt{\pi}} \int_0^\infty z e^{-\frac{z^2}{4}} \, \mathrm{d}z = \frac{2}{\sqrt{\pi}}. \qedhere
+  \]
+\end{solution}
+
+\begin{example}
+  Suppose that \((X, Y) \sim \mathrm{N}(0, 1, 3^2, 4^2, -\frac{1}{2})\), \(Z = \frac{X}{3} + \frac{Y}{2}\). Prove that \(X\) and \(Z\) are independent.
+\end{example}
+\begin{solution}
+  Since \((X, Y) \sim \mathrm{N}(0, 1, 3^2, 4^2, -\frac{1}{2})\), we have \(\mathrm{Var}(X) = 3^2\), \(\mathrm{Var}(Y) = 4^2\) and \(\rho(X, Y) = -\frac{1}{2}\). Note that
+  \[
+    \begin{bmatrix}
+      X \\
+      Z
+    \end{bmatrix} = \begin{bmatrix}
+      1 & 0 \\
+      \frac{1}{3} & \frac{1}{2}
+    \end{bmatrix} \begin{bmatrix}
+      X \\
+      Y
+    \end{bmatrix}.
+  \]
+  By Proposition \ref{prop:multivariate-normal-linear-transformation}, \((X, Z)\) has a bivariate normal distribution. Moreover,
+  \begin{align*}
+    \mathrm{Cov}(X, Z) &= \mathrm{Cov}\!\left(X, \frac{X}{3} + \frac{Y}{2}\right) = \frac{1}{3} \mathrm{Cov}(X) + \frac{1}{2} \mathrm{Cov}(X, Y) \\
+    &= \frac{1}{3} \cdot 3^2 + \frac{1}{2} \cdot (-\frac{1}{2}) \cdot 3 \cdot 4 = 0.
+  \end{align*}
+  Thus, \(X\) and \(Z\) are uncorrelated. Since \((X, Z)\) has a bivariate normal distribution, \(X\) and \(Z\) are independent. \qedhere
+\end{solution}

@@ -57,89 +57,6 @@
   \]
 \end{theorem}
 
-\begin{theorem}[Important Integrals]\label{thm:important_integrals}
-  The following integrals are commonly encountered in probability and statistics:
-  \begin{enumerate}
-    \item $\displaystyle \int_0^\infty e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{2\sqrt{a}}$, for $a > 0$.
-    \item $\displaystyle \int_0^\infty x e^{-ax^2}\,\mathrm{d}x = \frac{1}{2a}$, for $a > 0$.
-    \item $\displaystyle \int_0^\infty x^2 e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{4a^{3/2}}$, for $a > 0$.
-    \item $\displaystyle \int_0^\infty x^n e^{-ax^2}\,\mathrm{d}x = \frac{1}{2} a^{-\frac{n+1}{2}} \Gamma\left(\frac{n+1}{2}\right)$, for $a > 0$ and $n \in \mathbb{N}$.
-  \end{enumerate}
-\end{theorem}
-
-We can show the first integral using polar coordinates as follows:
-\begin{proof}
-  Let $I = \int_0^\infty e^{-ax^2}\,\mathrm{d}x$. Then
-  \[
-    I^2 = \left( \int_0^\infty e^{-ax^2}\,\mathrm{d}x \right) \left( \int_0^\infty e^{-ay^2}\,\mathrm{d}y \right) = \int_0^\infty \int_0^\infty e^{-a(x^2 + y^2)}\,\mathrm{d}x\,\mathrm{d}y.
-  \]
-  Converting to polar coordinates, where $x = r\cos\theta$ and $y = r\sin\theta$, we have $x^2 + y^2 = r^2$ and $\mathrm{d}x\,\mathrm{d}y = r\,\mathrm{d}r\,\mathrm{d}\theta$. The limits of integration for $r$ are from $0$ to $\infty$, and for $\theta$ are from $0$ to $\pi/2$. Thus,
-  \[
-    I^2 = \int_0^{\pi/2} \int_0^\infty e^{-ar^2} r\,\mathrm{d}r\,\mathrm{d}\theta.
-  \]
-  Evaluating the inner integral with respect to $r$, we use the substitution $u = ar^2$, which gives $\mathrm{d}u = 2ar\,\mathrm{d}r$. Therefore,
-  \[
-    \int_0^\infty e^{-ar^2} r\,\mathrm{d}r = \frac{1}{2a} \int_0^\infty e^{-u}\,\mathrm{d}u = \frac{1}{2a}.
-  \]
-  Now, integrating with respect to $\theta$,
-  \[
-    I^2 = \int_0^{\pi/2} \frac{1}{2a}\,\mathrm{d}\theta = \frac{\pi}{4a}.
-  \]
-  Taking the square root gives
-  \[
-    I = \sqrt{\frac{\pi}{4a}} = \frac{\sqrt{\pi}}{2\sqrt{a}}. \qedhere
-  \]
-\end{proof}
-
-The second integral can be evaluated using a simple substitution:
-\begin{proof}
-  Let $u = ax^2$. Then $\mathrm{d}u = 2ax\,\mathrm{d}x$, or $x\,\mathrm{d}x = \frac{1}{2a}\,\mathrm{d}u$. The limits of integration remain $0$ to $\infty$. Substituting these into the integral gives
-  \[
-    \int_0^\infty x e^{-ax^2}\,\mathrm{d}x = \int_0^\infty e^{-u} \frac{1}{2a}\,\mathrm{d}u = \frac{1}{2a} \left[ -e^{-u} \right]_0^\infty = \frac{1}{2a} (0 - (-1)) = \frac{1}{2a}. \qedhere
-  \]
-\end{proof}
-
-The third integral can be derived by differentiating the first integral with respect to $a$:
-\begin{proof}
-  Let $I(a) = \int_0^\infty e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{2} a^{-1/2}$. Differentiating both sides with respect to $a$ yields
-  \[
-    \frac{\mathrm{d}}{\mathrm{d}a} I(a) = \int_0^\infty \frac{\partial}{\partial a} \left( e^{-ax^2} \right)\,\mathrm{d}x = \int_0^\infty (-x^2) e^{-ax^2}\,\mathrm{d}x.
-  \]
-  On the other hand, differentiating the evaluated result gives
-  \[
-    \frac{\mathrm{d}}{\mathrm{d}a} \left( \frac{\sqrt{\pi}}{2} a^{-1/2} \right) = \frac{\sqrt{\pi}}{2} \left( -\frac{1}{2} \right) a^{-3/2} = -\frac{\sqrt{\pi}}{4a^{3/2}}.
-  \]
-  Equating the two expressions and multiplying by $-1$, we obtain
-  \[
-    \int_0^\infty x^2 e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{4a^{3/2}}. \qedhere
-  \]
-\end{proof}
-This can also be derived using integration by parts:
-\begin{proof}
-  Let $u = x$ and $\mathrm{d}v = x e^{-ax^2}\,\mathrm{d}x$. Then $\mathrm{d}u = \mathrm{d}x$ and $v = -\frac{1}{2a} e^{-ax^2}$. Applying integration by parts gives
-  \[
-    \int_0^\infty x^2 e^{-ax^2}\,\mathrm{d}x = uv \bigg|_0^\infty - \int_0^\infty v\,\mathrm{d}u = \left[ -\frac{x}{2a} e^{-ax^2} \right]_0^\infty + \frac{1}{2a} \int_0^\infty e^{-ax^2}\,\mathrm{d}x.
-  \]
-  The limit \(\lim_{x \to \infty} -\frac{x}{2a} e^{-ax^2} = 0\), and the remaining integral is the first integral we evaluated. Thus,
-  \[
-    \int_0^\infty x^2 e^{-ax^2}\,\mathrm{d}x = \frac{1}{2a} \cdot \frac{\sqrt{\pi}}{2\sqrt{a}} = \frac{\sqrt{\pi}}{4a^{3/2}}. \qedhere
-  \]
-\end{proof}
-
-For the higher-order integral, we can use the substitution $u = ax^2$ again:
-\begin{proof}
-  Let $u = ax^2$, then $x = \left(\frac{u}{a}\right)^{1/2}$ and $\mathrm{d}x = \frac{1}{2\sqrt{a}} u^{-1/2}\,\mathrm{d}u$. The limits of integration remain $0$ to $\infty$. Substituting these into the integral gives
-  \[
-    \int_0^\infty x^n e^{-ax^2}\,\mathrm{d}x = \int_0^\infty \left(\frac{u}{a}\right)^{n/2} e^{-u} \frac{1}{2\sqrt{a}} u^{-1/2}\,\mathrm{d}u = \frac{1}{2} a^{-\frac{n+1}{2}} \int_0^\infty u^{\frac{n-1}{2}} e^{-u}\,\mathrm{d}u.
-  \]
-  The remaining integral is the Gamma function evaluated at $\frac{n+1}{2}$, so we have
-  \[
-    \int_0^\infty x^n e^{-ax^2}\,\mathrm{d}x = \frac{1}{2} a^{-\frac{n+1}{2}} \Gamma\left( \frac{n+1}{2} \right). \qedhere
-  \]
-\end{proof}
-
-\section{Multivariate Calculus}
-
 \begin{definition}[Double Integral]\index{double integral}
   The \emph{double integral} of a function $f(x, y)$ over a region $R$ in the $xy$-plane is defined as
   \[
@@ -176,6 +93,143 @@ For the higher-order integral, we can use the substitution $u = ax^2$ again:
     \iint_R f(x, y)\,\mathrm{d}x\,\mathrm{d}y = \iint_S f(g(u, v), h(u, v)) |J(u, v)|\,\mathrm{d}u\,\mathrm{d}v.
   \]
 \end{definition}
+
+\begin{theorem}[Important Integrals]\label{thm:important_integrals}
+  The following integrals are commonly encountered in probability and statistics:
+  \begin{enumerate}
+    \item\label{int:gaussian} $\displaystyle \int_0^\infty e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{2\sqrt{a}}$, for $a > 0$.
+    \item\label{int:linear} $\displaystyle \int_0^\infty x e^{-ax^2}\,\mathrm{d}x = \frac{1}{2a}$, for $a > 0$.
+    \item\label{int:quadratic} $\displaystyle \int_0^\infty x^2 e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{4a^{3/2}}$, for $a > 0$.
+    \item\label{int:general} $\displaystyle \int_0^\infty x^n e^{-ax^2}\,\mathrm{d}x = \frac{1}{2} a^{-\frac{n+1}{2}} \Gamma\left(\frac{n+1}{2}\right)$, for $a > 0$ and $n \in \mathbb{N}$.
+    \item\label{int:sin-cos} $\displaystyle \int_0^{2\pi} \sin^n \theta\, \mathrm{d}\theta = \int_0^{2\pi} \cos^n \theta\,\mathrm{d}\theta = \begin{cases}
+      2\pi, & \text{if $n = 0$}, \\
+      \frac{(n-1)!!}{n!!} \cdot 2\pi, & \text{if $n$ is even}, \\
+      0, & \text{if $n$ is odd}.
+    \end{cases}$
+    \item\label{int:sin-cos-half} $\displaystyle \int_0^{\frac{\pi}{2}} \sin^n \theta\,\mathrm{d}\theta = \int_0^{\frac{\pi}{2}} \cos^n \theta\,\mathrm{d}\theta = \begin{cases}
+      \frac{\pi}{2}, & \text{if $n = 0$}, \\
+      \frac{(n-1)!!}{n!!} \cdot \frac{\pi}{2}, & \text{if $n$ is even}, \\
+      \frac{(n-1)!!}{n!!}, & \text{if $n$ is odd}.
+    \end{cases}$
+    \item\label{int:sin-cos-half-general} $\displaystyle \int_0^{\frac{\pi}{2}} \sin^m \theta \cos^n \theta\,\mathrm{d}\theta = \frac{1}{2} B\left(\frac{m+1}{2}, \frac{n+1}{2}\right)$, for $m, n > -1$.
+  \end{enumerate}
+\end{theorem}
+
+Integral \ref{int:linear} can be evaluated using a simple substitution:
+\begin{proof}[Proof of Integral \ref{int:linear}]
+  Let $u = ax^2$. Then $\mathrm{d}u = 2ax\,\mathrm{d}x$, or $x\,\mathrm{d}x = \frac{1}{2a}\,\mathrm{d}u$. The limits of integration remain $0$ to $\infty$. Substituting these into the integral gives
+  \[
+    \int_0^\infty x e^{-ax^2}\,\mathrm{d}x = \int_0^\infty e^{-u} \frac{1}{2a}\,\mathrm{d}u = \frac{1}{2a} \left[ -e^{-u} \right]_0^\infty = \frac{1}{2a} (0 - (-1)) = \frac{1}{2a}. \qedhere
+  \]
+\end{proof}
+
+We can show Integral \ref{int:gaussian} using polar coordinates as follows:
+\begin{proof}[Proof of Integral \ref{int:gaussian}]
+  Let $I = \int_0^\infty e^{-ax^2}\,\mathrm{d}x$. Then
+  \[
+    I^2 = \left( \int_0^\infty e^{-ax^2}\,\mathrm{d}x \right) \left( \int_0^\infty e^{-ay^2}\,\mathrm{d}y \right) = \int_0^\infty \int_0^\infty e^{-a(x^2 + y^2)}\,\mathrm{d}x\,\mathrm{d}y.
+  \]
+  Converting to polar coordinates, where $x = r\cos\theta$ and $y = r\sin\theta$, we have $x^2 + y^2 = r^2$ and $\mathrm{d}x\,\mathrm{d}y = r\,\mathrm{d}r\,\mathrm{d}\theta$. The limits of integration for $r$ are from $0$ to $\infty$, and for $\theta$ are from $0$ to $\pi/2$. Thus,
+  \[
+    I^2 = \int_0^{\pi/2} \int_0^\infty e^{-ar^2} r\,\mathrm{d}r\,\mathrm{d}\theta.
+  \]
+  The inner integral is the same as Integral \ref{int:linear} we just evaluated, so we have
+  \[
+    I^2 = \int_0^{\pi/2} \frac{1}{2a}\,\mathrm{d}\theta = \frac{\pi}{4a}.
+  \]
+  Taking the square root gives
+  \[
+    I = \sqrt{\frac{\pi}{4a}} = \frac{\sqrt{\pi}}{2\sqrt{a}}. \qedhere
+  \]
+\end{proof}
+
+Integral \ref{int:quadratic} can be derived by differentiating Integral \ref{int:gaussian} with respect to $a$:
+\begin{proof}
+  Let $I(a) = \int_0^\infty e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{2} a^{-1/2}$. Differentiating both sides with respect to $a$ yields
+  \[
+    \frac{\mathrm{d}}{\mathrm{d}a} I(a) = \int_0^\infty \frac{\partial}{\partial a} \left( e^{-ax^2} \right)\,\mathrm{d}x = \int_0^\infty (-x^2) e^{-ax^2}\,\mathrm{d}x.
+  \]
+  On the other hand, differentiating the evaluated result gives
+  \[
+    \frac{\mathrm{d}}{\mathrm{d}a} \left( \frac{\sqrt{\pi}}{2} a^{-1/2} \right) = \frac{\sqrt{\pi}}{2} \left( -\frac{1}{2} \right) a^{-3/2} = -\frac{\sqrt{\pi}}{4a^{3/2}}.
+  \]
+  Equating the two expressions and multiplying by $-1$, we obtain
+  \[
+    \int_0^\infty x^2 e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{4a^{3/2}}. \qedhere
+  \]
+\end{proof}
+This can also be derived using integration by parts:
+\begin{proof}[Alternative Proof of Integral \ref{int:quadratic}]
+  Let $u = x$ and $\mathrm{d}v = x e^{-ax^2}\,\mathrm{d}x$. Then $\mathrm{d}u = \mathrm{d}x$ and $v = -\frac{1}{2a} e^{-ax^2}$. Applying integration by parts gives
+  \[
+    \int_0^\infty x^2 e^{-ax^2}\,\mathrm{d}x = uv \bigg|_0^\infty - \int_0^\infty v\,\mathrm{d}u = \left[ -\frac{x}{2a} e^{-ax^2} \right]_0^\infty + \frac{1}{2a} \int_0^\infty e^{-ax^2}\,\mathrm{d}x.
+  \]
+  Evaluating the boundary term, we have
+  \[
+    \lim_{x \to \infty} -\frac{x}{2a} e^{-ax^2} = \lim_{x \to \infty} \frac{-1}{4a^2 x e^{ax^2}} = 0 \quad \text{and} \quad -\frac{0}{2a} e^{-a \cdot 0^2} = 0.
+  \]
+  Thus, the boundary term is zero, and the remaining integral is the same as Integral \ref{int:gaussian} we evaluated earlier. Therefore,
+  \[
+    \int_0^\infty x^2 e^{-ax^2}\,\mathrm{d}x = \frac{1}{2a} \cdot \frac{\sqrt{\pi}}{2\sqrt{a}} = \frac{\sqrt{\pi}}{4a^{3/2}}. \qedhere
+  \]
+\end{proof}
+
+For the higher-order integral, we can use the substitution $u = ax^2$ again:
+\begin{proof}[Proof of Integral \ref{int:general}]
+  Let $u = ax^2$, then $x = \left(\frac{u}{a}\right)^{1/2}$ and $\mathrm{d}x = \frac{1}{2\sqrt{a}} u^{-1/2}\,\mathrm{d}u$. The limits of integration remain $0$ to $\infty$. Substituting these into the integral gives
+  \[
+    \int_0^\infty x^n e^{-ax^2}\,\mathrm{d}x = \int_0^\infty \left(\frac{u}{a}\right)^{n/2} e^{-u} \frac{1}{2\sqrt{a}} u^{-1/2}\,\mathrm{d}u = \frac{1}{2} a^{-\frac{n+1}{2}} \int_0^\infty u^{\frac{n-1}{2}} e^{-u}\,\mathrm{d}u.
+  \]
+  The remaining integral is the Gamma function evaluated at $\frac{n+1}{2}$, so we have
+  \[
+    \int_0^\infty x^n e^{-ax^2}\,\mathrm{d}x = \frac{1}{2} a^{-\frac{n+1}{2}} \Gamma\left( \frac{n+1}{2} \right). \qedhere
+  \]
+\end{proof}
+
+Integrals related to trigonometric functions can be evaluated using integration by parts and mathematical induction:
+
+\begin{proof}[Proof of Integral \ref{int:sin-cos}]
+  Let $I_n = \int_0^{2\pi} \sin^n \theta\,\mathrm{d}\theta$.
+
+  Basis step: For $n = 0$ and $n = 1$, we have
+  \begin{align*}
+    I_0 &= \int_0^{2\pi} 1\,\mathrm{d}\theta = 2\pi, \\
+    I_1 &= \int_0^{2\pi} \sin \theta\,\mathrm{d}\theta = 0.
+  \end{align*}
+
+  Inductive step: Assume that the formula holds for all $k < n$. For $n \geq 2$, we have
+  \begin{align*}
+    I_n &= \int_0^{2\pi} \sin^n \theta\,\mathrm{d}\theta = \int_0^{2\pi} \sin^{n-1} \theta\, \mathrm{d}(-\cos \theta) \\
+    &= -\sin^{n-1} \theta \cos \theta \bigg|_0^{2\pi} + (n-1) \int_0^{2\pi} \sin^{n-2} \theta \cos^2 \theta\,\mathrm{d}\theta \\
+    &= (n-1) \int_0^{2\pi} \sin^{n-2} \theta (1 - \sin^2 \theta)\,\mathrm{d}\theta \\
+    &= (n-1) I_{n-2} - (n-1) I_n.
+  \end{align*}
+  Rearranging gives
+  \[
+    I_n = \frac{n-1}{n} I_{n-2}.
+  \]
+
+  By mathematical induction, we can conclude that
+  \[
+    I_n = \begin{cases}
+      2\pi, & \text{if $n = 0$}, \\
+      \frac{(n-1)!!}{n!!} \cdot 2\pi, & \text{if $n$ is even}, \\
+      0, & \text{if $n$ is odd}.
+    \end{cases}
+  \]
+
+  The integral for $\cos^n \theta$ can be evaluated similarly, or we can use the fact that $\sin^n \theta$ and $\cos^n \theta$ have the same integral over $[0, 2\pi]$ due to symmetry.
+\end{proof}
+
+While $n = 2$, we can also evaluate the integral directly using the power-reduction formula:
+\[
+  \int_0^{2\pi} \sin^2 \theta\,\mathrm{d}\theta = \int_0^{2\pi} \frac{1 - \cos(2\theta)}{2}\,\mathrm{d}\theta = \pi.
+\]
+For the integral of $\sin \theta \cos \theta$, we can use the double-angle identity:
+\[
+  \int_0^{2\pi} \sin \theta \cos \theta\,\mathrm{d}\theta = \int_0^{2\pi} \frac{1}{2} \sin(2\theta)\,\mathrm{d}\theta = 0.
+\]
+The integral over $[0, \pi/2]$ can be evaluated using the same method.
 
 \section{Special Functions}
 

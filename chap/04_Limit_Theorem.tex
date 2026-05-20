@@ -1,0 +1,62 @@
+\chapter{Limit Theorem}
+
+\section{The Law of Large Numbers}
+
+\begin{theorem}[Bernoulli's Law of Large Numbers]
+  Suppose that \(n_A\) is the number of successes in \(n\) Bernoulli trials with success probability \(p\). Then for any \(\varepsilon > 0\), we have
+  \[
+    \lim_{n \to \infty} P\!\left\{ \left| \frac{n_A}{n} - p \right| < \varepsilon \right\} = 1.
+  \]
+\end{theorem}
+
+\begin{theorem}[Chebyshev's Law of Large Numbers]
+  Let \(X_1, X_2, \ldots\) be an independent sequence with finite variance, and there exists a constant \(K\) such that \(\mathrm{Var}(X_i) \leq K\) for all \(i\). Then for any \(\varepsilon > 0\), we have
+  \[
+    \lim_{n \to \infty} P\!\left\{ \left| \frac{1}{n} \sum_{i=1}^n X_i - \frac{1}{n} \sum_{i=1}^n \mathbb{E}(X_i) \right| < \varepsilon \right\} = 1.
+  \]
+\end{theorem}
+
+\begin{theorem}[Khinchin's Law of Large Numbers]
+  Let \(X_1, X_2, \ldots\) be an independent and identically distributed (IID) sequence with \(\mathbb{E}(X_i^k) = \mu_k < \infty\) for all \(k \in \mathbb{N}\). Then for any \(\varepsilon > 0\), we have
+  \[
+    \lim_{n \to \infty} P\!\left\{ \left| \frac{1}{n} \sum_{i=1}^n X_i^k - \mu_k \right| < \varepsilon \right\} = 1.
+  \]
+\end{theorem}
+
+\begin{example}
+  Let \(X_1, X_2, \ldots\) be an IID sequence with \(\mathbb{E}(X_i) = \mu\) and \(\mathrm{Var}(X_i) = \sigma^2\). Then for any \(\varepsilon > 0\), we have
+  \[
+    \frac{1}{n} \sum_{i=1}^n X_i^2 \xrightarrow{P} \sigma^2 + \mu^2.
+  \]
+\end{example}
+
+\section{The Central Limit Theorem}
+
+\begin{theorem}[Levy's Central Limit Theorem]
+  Let \(X_1, X_2, \ldots\) be an IID sequence with \(\mathbb{E}(X_i) = \mu\) and \(\mathrm{Var}(X_i) = \sigma^2\). Then for any \(x \in \mathbb{R}\), we have
+  \[
+    \lim_{n \to \infty} P\!\left\{ \frac{\sum_{i=1}^n X_i - n\mu}{\sigma \sqrt{n}} \leq x \right\} = \Phi(x),
+  \]
+  where \(\Phi(x)\) is the c.d.f.\@ of the standard normal distribution. Equivalently, we have
+  \[
+    \frac{\sum_{i=1}^n X_i - n\mu}{\sigma \sqrt{n}} \sim N(0, 1), \quad \sum_{i=1}^n X_i \sim N(n\mu, n\sigma^2).
+  \]
+\end{theorem}
+
+\begin{theorem}[De Moivre-Laplace Central Limit Theorem]
+  Suppose that \(Y_n \sim \mathrm{B}(n, p) (0 < p < 1)\). Then for any \(x \in \mathbb{R}\), we have
+  \[
+    \lim_{n \to \infty} P\!\left\{ \frac{Y_n - np}{\sqrt{np(1-p)}} \leq x \right\} = \Phi(x).
+  \]
+\end{theorem}
+
+\begin{theorem}[Liapunov's Central Limit Theorem]
+  Let \(X_1, X_2, \ldots\) be an independent sequence with \(\mathbb{E}(X_i) = \mu_i\) and \(\mathrm{Var}(X_i) = \sigma_i^2 \neq 0\) for all \(i\). If there exists a constant \(\delta > 0\) such that
+  \[
+    \lim_{n \to \infty} \frac{\sum_{i=1}^n \mathbb{E}\!\left( |X_i - \mu_i|^{2+\delta} \right)}{\left( \sum_{i=1}^n \sigma_i^2 \right)^{1 + \delta/2}} = 0,
+  \]
+  then for any \(x \in \mathbb{R}\), we have
+  \[
+    \lim_{n \to \infty} P\!\left\{ \frac{\sum_{i=1}^n X_i - \sum_{i=1}^n \mu_i}{\sqrt{\sum_{i=1}^n \sigma_i^2}} \leq x \right\} = \Phi(x).
+  \]
+\end{theorem}
