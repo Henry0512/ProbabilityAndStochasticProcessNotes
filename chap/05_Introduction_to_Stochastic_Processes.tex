@@ -1,0 +1,203 @@
+\chapter{Introduction to Stochastic Processes}
+
+\section{Definition of Stochastic Processes}
+
+\begin{definition}[Stochastic Process]\index{stochastic process}
+  A \emph{stochastic process} is a collection of random variables \(\{X(t, \omega), t \in T\}\) defined on a common probability space \((\Omega, \mathcal{F}, P)\), where \(T\) is an index set (often representing time). Each \(X(t, \omega)\) is a random variable for fixed \(t\), and the collection describes how the random variable evolves over time or across different states.
+  The complete description of a stochastic process is \(\{X(t, \omega), t \in T\}\), but we usually use the abbreviation \(\{X(t)\}\), \(X(t)\), or \(X_t\).
+\end{definition}
+
+\begin{example}
+  Consider
+  \[
+    X_t = a \cos(\omega t + \Theta), \quad t \in (-\infty, +\infty),
+  \]
+  where \(a\) and \(\omega\) are constants, and \(\Theta\) has a uniform distribution in the interval \((0, 2\pi)\). Since for each fixed \(t = t_1\), \(X_{t_1}\) is a random variable, the collection \(\{X_t\}\) forms a stochastic process. If we select \(\theta_i \in (0, 2\pi)\) arbitrarily, then
+  \[
+    X_t = a \cos(\omega t + \theta_i), \quad t \in (-\infty, +\infty),
+  \]
+  is a sample path of the process.
+\end{example}
+
+\section{Classification of Stochastic Processes}
+
+Stochastic processes can be classified based on the nature of their index parameter \(T\) and their state space. The following table summarizes the classification:
+\begin{center}
+  \scriptsize
+  \begin{tabular}{c c c}
+    \toprule
+    & \textbf{Discrete Index Parameter} & \textbf{Continuous Index Parameter} \\
+    \midrule
+    \textbf{Discrete State Space} & Discrete Stochastic Sequences & Discrete Stochastic Processes \\
+    \textbf{Continuous State Space} & Stochastic Sequences & Continuous-Time Stochastic Processes \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\begin{definition}[Process with Independent Increments]\index{process with independent increments}
+  A stochastic process \(X_t\) is \emph{a process with independent increments} if for any \(0 \leq t_1 < t_2 < \dots < t_n\), the random variables \(X_{t_2} - X_{t_1}, X_{t_3} - X_{t_2}, \dots, X_{t_n} - X_{t_{n-1}}\) are independent.
+\end{definition}
+
+\section{The Distribution Family}
+
+\begin{definition}[First-Order Distribution]\index{first-order distribution}
+  For a stochastic process \(X_t\), the distribution of the random variable \(X_t\) at a fixed time \(t\) is called the \emph{first-order distribution} of the process at time \(t\). The function
+  \[
+    F(x; t) = P(X_t \leq x)
+  \]
+  is called the \emph{first-order distribution function} of the process at time \(t\). Its derivative with respect to \(x\):
+  \[
+    f(x; t) = \frac{\partial F(x; t)}{\partial x}
+  \]
+  is called the \emph{first-order probability density function} of the process at time \(t\).
+\end{definition}
+
+\begin{example}
+  Suppose that the stochastic process \(X_t\) is defined as
+  \[
+    X_t = Y + Zt,
+  \]
+  where \(Y\) and \(Z\) are independent and each has a standard normal distribution.
+  \begin{enumerate}
+    \item Find the first-order distribution of \(X_{2.5}\).
+    \item Find the first-order distribution of \(X_t\).
+    \item Find the second-order distribution of \(X_t\).
+  \end{enumerate}
+\end{example}
+\begin{solution}
+  \begin{enumerate}
+    \item Since \(Y\) and \(Z\) are independent and each has a standard normal distribution, we have
+    \[
+      X_{2.5} = Y + 2.5Z.
+    \]
+    The mean of \(X_{2.5}\) is
+    \[
+      \mathbb{E}[X_{2.5}] = \mathbb{E}[Y] + 2.5\mathbb{E}[Z] = 0 + 2.5 \cdot 0 = 0,
+    \]
+    and the variance of \(X_{2.5}\) is
+    \[
+      \mathrm{Var}(X_{2.5}) = \mathrm{Var}(Y) + (2.5)^2 \mathrm{Var}(Z) = 1 + 6.25 = 7.25.
+    \]
+    Therefore, \(X_{2.5}\) follows a normal distribution with mean \(0\) and variance \(7.25\), i.e., \(X_{2.5} \sim \mathrm{N}(0, 7.25)\).
+
+    \item For a general time \(t\), we have
+    \[
+      X_t = Y + Zt.
+    \]
+    The mean of \(X_t\) is
+    \[
+      \mathbb{E}[X_t] = \mathbb{E}[Y] + t\mathbb{E}[Z] = 0 + t \cdot 0 = 0,
+    \]
+    and the variance of \(X_t\) is
+    \[
+      \mathrm{Var}(X_t) = \mathrm{Var}(Y) + t^2 \mathrm{Var}(Z) = 1 + t^2.
+    \]
+    Therefore, \(X_t\) follows a normal distribution with mean \(0\) and variance \(1 + t^2\), i.e., \(X_t \sim \mathrm{N}(0, 1 + t^2)\).
+
+    \item For two specific times \(s, t (s \neq t)\), we have
+    \[
+      \begin{bmatrix}
+        X_s \\
+        X_t
+      \end{bmatrix}=
+      \begin{bmatrix}
+        1 & s \\
+        1 & t
+      \end{bmatrix}
+      \begin{bmatrix}
+        Y \\
+        Z
+      \end{bmatrix}.
+    \]
+    Since \(Y\) and \(Z\) are independent and each has a standard normal distribution, \((Y, Z)\) has a bivariate normal distribution. Thus \((X_s, X_t)\) has a bivariate normal distribution. Moreover,
+    \[
+      \mathbb{E}[X_s] = \mathbb{E}[X_t] = 0, \quad \mathrm{Var}(X_s) = 1 + s^2, \quad \mathrm{Var}(X_t) = 1 + t^2,
+    \]
+    \[
+      \mathrm{Cov}(X_s, X_t) = \mathbb{E}[(Y + Zs)(Y + Zt)] = \mathbb{E}[Y^2] + st\mathbb{E}[Z^2] = 1 + st.
+    \]
+    Thus,
+    \[
+      (X_s, X_t) \sim \mathrm{N}\left(0, 0, 1 + s^2, 1 + t^2, \frac{1 + st}{\sqrt{(1 + s^2)(1 + t^2)}}\right). \qedhere
+    \]
+  \end{enumerate}
+\end{solution}
+
+\section{The Moments of the Stochastic Processes}
+
+\begin{definition}[Mean Function]\index{mean function}
+  The \emph{mean function} of a stochastic process \(X_t\) is defined as
+  \[
+    \mu_X(t) = \mathbb{E}[X_t], \quad t \in T.
+  \]
+\end{definition}
+
+\begin{definition}[Variance Function]\index{variance function}
+  The \emph{variance function} of a stochastic process \(X_t\) is defined as
+  \[
+    \sigma_X^2(t) = \mathrm{Var}(X_t), \quad t \in T.
+  \]
+\end{definition}
+
+\begin{definition}[Autocorrelation Function]\index{autocorrelation function}
+  The \emph{autocorrelation function} of a stochastic process \(X_t\) is defined as
+  \[
+    R_X(t_1, t_2) = \mathbb{E}[X_{t_1} X_{t_2}], \quad t_1, t_2 \in T.
+  \]
+\end{definition}
+
+\begin{definition}[Autocovariance Function]\index{autocovariance function}
+  The \emph{autocovariance function} of a stochastic process \(X_t\) is defined as
+  \[
+    C_X(t_1, t_2) = \mathrm{Cov}(X_{t_1}, X_{t_2}) = \mathbb{E}[(X_{t_1} - \mu_X(t_1))(X_{t_2} - \mu_X(t_2))], \quad t_1, t_2 \in T.
+  \]
+\end{definition}
+
+\begin{example}
+  Consider the stochastic process
+  \[
+    X_t = Y \cos\omega t + Z \sin\omega t, \quad t \geq 0,
+  \]
+  where \(Y\) and \(Z\) are independent, real-valued random variables and each has a normal distribution with mean \(0\) and variance \(\sigma^2\), \(\omega\) is a constant. Find the mean function \(\mu_X(t)\) and autocorrelation function \(R_X(s, t)\) of the process.
+\end{example}
+\begin{solution}
+  Since \(Y\) and \(Z\) are independent and each has a normal distribution with mean \(0\) and variance \(\sigma^2\), we have
+  \[
+    \mu_X(t) = \mathbb{E}[X_t] = \mathbb{E}[Y]\cos\omega t + \mathbb{E}[Z]\sin\omega t = 0,
+  \]
+  and
+  \[
+    \mathbb{E}[Y Z] = \mathbb{E}[Y]\mathbb{E}[Z] = 0, \quad \mathbb{E}[Y^2] = \mathbb{E}[Z^2] = \sigma^2.
+  \]
+  Thus,
+  \begin{align*}
+    R_X(s, t) &= \mathbb{E}[X_s X_t] \\
+    &= \mathbb{E}[(Y \cos\omega s + Z \sin\omega s)(Y \cos\omega t + Z \sin\omega t)] \\
+    &= \sigma^2 \cos\omega s \cos\omega t + \sigma^2 \sin\omega s \sin\omega t = \sigma^2 \cos\left(\omega(s - t)\right). \qedhere
+  \end{align*}
+\end{solution}
+
+\begin{example}
+  Consider the stochastic process
+  \[
+    X_t = a \sin(\omega t + \Theta), \quad t \in (-\infty, +\infty),
+  \]
+  where \(a\) and \(\omega\) are constants, and \(\Theta\) has a uniform distribution in the interval \((0, 2\pi)\). This kind of \(X_t\) is called a sine wave with random phase. Find the mean function \(\mu_X(t)\), the autocorrelation function \(R_X(s, t)\), and the variance function \(\sigma_X^2(t)\) of the process.
+\end{example}
+\begin{solution}
+  The mean function of the process is
+  \[
+    \mu_X(t) = \mathbb{E}[X_t] = a \mathbb{E}[\sin(\omega t + \Theta)] = 0.
+  \]
+  The autocorrelation function of the process is
+  
+  \begin{align*}
+    R_X(s, t) &= \mathbb{E}[X_s X_t] \\
+    &= a^2 \mathbb{E}[\sin(\omega s + \Theta) \sin(\omega t + \Theta)] \\
+    &= a^2 \mathbb{E}\left[\frac{\cos\left(\omega(s - t)\right) - \cos\left(\omega(s + t) + 2\Theta\right)}{2}\right] = \frac{a^2}{2} \cos\left(\omega(s - t)\right).
+  \end{align*}
+  The variance function of the process is
+  \[
+    \sigma_X^2(t) = R_X(t, t) - [\mu_X(t)]^2 = \frac{a^2}{2}. \qedhere
+  \]
+\end{solution}

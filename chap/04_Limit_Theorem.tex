@@ -39,9 +39,24 @@
   \]
   where \(\Phi(x)\) is the c.d.f.\@ of the standard normal distribution. Equivalently, we have
   \[
-    \frac{\sum_{i=1}^n X_i - n\mu}{\sigma \sqrt{n}} \sim N(0, 1), \quad \sum_{i=1}^n X_i \sim N(n\mu, n\sigma^2).
+    \frac{\sum_{i=1}^n X_i - n\mu}{\sigma \sqrt{n}} \sim \mathrm{N}(0, 1), \quad \sum_{i=1}^n X_i \sim \mathrm{N}(n\mu, n\sigma^2).
   \]
 \end{theorem}
+
+\begin{example}
+  In order to protect the sovereignty of territorial waters, we prepare to launch 900 missile strikes against enemy targets. Suppose that the number of missiles hitting the target \(X_k\) in \(k\)-th strike follows identical distribution and is independent of each other. If \(\mathbb{E}(X_k) = 4\) and \(\mathrm{Var}(X_k) = 1.21\) \((k = 1, 2, \dots, 900)\), then calculate the probability of the event that the total number of missiles hitting the target is between 3534 and 3699.
+\end{example}
+\begin{solution}
+  By using Levy's Central Limit Theorem, we have
+  \[
+    \sum_{i=1}^{900} X_i \sim \mathrm{N}(900 \times 4, 900 \times 1.21) = \mathrm{N}(3600, 1089).
+  \]
+  Then we can calculate the probability as follows:
+  \begin{align*}
+    P\!\left\{ 3534 \leq \sum_{i=1}^{900} X_i \leq 3699 \right\} &\approx \Phi\!\left( \frac{3699 - 3600}{\sqrt{1089}} \right) - \Phi\!\left( \frac{3534 - 3600}{\sqrt{1089}} \right) \\
+    &= \Phi(3) - \Phi(-2) = \Phi(3) + \Phi(2) - 1. \qedhere
+  \end{align*}
+\end{solution}
 
 \begin{theorem}[De Moivre-Laplace Central Limit Theorem]
   Suppose that \(Y_n \sim \mathrm{B}(n, p) (0 < p < 1)\). Then for any \(x \in \mathbb{R}\), we have
