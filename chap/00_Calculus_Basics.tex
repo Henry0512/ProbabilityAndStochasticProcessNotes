@@ -144,7 +144,7 @@ We can show Integral \ref{int:gaussian} using polar coordinates as follows:
 \end{proof}
 
 Integral \ref{int:quadratic} can be derived by differentiating Integral \ref{int:gaussian} with respect to $a$:
-\begin{proof}
+\begin{proof}[Proof of Integral \ref{int:quadratic}]
   Let $I(a) = \int_0^\infty e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{2} a^{-1/2}$. Differentiating both sides with respect to $a$ yields
   \[
     \frac{\mathrm{d}}{\mathrm{d}a} I(a) = \int_0^\infty \frac{\partial}{\partial a} \left( e^{-ax^2} \right)\,\mathrm{d}x = \int_0^\infty (-x^2) e^{-ax^2}\,\mathrm{d}x.
@@ -262,3 +262,26 @@ The integral over $[0, \pi/2]$ can be evaluated using the same method.
     \mathrm{B}(x, y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}.
   \]
 \end{proposition}
+
+\section{Fourier Analysis}
+
+\begin{theorem}[Euler's Formula]\index{Euler's formula}
+  For any real number $\theta$, we have
+  \[
+    e^{\mathrm{i} \theta} = \cos \theta + \mathrm{i} \sin \theta.
+  \]
+\end{theorem}
+
+\begin{definition}[Fourier Transform]\index{Fourier transform}
+  The \emph{Fourier transform} of a function $f(t)$ is defined by
+  \[
+    \mathcal{F}\{f(t)\}(\omega) = \int_{-\infty}^\infty f(t) e^{-\mathrm{i} \omega t}\,\mathrm{d}t.
+  \]
+\end{definition}
+
+\begin{definition}[Inverse Fourier Transform]\index{inverse Fourier transform}
+  The \emph{inverse Fourier transform} of a function $F(\omega)$ is defined by
+  \[
+    \mathcal{F}^{-1}\{F(\omega)\}(t) = \frac{1}{2\pi} \int_{-\infty}^\infty F(\omega) e^{\mathrm{i} \omega t}\,\mathrm{d}\omega.
+  \]
+\end{definition}

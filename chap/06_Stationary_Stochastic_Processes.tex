@@ -79,6 +79,190 @@ is a constant for all \(t \in T\).
   In particular, a random sequence \(\{X_n\}_{n \geq 0}\) is called a stationary random sequence (or time sequence) in the wide sense if it is of second order and satisfies the following conditions:
   \begin{enumerate}
     \item for all \(n \geq 0\), \(\mathbb{E}[X_n]\) is a constant.
-    \item for all \(m, n > \geq 0\), \(R_X(n, n + m) = R_X(m)\) depends only on the time difference \(m\).
+    \item for all \(m, n \geq 0\), \(R_X(n, n + m) = R_X(m)\) depends only on the time difference \(m\).
   \end{enumerate}
 \end{definition}
+
+\begin{example}
+  Suppose that \(\{X_n\}_{n \geq 1}\) are IID random sequences, each of which has a standard normal distribution, and \(\{Y_n\}_{n \geq 1}\) are IID random sequences, each of which has a uniform distribution in the interval \((-\sqrt{3}, \sqrt{3})\). Suppose that \(\{X_n\}_{n \geq 1}\) and \(\{Y_n\}_{n \geq 1}\) are independent. Let
+  \[
+    Z_n = \begin{cases}
+      X_n, & \text{if } n \text{ is odd}, \\
+      Y_n, & \text{if } n \text{ is even}.
+    \end{cases}
+  \]
+  Prove that \(\{Z_n\}_{n \geq 1}\) is WSS but not SSS.
+\end{example}
+\begin{proof}
+  For all \(n \geq 1\),
+  \[
+    \mathbb{E}[Z_n] = \frac{1}{2} \mathbb{E}[X_n] + \frac{1}{2} \mathbb{E}[Y_n] = 0,
+  \]
+  since \(X_n\) has a standard normal distribution and \(Y_n\) has a uniform distribution in the interval \((-\sqrt{3}, \sqrt{3})\).
+
+  For \(n = m\),
+  \[
+    R_Z(n, n) = \mathbb{E}[Z_n^2] = \frac{1}{2} \mathbb{E}[X_n^2] + \frac{1}{2} \mathbb{E}[Y_n^2] = 1,
+  \]
+  since the variance of \(X_n\) is \(1\) and the variance of \(Y_n\) is also \(1\).
+
+  For \(n \neq m\),
+  \[
+    R_Z(n, m) = \mathbb{E}[Z_n Z_m] = 0,
+  \]
+  due to the independence of \(Z_n\) and \(Z_m\).
+
+  Thus, for all \(n, m \geq 1\),
+  \[
+    R_Z(n, m) = R_Z(|n - m|).
+  \]
+  
+  Therefore, \(\{Z_n\}_{n \geq 1}\) is WSS.
+
+  However, for any odd integer \(k > 0\),
+  \[
+    F(x; k) = P(Z_k \leq x) = P(X_k \leq x)
+  \]
+  and
+  \[
+    F(x; k + 1) = P(Z_{k + 1} \leq x) = P(Y_{k + 1} \leq x)
+  \]
+  are different distribution functions. Thus, the joint distribution functions of any finite collection of random variables in the process are not invariant under time shifts. Hence, the process is not SSS.
+\end{proof}
+
+\begin{proposition}
+  Let \(X_t\) be a WSS process and relabel \(R_X(t, t + \tau) = R_X(\tau)\). Then \(R_X(\tau)\) has the following properties:
+  \begin{enumerate}
+    \item \(R_X(\tau)\) is even, i.e., \(R_X(-\tau) = R_X(\tau)\) for all \(\tau\).
+    \item \(R_X(0) \geq 0\).
+    \item \(|R_X(\tau)| \leq R_X(0)\) for all \(\tau\).
+    \item If \(X_t\) is a periodic process with period \(T\), i.e., \(X_{t + T} = X_t\) for all \(t\), then its autocorrelation function is also periodic with period \(T\), i.e., \(R_X(\tau + T) = R_X(\tau)\) for all \(\tau\).
+  \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+  A function \(R(\tau)\) is the autocorrelation function of a WSS process if and only if it is an even function and is non-negative definite, i.e., for all \(n \in \mathbb{N}\), for all \(t_1 < t_2 < \dots < t_n\), and for all real vector \((a_1, a_2, \dots, a_n)\),
+  \[
+    \sum_{i = 1}^n \sum_{j = 1}^n a_i a_j R(t_i - t_j) \geq 0.
+  \]
+\end{proposition}
+
+\begin{example}
+  Suppose that \(\{X_n\}_{n \in \mathbb{Z}}\) is a pairwise uncorrelated random sequence, i.e., \(C_X(n, m) = 0\) for all \(n \neq m\), and \(\mathbb{E}[X_n] = 0\), \(\mathrm{Var}(X_n) = \sigma^2\) for all \(n\). Prove that \(\{X_n\}_{n \in \mathbb{Z}}\) is WSS.
+\end{example}
+\begin{proof}
+  For all \(n \in \mathbb{Z}\),
+  \[
+    \mathbb{E}[X_n] = 0,
+  \]
+  and for all \(n, m \in \mathbb{Z}\),
+  \[
+    R_X(n, m) = \begin{cases}
+      \sigma^2, & n = m, \\
+      0, & n \neq m.
+    \end{cases}
+  \]
+  
+  Thus, for all \(n, m \in \mathbb{Z}\),
+  \[
+    R_X(n, m) = R_X(|n - m|).
+  \]
+  
+  Therefore, \(\{X_n\}_{n \in \mathbb{Z}}\) is WSS.
+\end{proof}
+
+\section{Ergodicity of Stationary Processes}
+
+\section{Power Spectral Density of Stationary Processes}
+
+\begin{definition}[Continuity in Mean Square]\index{continuity in mean square}
+  A process \(\{X_t\}_{t \in T}\) is said to be \emph{continuous in mean square} at \(t_0 \in T\) if
+  \[
+    \lim_{\varepsilon \to 0} \mathbb{E}\left[(X_{t_0 + \varepsilon} - X_{t_0})^2\right] = 0,
+  \]
+  denoted by
+  \[
+    \mathrm{l.i.m.}_{t \to t_0} X_t = X_{t_0},
+  \]
+  where \(\mathrm{l.i.m.}\) stands for the limit in mean square. The stochastic process \(\{X_t\}_{t \in T}\) is said to be \emph{mean square continuous process} if it is continuous in mean square at every \(t_0 \in T\).
+\end{definition}
+
+\begin{theorem}
+  A stochastic process \(X_t\) is a mean square continuous process if and only if its autocorrelation function \(R_X(t_1, t_2)\) is continuous.
+\end{theorem}
+
+\begin{definition}[Mean Square Derivative]\index{mean square derivative}
+  Suppose that \(X_t\) is a mean square continuous process. We call \(X_t\) has a \emph{mean square derivative} \(X_t'\) at \(t \in T\) if
+  \[
+    \mathrm{l.i.m.}_{\varepsilon \to 0} \frac{X_{t + \varepsilon} - X_t}{\varepsilon} = X_t',
+  \]
+  that is,
+  \[
+    \lim_{\varepsilon \to 0} \mathbb{E}\left[\left(\frac{X_{t + \varepsilon} - X_t}{\varepsilon} - X_t'\right)^2\right] = 0.
+  \]
+\end{definition}
+
+\begin{theorem}
+  Suppose that the mean and the autocorrelation function of \(X_t\) are \(\mu_X(t)\) and \(R_X(s, t)\), respectively. Then
+  \[
+    \mu_{X'}(t) = \mathbb{E}[X_t'] = \frac{\mathrm{d}}{\mathrm{d}t} \mathbb{E}[X_t] = \mu_X'(t),
+  \]
+  and
+  \[
+    R_{X'}(s, t) = \mathbb{E}[X_s' X_t'] = \frac{\partial^2}{\partial s \partial t} \mathbb{E}[X_s X_t] = \frac{\partial^2}{\partial s \partial t} R_X(s, t).
+  \]
+\end{theorem}
+
+\begin{theorem}[Wiener-Khinchin Theorem]\index{Wiener-Khinchin theorem}
+  Suppose that \(R_X(\tau)\) is the autocorrelation function of a WSS process \(\{X_t\}\) and \(S_X(\omega)\) is its power spectral density. If
+  \[
+    \int_{-\infty}^\infty |R_X(\tau)| \, \mathrm{d}\tau < \infty,
+  \]
+  then
+  \[
+    S_X(\omega) = \int_{-\infty}^\infty R_X(\tau) e^{-\mathrm{i} \omega \tau} \, \mathrm{d}\tau,
+  \]
+  and
+  \[
+    R_X(\tau) = \frac{1}{2\pi} \int_{-\infty}^\infty S_X(\omega) e^{\mathrm{i} \omega \tau} \, \mathrm{d}\omega.
+  \]
+\end{theorem}
+
+\begin{example}
+  Find the power spectral density for the stochastic process \(X_t = a \cos(\omega_0 t + \Theta)\), where \(a\) and \(\omega_0\) are constants and \(\Theta\) is a random variable uniformly distributed in the interval \((0, 2\pi)\).
+\end{example}
+\begin{solution}
+  The mean of \(X_t\) is
+  \[
+    \mu_X(t) = \mathbb{E}[X_t] = a \mathbb{E}[\cos(\omega_0 t + \Theta)] = 0,
+  \]
+  since \(\Theta\) is uniformly distributed in the interval \((0, 2\pi)\).
+
+  The autocorrelation function of \(X_t\) is
+  \begin{align*}
+    R_X(s, t) &= \mathbb{E}[X_s X_t] = a^2 \mathbb{E}[\cos(\omega_0 s + \Theta) \cos(\omega_0 t + \Theta)] \\
+    &= a^2 \mathbb{E}\left[\frac{\cos(\omega_0 (s - t)) + \cos(\omega_0 (s + t) + 2\Theta)}{2}\right] \\
+    &= \frac{a^2}{2} \cos(\omega_0 (s - t)),
+  \end{align*}
+  since the expected value of the second term is zero.
+
+  Thus, the power spectral density of \(X_t\) is
+  \begin{align*}
+    S_X(\omega) &= \int_{-\infty}^\infty R_X(\tau) e^{-\mathrm{i} \omega \tau} \, \mathrm{d}\tau = \frac{a^2}{2} \int_{-\infty}^\infty \cos(\omega_0 \tau) e^{-\mathrm{i} \omega \tau} \, \mathrm{d}\tau \\
+    &= \frac{a^2}{4} \int_{-\infty}^\infty e^{\mathrm{i} (\omega_0 - \omega) \tau} + e^{-\mathrm{i} (\omega_0 + \omega) \tau} \, \mathrm{d}\tau = \frac{\pi a^2}{2} [\delta(\omega - \omega_0) + \delta(\omega + \omega_0)],
+  \end{align*}
+  where \(\delta(\cdot)\) is the Dirac delta function.
+\end{solution}
+
+\section{Linear and Time-Invariant Systems}
+
+\begin{theorem}
+  Let the stationary process \(\{X_t\}\) with mean \(\mu_X\) and autocorrelation function \(R_X(\tau)\) be the input to the filter with output \(\{Y_t\}\). The power spectral density of \(\{X_t\}\) is \(S_X(\omega)\) and the system's frequency response is \(H(\omega)\). Then the power spectral density of \(\{Y_t\}\) is
+  \[
+    S_Y(\omega) = |H(\omega)|^2 S_X(\omega).
+  \]
+  The cross-power spectral density of \(\{X_t\}\) and \(\{Y_t\}\) is
+  \[
+    S_{XY}(\omega) = H(\omega) S_X(\omega).
+  \]
+\end{theorem}

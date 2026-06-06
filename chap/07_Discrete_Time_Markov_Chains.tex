@@ -1,0 +1,74 @@
+\chapter{Discrete Time Markov Chains}
+
+\section{Basic Concepts}
+
+\begin{definition}[Discrete Time Markov Chain]\index{Markov chain}
+  Suppose that \(\{X_n\}_{n \geq 0}\) is a stochastic process with the countable state space \(S\). For all \(n \geq 0\), \(P\{X_n \in S\} = 1\). \(\{X_n\}_{n \geq 0}\) is said to be a \emph{discrete time Markov chain} if it satisfies the Markov property:
+  \[
+    P\{X_{n+1} = j | X_n = i, X_{n-1} = i_{n-1}, \ldots, X_0 = i_0\} = P\{X_{n+1} = j | X_n = i\}
+  \]
+  for all \(i, j, i_0, \ldots, i_{n-1} \in S\) and \(n \geq 0\).
+  The conditional probability \(P\{X_{n+1} = j | X_n = i\}\) is called the \emph{one-step transition probability} from state \(i\) to state \(j\) at time \(n\), denoted by \(p_{ij}\). Furthermore, the Markov chain is said to be \emph{time-homogeneous}, or to have \emph{stationary transition probabilities}, if for any \(i, j \in S\),
+  \[
+    P\{X_{m+1} = j | X_m = i\} = P\{X_{n+1} = j | X_n = i\}
+  \]
+  holds for all \(m, n \geq 0\).
+\end{definition}
+
+\begin{definition}[Transition Matrix]\index{transition matrix}
+  Let \(\mathbf{P} := \mathbf{P}(1) = (p_{ij})_{i, j \in S}\) denote the matrix of one-step transition probabilities, that is,
+  \[
+    \mathbf{P} = \begin{bmatrix}
+      p_{00} & p_{01} & \cdots & p_{0N} \\
+      p_{10} & p_{11} & \cdots & p_{1N} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      p_{N0} & p_{N1} & \cdots & p_{NN}
+    \end{bmatrix}
+    \text{ if } S = \{0, 1, \ldots, N\}.
+  \]
+\end{definition}
+It is obvious that
+\[
+  p_{ij} \geq 0 \text{ for all } i, j \in S, \quad \sum_{j \in S} p_{ij} = 1 \text{ for all } i \in S.
+\]
+
+\section{Markov Chains Having Two States}
+
+\begin{example}
+  Let state space \(S = \{0, 1\}\) and transition matrix
+  \[
+    \mathbf{P} = \begin{bmatrix}
+      p_{00} & p_{01} \\
+      p_{10} & p_{11}
+    \end{bmatrix} = \begin{bmatrix}
+      1 - \alpha & \alpha \\
+      \beta & 1 - \beta
+    \end{bmatrix}
+    \text{ where } 0 < \alpha, \beta < 1.
+  \]
+  Suppose that the initial probability is \(p_0(0) = P(X_0 = 0), p_1(0) = P(X_0 = 1) = 1 - p_0(0)\). Then
+  \[
+    p(1) =(p_0(1), p_1(1)) = p(0) \begin{bmatrix}
+      1 - \alpha & \alpha \\
+      \beta & 1 - \beta
+    \end{bmatrix} = p(0) \mathbf{P}.
+  \]
+  By a diagonalization of \(\mathbf{P}\), we have
+  \[
+    \mathbf{P}^n = \frac{1}{\alpha + \beta}
+    \begin{bmatrix}
+      \beta + \alpha (1 - \alpha - \beta)^n & \alpha - \alpha (1 - \alpha - \beta)^n \\
+      \beta - \beta (1 - \alpha - \beta)^n & \alpha + \beta (1 - \alpha - \beta)^n
+    \end{bmatrix}.
+  \]
+  Then
+  \begin{align*}
+    p(n) &= p(0) \mathbf{P}^n = (p_0(0), p_1(0)) \mathbf{P}^n \\
+    &= \left(\frac{\beta}{\alpha + \beta} + (1 - \alpha - \beta)^n \left(p_0(0) - \frac{\beta}{\alpha + \beta}\right)\right., \\
+    &\quad \left.\frac{\alpha}{\alpha + \beta} + (1 - \alpha - \beta)^n \left(p_1(0) - \frac{\beta}{\alpha + \beta}\right)\right).
+  \end{align*}
+  Since \(|1 - \alpha - \beta| < 1\), we have
+  \[
+    \lim_{n \to \infty} p(n) = \left(\frac{\beta}{\alpha + \beta}, \frac{\alpha}{\alpha + \beta}\right).
+  \]
+\end{example}

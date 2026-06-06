@@ -3,10 +3,11 @@ name: build
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -24,6 +25,16 @@ jobs:
       - name: Upload PDF Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Notes_on_Probability_and_Stochastic_Process
-          path: Notes_on_Probability_and_Stochastic_Process.pdf
+          name: Notes_on_Probability_Theory_and_Stochastic_Processes
+          path: Notes_on_Probability_Theory_and_Stochastic_Processes.pdf
           retention-days: 30
+
+      - name: Create or Update Latest Release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: "Notes_on_Probability_Theory_and_Stochastic_Processes.pdf"
+          tag: "latest"
+          name: "Latest Build"
+          body: "This is an automated build from the latest commit on the main branch. Updated on ${{ github.event.head_commit.timestamp }}."
+          prerelease: true
