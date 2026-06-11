@@ -2,8 +2,8 @@
 
 \section{Basic Concepts}
 
-\begin{definition}[Discrete Time Markov Chain]\index{Markov chain}
-  Suppose that \(\{X_n\}_{n \geq 0}\) is a stochastic process with the countable state space \(S\). For all \(n \geq 0\), \(P\{X_n \in S\} = 1\). \(\{X_n\}_{n \geq 0}\) is said to be a \emph{discrete time Markov chain} if it satisfies the Markov property:
+\begin{definition}[Discrete-Time Markov Chain]\index{Markov chain}\index{transition probability!one-step}
+  Suppose that \(\{X_n\}_{n \geq 0}\) is a stochastic process with the countable state space \(S\). For all \(n \geq 0\), \(P\{X_n \in S\} = 1\). \(\{X_n\}_{n \geq 0}\) is said to be a \emph{discrete-time Markov chain} if it satisfies the Markov property:
   \[
     P\{X_{n+1} = j | X_n = i, X_{n-1} = i_{n-1}, \ldots, X_0 = i_0\} = P\{X_{n+1} = j | X_n = i\}
   \]
@@ -24,7 +24,7 @@
       \vdots & \vdots & \ddots & \vdots \\
       p_{N0} & p_{N1} & \cdots & p_{NN}
     \end{bmatrix}
-    \text{ if } S = \{0, 1, \ldots, N\}.
+    \text{ for } S = \{0, 1, \ldots, N\}.
   \]
 \end{definition}
 It is obvious that
@@ -72,3 +72,171 @@ It is obvious that
     \lim_{n \to \infty} p(n) = \left(\frac{\beta}{\alpha + \beta}, \frac{\alpha}{\alpha + \beta}\right).
   \]
 \end{example}
+
+\section{Higher Order Transition Probabilities and Distributions}
+
+\begin{definition}[\(m\)-step Transition Probability]\index{transition probability!m-step}
+  The probability
+  \[
+    P\{X_{n+m} = j | X_n = i\}, \quad n \geq 0, m \geq 1, i, j \in S
+  \]
+  is called the \emph{\(m\)-step transition probability}. We denote it by \(p_{ij}(m)\), i.e.,
+  \[
+    p_{ij}(m) = P\{X_m = j | X_0 = i\} = P\{X_{n+m} = j | X_n = i\}.
+  \]
+  The latter equality holds because of the time-homogeneity of the Markov chain. Let \(\mathbf{P}(m) = (p_{ij}(m))_{i, j \in S}\) denote the \(m\)-step transition probability matrix, that is,
+  \[
+    \mathbf{P}(m) = \begin{bmatrix}
+      p_{00}(m) & p_{01}(m) & \cdots & p_{0N}(m) \\
+      p_{10}(m) & p_{11}(m) & \cdots & p_{1N}(m) \\
+      \vdots & \vdots & \ddots & \vdots \\
+      p_{N0}(m) & p_{N1}(m) & \cdots & p_{NN}(m)
+    \end{bmatrix}
+    \text{ for } S = \{0, 1, \ldots, N\}.
+  \]
+\end{definition}
+
+\begin{theorem}[Chapman-Kolmogorov Equation]\index{Chapman-Kolmogorov equation}
+  Suppose that \(\{X_n\}\) is a homogeneous Markov chain with state space \(S\). Then for any \(i, j \in S\) and \(m, n \geq 0\),
+  \[
+    p_{ij}(m + n) = \sum_{k \in S} p_{ik}(m) p_{kj}(n).
+  \]
+\end{theorem}
+
+\begin{theorem}
+  For any \(n \geq 1\), \(\mathbf{P}(n) = \mathbf{P}^n\).
+\end{theorem}
+
+\begin{example}
+  Consider the homogeneous Markov chain \(\{X_n, n \geq 0\}\) consisting of three states \(S = \{0, 1, 2\}\) and the transition probability matrix
+  \[
+    \mathbf{P} = \begin{bmatrix}
+      \frac{3}{4} & \frac{1}{4} & 0 \\
+      \frac{1}{4} & \frac{1}{2} & \frac{1}{4} \\
+      0 & \frac{3}{4} & \frac{1}{4}
+    \end{bmatrix}.
+  \]
+  The initial distribution is given by \(p_i(0) = \frac{1}{3}, i = 0, 1, 2\). Find the probabilities \(P\{X_0 = 0, X_2 = 1\}\) and \(P\{X_2 = 1\}\).
+\end{example}
+\begin{solution}
+  It is easy to calculate that the two-step transition probability matrix is
+  \[
+    \mathbf{P}(2) = \mathbf{P}^2 = \begin{bmatrix}
+      \frac{5}{8} & \frac{5}{16} & \frac{1}{16} \\
+      \frac{5}{16} & \frac{1}{2} & \frac{3}{16} \\
+      \frac{3}{16} & \frac{9}{16} & \frac{1}{4}
+    \end{bmatrix}.
+  \]
+  Then
+  \[
+    P\{X_0 = 0, X_2 = 1\} = P\{X_2 = 1 | X_0 = 0\} P\{X_0 = 0\} = p_{01}(2) p_0(0) = \frac{5}{16} \cdot \frac{1}{3} = \frac{5}{48}.
+  \]
+  Moreover,
+  \[
+    P\{X_2 = 1\} = \sum_{i \in S} P\{X_0 = i, X_2 = 1\} = \sum_{i \in S} p_{i1}(2) p_i(0) = \frac{11}{24}. \qedhere
+  \]
+\end{solution}
+
+\section{Invariant Distributions and Ergodicity}
+
+\begin{definition}[Invariant Distribution]\index{invariant distribution}
+  A probability distribution \(\pi = (\pi_i)_{i \in S}\) on \(S\) is called an \emph{invariant distribution} of the Markov chain \(\{X_n\}\) if
+  \[
+    \pi_j = \sum_{i \in S} \pi_i p_{ij} \text{ for all } j \in S.
+  \]
+  In matrix form, \(\pi\) is an invariant distribution if \(\pi = \pi \mathbf{P}\).
+\end{definition}
+
+\begin{definition}[Ergodic Markov Chain]\index{ergodic Markov chain}
+  Consider a Markov chain \(\{X_n\}\) with state space \(S\) and having the transition probability matrix \(\mathbf{P} = (p_{ij})_{i, j \in S}\). If for any \(i, j \in S\), \(\lim_{n \to \infty} p_{ij}(n)\) exists and is independent of the initial state \(i\), that is,
+  \[
+    \lim_{n \to \infty} p_{ij}(n) = \pi_j \text{ for all } i, j \in S,
+  \]
+  or
+  \[
+    \lim_{n \to \infty} \mathbf{P}(n) = \begin{bmatrix}
+      \pi_0 & \pi_1 & \cdots & \pi_j & \cdots \\
+      \pi_0 & \pi_1 & \cdots & \pi_j & \cdots \\
+      \vdots & \vdots & \ddots & \vdots & \cdots \\
+      \pi_0 & \pi_1 & \cdots & \pi_j & \cdots \\
+      \vdots & \vdots & \vdots & \vdots & \ddots
+    \end{bmatrix}
+    \text{ for } S = \{0, 1, \dots\},
+  \]
+  then the Markov chain is said to be \emph{ergodic}.
+\end{definition}
+
+\begin{theorem}
+  Consider a homogeneous Markov chain \(\{X_n\}\) with state space \(S = \{0, 1, \dots, N\}\) and having the transition probability matrix \(\mathbf{P}\). If there exists \(m > 0\), such that \(p_{ij}(m) > 0\) for all \(i, j \in S\), then \(\{X_n\}\) is ergodic and has a unique invariant distribution \(\pi = (\pi_0, \pi_1, \dots, \pi_N)\), \(\pi_i\) is the unique nonnegative solution of
+  \[
+    \begin{cases}
+      \pi = \pi \mathbf{P}, \\
+      \sum_{i \in S} \pi_i = 1.
+    \end{cases}
+  \]
+\end{theorem}
+
+\begin{example}
+  Consider a Markov chain \(\{X_n\}\) with state space \(S = \{0, 1, 2\}\) having the transition probability matrix
+  \[
+    \mathbf{P} = \begin{bmatrix}
+      1 & 0 & 0 \\
+      0 & \frac{1}{2} & \frac{1}{2} \\
+      0 & \frac{1}{2} & \frac{1}{2}
+    \end{bmatrix}.
+  \]
+  Since \(p_{00}(n) = 1\) for all \(n \geq 0\), \(\{X_n\}\) is not ergodic.
+\end{example}
+
+\begin{example}
+  Consider a Markov chain \(\{X_n\}\) with state space \(S = \{0, 1, 2, 3\}\) having the transition probability matrix
+  \[
+    \mathbf{P} = \begin{bmatrix}
+      0 & \frac{1}{2} & 0 & \frac{1}{2} \\
+      \frac{1}{2} & 0 & \frac{1}{2} & 0 \\
+      0 & \frac{1}{2} & 0 & \frac{1}{2} \\
+      \frac{1}{2} & 0 & \frac{1}{2} & 0
+    \end{bmatrix}.
+  \]
+  Since \(p_{00}(n) = 0\) for all odd \(n\) and \(p_{00}(n) > 0\) for all even \(n\), \(\{X_n\}\) is not ergodic.
+\end{example}
+
+\begin{example}
+  Consider a homogeneous Markov chain \(\{X_n\}\) with state space \(S = \{0, 1\}\) and having the transition probability matrix
+  \[
+    \mathbf{P} = \begin{bmatrix}
+      \frac{1}{2} & \frac{1}{2} \\
+      \frac{1}{3} & \frac{2}{3}
+    \end{bmatrix}.
+  \]
+  \begin{enumerate}
+    \item Is \(\{X_n\}\) ergodic?
+    \item Find the invariant distribution of \(\{X_n\}\).
+    \item Calculate \(\lim_{n \to \infty} P\{X_n = 0\}\).
+  \end{enumerate}
+\end{example}
+\begin{solution}
+  \begin{enumerate}
+    \item Since \(p_{ij}(1) = p_{ij} > 0\) for all \(i, j \in S\), \(\{X_n\}\) is ergodic.
+    \item The invariant distribution \(\pi = (\pi_0, \pi_1)\) satisfies
+    \[
+      \begin{cases}
+        \pi_0 = \frac{1}{2} \pi_0 + \frac{1}{3} \pi_1, \\
+        \pi_1 = \frac{1}{2} \pi_0 + \frac{2}{3} \pi_1, \\
+        \pi_0 + \pi_1 = 1.
+      \end{cases}
+    \]
+    Solving the above system of equations yields
+    \[
+      (\pi_0, \pi_1) = \left(\frac{2}{5}, \frac{3}{5}\right).
+    \]
+    Thus, the invariant distribution is given by
+    \[
+      \pi = \left(\frac{2}{5}, \frac{3}{5}\right).
+    \]
+    \item Since the Markov chain is ergodic, we have
+    \[
+      \lim_{n \to \infty} P\{X_n = 0\} = \pi_0 = \frac{2}{5}. \qedhere
+    \]
+  \end{enumerate}
+\end{solution}

@@ -1,0 +1,68 @@
+\chapter{Independent Increment Processes}
+
+\section{Independent-Increment Processes}
+
+\begin{definition}[Independent Increment Process]\index{independent increment process}
+  A stochastic process \(\{X(t)\}_{t \geq 0}\) is said to have \emph{independent increments} if the set of the following random variables,
+  \[
+    X_{s_1} - X_{0}, X_{t_1} - X_{s_1}, \dots, X_{t_n} - X_{s_n},
+  \]
+  are independent for all \(0 \leq s_1 < t_1 \leq s_2 < t_2 \leq \dots \leq s_n < t_n < \infty, n \geq 1\). Furthermore, if the distribution function of \(X_{t + s} - X_{s}\) is independent of \(s\), we say that \(\{X(t)\}_{t \geq 0}\) has \emph{stationary independent increments}. The stochastic process \(\{X(t)\}_{t \geq 0}\) is called stationary independent-increment process or homogeneous independent-increment process if it has stationary independent increments.
+\end{definition}
+
+\begin{theorem}
+  Suppose that \(X_0 = 0\). For the independent increment process \(\{X(t)\}_{t \geq 0}\), its finite-dimensional distribution can be determined by the distribution function of \(X_t - X_s\) for all \(0 \leq s < t < \infty\).
+\end{theorem}
+
+\begin{theorem}
+  Suppose that \(\{X(t)\}_{t \geq 0}\) is an independent increment process and \(X_0 = 0\). Then the covariance function \(C_X(s, t) = \mathrm{Var}_X[\min(s, t)]\)
+\end{theorem}
+
+\section{Poisson Process}
+
+\begin{definition}[Poisson Process]\index{Poisson process}
+  A counting process \(\{N_t\}_{t \geq 0}\) is called a \emph{Poisson process} with rate \(\lambda > 0\) if it satisfies the following conditions:
+  \begin{enumerate}
+    \item \(N_0 = 0\).
+    \item \(\{N_t\}_{t \geq 0}\) has independent increments.
+    \item The number of events in any interval of length \(t\) follows a Poisson distribution with mean \(\lambda t\), that is, for all \(s, t \geq 0\) and \(n = 0, 1, \dots\),
+    \[
+      P\{N_{t + s} - N_s = n\} = e^{-\lambda t} \frac{(\lambda t)^n}{n!}.
+    \]
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  Let \(\{N_t\}_{t \geq 0}\) be a Poisson process with rate \(\lambda > 0\). Then
+  \begin{enumerate}
+    \item \(\mu_N(t) = \lambda t\).
+    \item \(C_N(s, t) = \mathrm{Var}_N[\min(s, t)] = \lambda \min(s, t)\).
+    \item \(R_N(s, t) = \lambda \min(s, t) + \lambda^2 s t\), where
+    \[
+      \min(s, t) = \frac{s + t - |s - t|}{2}.
+    \]
+  \end{enumerate}
+\end{proposition}
+
+\begin{example}
+  Let \(\{N_t\}_{t \geq 0}\) be a Poisson process with rate \(\lambda > 0\). Find the values of \(\mathbb{E}[N_t^2]\) and \(\mathbb{E}[(N_t - N_s)^2]\) for all \(0 \leq s < t < \infty\).
+\end{example}
+\begin{solution}
+  Since \(N_t\) follows a Poisson distribution with mean \(\lambda t\), we have
+  \[
+    \mathbb{E}[N_t^2] = \mathrm{Var}_N[N_t] + (\mathbb{E}[N_t])^2 = \lambda t + (\lambda t)^2.
+  \]
+  Since \(N_t - N_s\) follows a Poisson distribution with mean \(\lambda (t - s)\), we have
+  \[
+    \mathbb{E}[(N_t - N_s)^2] = \mathrm{Var}_N[N_t - N_s] + (\mathbb{E}[N_t - N_s])^2 = \lambda (t - s) + (\lambda (t - s))^2. \qedhere
+  \]
+\end{solution}
+
+\section{Gaussian Process}
+
+\begin{definition}[Gaussian Process]\index{Gaussian process}
+  A real-valued stochastic process \(\{X_t\}_{t \in T}\) is said to be a \emph{Gaussian process} if all the finite-dimensional distributions have a multivariate normal distribution. That is, for any choice of distinct values \(t_1, t_2, \dots, t_k \in T\), the random vector \(\mathbf{X} = (X_{t_1}, X_{t_2}, \dots, X_{t_k})\) has a multivariate normal distribution with mean vector \(\boldsymbol{\mu} = \mathbb{E}(\mathbf{X})\) and covariance matrix \(\boldsymbol{\Sigma} = \mathrm{Cov}(\mathbf{X}, \mathbf{X})\), which will be denoted as
+  \[
+    \mathbf{X} \sim \mathrm{N_k}(\boldsymbol{\mu}, \boldsymbol{\Sigma}).
+  \]
+\end{definition}
