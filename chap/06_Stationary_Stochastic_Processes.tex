@@ -94,32 +94,42 @@ is a constant for all \(t \in T\).
   Prove that \(\{Z_n\}_{n \geq 1}\) is WSS but not SSS.
 \end{example}
 \begin{proof}
-  For all \(n \geq 1\),
+  First,
   \[
-    \mathbb{E}[Z_n] = \frac{1}{2} \mathbb{E}[X_n] + \frac{1}{2} \mathbb{E}[Y_n] = 0,
+    \mathbb{E}[Z_n] = \begin{cases}
+      \mathbb{E}[X_n] = 0, & \text{if } n \text{ is odd}, \\
+      \mathbb{E}[Y_n] = 0, & \text{if } n \text{ is even},
+    \end{cases}
   \]
-  since \(X_n\) has a standard normal distribution and \(Y_n\) has a uniform distribution in the interval \((-\sqrt{3}, \sqrt{3})\).
-
-  For \(n = m\),
+  so the mean of \(Z_n\) is a constant.
+  Next, for the autocorrelation function of \(Z_n\), for all \(n, m \geq 1\),
   \[
-    R_Z(n, n) = \mathbb{E}[Z_n^2] = \frac{1}{2} \mathbb{E}[X_n^2] + \frac{1}{2} \mathbb{E}[Y_n^2] = 1,
+    R_Z(n, m) = \mathrm{Cov}(Z_n, Z_m) + \mathbb{E}[Z_n] = \mathrm{Cov}(Z_n, Z_m).
   \]
-  since the variance of \(X_n\) is \(1\) and the variance of \(Y_n\) is also \(1\).
-
-  For \(n \neq m\),
+  \begin{enumerate}
+    \item If \(n = m\), then
+    \[
+      R_Z(n, m) = \mathrm{Var}(Z_n) = \begin{cases}
+        1, & \text{if } n \text{ is odd}, \\
+        1, & \text{if } n \text{ is even},
+      \end{cases}
+    \]
+    since \(Y_n \sim \mathrm{U}(-\sqrt{3}, \sqrt{3})\) has variance \(\frac{(2\sqrt{3})^2}{12} = 1\).
+    \item If \(n \neq m\), then \(Z_n\) and \(Z_m\) are independent because they depend on different independent random sequences. Thus,
+    \[
+      R_Z(n, m) = \mathrm{Cov}(Z_n, Z_m) = 0.
+    \]
+  \end{enumerate}
+  Therefore, for all \(n, m \geq 1\),
   \[
-    R_Z(n, m) = \mathbb{E}[Z_n Z_m] = 0,
+    R_Z(n, m) = \begin{cases}
+      1, & n = m, \\
+      0, & n \neq m,
+    \end{cases}
   \]
-  due to the independence of \(Z_n\) and \(Z_m\).
+  which depends only on the time difference \(|n - m|\). Hence, \(\{Z_n\}_{n \geq 1}\) is WSS.
 
-  Thus, for all \(n, m \geq 1\),
-  \[
-    R_Z(n, m) = R_Z(|n - m|).
-  \]
-  
-  Therefore, \(\{Z_n\}_{n \geq 1}\) is WSS.
-
-  However, for any odd integer \(k > 0\),
+  However, for any odd integer \(k \geq 1\),
   \[
     F(x; k) = P(Z_k \leq x) = P(X_k \leq x)
   \]
