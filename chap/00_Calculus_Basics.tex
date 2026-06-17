@@ -5,7 +5,7 @@
 \begin{theorem}[Important Limits]
   The following limits are fundamental in calculus and analysis:
   \begin{enumerate}
-    \item $\displaystyle \lim_{n \to \infty} \left(1 + \frac{x}{n}\right)^n = e^x$, for any $x \in \mathbb{R}$.
+    \item $\displaystyle \lim_{n \to \infty} \left(1 + \frac{x}{n}\right)^n = \me^x$, for any $x \in \R$.
     \item $\displaystyle \lim_{x \to 0} \frac{\sin x}{x} = 1$.
   \end{enumerate}
 \end{theorem}
@@ -13,7 +13,7 @@
 \begin{theorem}[Taylor Series]\index{Taylor series}
   The Taylor series expansion of some common functions are:
   \begin{enumerate}
-    \item Exponential function: $\displaystyle e^x = \sum_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots$
+    \item Exponential function: $\displaystyle \me^x = \sum_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots$
     \item Geometric series: For $|x| < 1$, $\displaystyle \frac{1}{1-x} = \sum_{n=0}^\infty x^n = 1 + x + x^2 + \cdots$
     \item Logarithmic function: For $-1 < x \le 1$, $\displaystyle \ln(1+x) = \sum_{n=1}^\infty \frac{(-1)^{n-1} x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots$
   \end{enumerate}
@@ -24,43 +24,43 @@
 \begin{theorem}[Integration by Parts]\index{integration by parts}
   Let $u$ and $v$ be differentiable functions. Then
   \[
-    \int u\,\mathrm{d}v = u v - \int v\,\mathrm{d}u.
+    \int u\,\dd v = u v - \int v\,\dd u.
   \]
 \end{theorem}
 
 \begin{theorem}[Substitution Rule]\index{substitution rule}
   If $x = g(t)$ is a continuously differentiable function, and $f$ is continuous on the range of $g$, then for indefinite integrals:
   \[
-    \int f(x)\,\mathrm{d}x = \int f(g(t)) g'(t)\,\mathrm{d}t.
+    \int f(x)\,\dd x = \int f(g(t)) g'(t)\,\dd t.
   \]
   For definite integrals, this becomes:
   \[
-    \int_{g(c)}^{g(d)} f(x)\,\mathrm{d}x = \int_c^d f(g(t)) g'(t)\,\mathrm{d}t.
+    \int_{g(c)}^{g(d)} f(x)\,\dd x = \int_c^d f(g(t)) g'(t)\,\dd t.
   \]
 \end{theorem}
 
 \begin{theorem}[Fundamental Theorem of Calculus]\index{fundamental theorem of calculus}
   If $f$ is continuous on $[a,b]$ and $F$ is an antiderivative of $f$ on $[a,b]$, then
   \[
-    \int_a^b f(x)\,\mathrm{d}x = F(b) - F(a).
+    \int_a^b f(x)\,\dd x = F(b) - F(a).
   \]
 \end{theorem}
 
 \begin{theorem}[Leibniz Integral Rule]\index{Leibniz integral rule}\index{variable limits}
   For a definite integral with variable limits $a(x)$ and $b(x)$, the derivative with respect to $x$ is given by:
   \[
-    \frac{\mathrm{d}}{\mathrm{d}x} \int_{a(x)}^{b(x)} f(t)\,\mathrm{d}t = f(b(x)) b'(x) - f(a(x)) a'(x).
+    \frac{\dd}{\dd x} \int_{a(x)}^{b(x)} f(t)\,\dd t = f(b(x)) b'(x) - f(a(x)) a'(x).
   \]
   More generally, if the integrand also depends on $x$, i.e., $f(x, t)$, and both $f$ and $\frac{\partial f}{\partial x}$ are continuous:
   \[
-    \frac{\mathrm{d}}{\mathrm{d}x} \int_{a(x)}^{b(x)} f(x, t)\,\mathrm{d}t = f(x, b(x)) b'(x) - f(x, a(x)) a'(x) + \int_{a(x)}^{b(x)} \frac{\partial f}{\partial x}(x, t)\,\mathrm{d}t.
+    \frac{\dd}{\dd x} \int_{a(x)}^{b(x)} f(x, t)\,\dd t = f(x, b(x)) b'(x) - f(x, a(x)) a'(x) + \int_{a(x)}^{b(x)} \frac{\partial f}{\partial x}(x, t)\,\dd t.
   \]
 \end{theorem}
 
 \begin{definition}[Double Integral]\index{double integral}
   The \emph{double integral} of a function $f(x, y)$ over a region $R$ in the $xy$-plane is defined as
   \[
-    \iint_R f(x, y)\,\mathrm{d}x\,\mathrm{d}y = \lim_{m, n \to \infty} \sum_{i=1}^m \sum_{j=1}^n f(x_{ij}, y_{ij}) \Delta x \Delta y,
+    \iint_R f(x, y)\,\dd x\,\dd y = \lim_{m, n \to \infty} \sum_{i=1}^m \sum_{j=1}^n f(x_{ij}, y_{ij}) \Delta x \Delta y,
   \]
   where $R$ is partitioned into $m$ subintervals in the $x$-direction and $n$ subintervals in the $y$-direction, and $(x_{ij}, y_{ij})$ is a sample point in the $(i,j)$-th subrectangle.
 \end{definition}
@@ -68,14 +68,14 @@
 \begin{theorem}[Fubini's Theorem]\index{Fubini's theorem}
   If $f(x, y)$ is continuous on a rectangular region $R = [a, b] \times [c, d]$, then
   \[
-    \iint_R f(x, y)\,\mathrm{d}x\,\mathrm{d}y = \int_a^b \left( \int_c^d f(x, y)\,\mathrm{d}y \right) \mathrm{d}x = \int_c^d \left( \int_a^b f(x, y)\,\mathrm{d}x \right) \mathrm{d}y.
+    \iint_R f(x, y)\,\dd x\,\dd y = \int_a^b \left( \int_c^d f(x, y)\,\dd y \right) \dd x = \int_c^d \left( \int_a^b f(x, y)\,\dd x \right) \dd y.
   \]
 \end{theorem}
 
 \begin{theorem}[Double Integrals in Polar Coordinates]\index{polar coordinates}
-  To evaluate a double integral over a region $R$ in the $xy$-plane using polar coordinates $(r, \theta)$, we use the transformation $x = r\cos\theta$ and $y = r\sin\theta$. The area element becomes $\mathrm{d}x\,\mathrm{d}y = r\,\mathrm{d}r\,\mathrm{d}\theta$. Then
+  To evaluate a double integral over a region $R$ in the $xy$-plane using polar coordinates $(r, \theta)$, we use the transformation $x = r\cos\theta$ and $y = r\sin\theta$. The area element becomes $\dd x\,\dd y = r\,\dd r\,\dd\theta$. Then
   \[
-    \iint_R f(x, y)\,\mathrm{d}x\,\mathrm{d}y = \iint_S f(r\cos\theta, r\sin\theta) r\,\mathrm{d}r\,\mathrm{d}\theta,
+    \iint_R f(x, y)\,\dd x\,\dd y = \iint_S f(r\cos\theta, r\sin\theta) r\,\dd r\,\dd\theta,
   \]
   where $S$ is the region in the $r\theta$-plane corresponding to $R$.
 \end{theorem}
@@ -90,118 +90,118 @@
   \]
   The transformation of double integrals is then
   \[
-    \iint_R f(x, y)\,\mathrm{d}x\,\mathrm{d}y = \iint_S f(g(u, v), h(u, v)) |J(u, v)|\,\mathrm{d}u\,\mathrm{d}v.
+    \iint_R f(x, y)\,\dd x\,\dd y = \iint_S f(g(u, v), h(u, v)) |J(u, v)|\,\dd u\,\dd v.
   \]
 \end{definition}
 
 \begin{theorem}[Important Integrals]\label{thm:important_integrals}
   The following integrals are commonly encountered in probability and statistics:
   \begin{enumerate}
-    \item\label{int:gaussian} $\displaystyle \int_0^\infty e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{2\sqrt{a}}$, for $a > 0$.
-    \item\label{int:linear} $\displaystyle \int_0^\infty x e^{-ax^2}\,\mathrm{d}x = \frac{1}{2a}$, for $a > 0$.
-    \item\label{int:quadratic} $\displaystyle \int_0^\infty x^2 e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{4a^{3/2}}$, for $a > 0$.
-    \item\label{int:general} $\displaystyle \int_0^\infty x^n e^{-ax^2}\,\mathrm{d}x = \frac{1}{2} a^{-\frac{n+1}{2}} \Gamma\left(\frac{n+1}{2}\right)$, for $a > 0$ and $n \in \mathbb{N}$.
-    \item\label{int:sin-cos} $\displaystyle \int_0^{2\pi} \sin^n \theta\, \mathrm{d}\theta = \int_0^{2\pi} \cos^n \theta\,\mathrm{d}\theta = \begin{cases}
-      2\pi, & \text{if $n = 0$}, \\
-      \frac{(n-1)!!}{n!!} \cdot 2\pi, & \text{if $n$ is even}, \\
+    \item\label{int:gaussian} $\displaystyle \int_0^\infty \me^{-ax^2}\,\dd x = \frac{\sqrt{\mpi}}{2\sqrt{a}}$, for $a > 0$.
+    \item\label{int:linear} $\displaystyle \int_0^\infty x \me^{-ax^2}\,\dd x = \frac{1}{2a}$, for $a > 0$.
+    \item\label{int:quadratic} $\displaystyle \int_0^\infty x^2 \me^{-ax^2}\,\dd x = \frac{\sqrt{\mpi}}{4a^{3/2}}$, for $a > 0$.
+    \item\label{int:general} $\displaystyle \int_0^\infty x^n \me^{-ax^2}\,\dd x = \frac{1}{2} a^{-\frac{n+1}{2}} \Gamma\left(\frac{n+1}{2}\right)$, for $a > 0$ and $n \in \N$.
+    \item\label{int:sin-cos} $\displaystyle \int_0^{2\mpi} \sin^n \theta\, \dd\theta = \int_0^{2\mpi} \cos^n \theta\,\dd\theta = \begin{cases}
+      2\mpi, & \text{if $n = 0$}, \\
+      \frac{(n-1)!!}{n!!} \cdot 2\mpi, & \text{if $n$ is even}, \\
       0, & \text{if $n$ is odd}.
     \end{cases}$
-    \item\label{int:sin-cos-half} $\displaystyle \int_0^{\frac{\pi}{2}} \sin^n \theta\,\mathrm{d}\theta = \int_0^{\frac{\pi}{2}} \cos^n \theta\,\mathrm{d}\theta = \begin{cases}
-      \frac{\pi}{2}, & \text{if $n = 0$}, \\
-      \frac{(n-1)!!}{n!!} \cdot \frac{\pi}{2}, & \text{if $n$ is even}, \\
+    \item\label{int:sin-cos-half} $\displaystyle \int_0^{\frac{\mpi}{2}} \sin^n \theta\,\dd\theta = \int_0^{\frac{\mpi}{2}} \cos^n \theta\,\dd\theta = \begin{cases}
+      \frac{\mpi}{2}, & \text{if $n = 0$}, \\
+      \frac{(n-1)!!}{n!!} \cdot \frac{\mpi}{2}, & \text{if $n$ is even}, \\
       \frac{(n-1)!!}{n!!}, & \text{if $n$ is odd}.
     \end{cases}$
-    \item\label{int:sin-cos-half-general} $\displaystyle \int_0^{\frac{\pi}{2}} \sin^m \theta \cos^n \theta\,\mathrm{d}\theta = \frac{1}{2} B\left(\frac{m+1}{2}, \frac{n+1}{2}\right)$, for $m, n > -1$.
+    \item\label{int:sin-cos-half-general} $\displaystyle \int_0^{\frac{\mpi}{2}} \sin^m \theta \cos^n \theta\,\dd\theta = \frac{1}{2} B\left(\frac{m+1}{2}, \frac{n+1}{2}\right)$, for $m, n > -1$.
   \end{enumerate}
 \end{theorem}
 
 Integral \ref{int:linear} can be evaluated using a simple substitution:
 \begin{proof}[Proof of Integral \ref{int:linear}]
-  Let $u = ax^2$. Then $\mathrm{d}u = 2ax\,\mathrm{d}x$, or $x\,\mathrm{d}x = \frac{1}{2a}\,\mathrm{d}u$. The limits of integration remain $0$ to $\infty$. Substituting these into the integral gives
+  Let $u = ax^2$. Then $\dd u = 2ax\,\dd x$, or $x\,\dd x = \frac{1}{2a}\,\dd u$. The limits of integration remain $0$ to $\infty$. Substituting these into the integral gives
   \[
-    \int_0^\infty x e^{-ax^2}\,\mathrm{d}x = \int_0^\infty e^{-u} \frac{1}{2a}\,\mathrm{d}u = \frac{1}{2a} \left[ -e^{-u} \right]_0^\infty = \frac{1}{2a} (0 - (-1)) = \frac{1}{2a}. \qedhere
+    \int_0^\infty x \me^{-ax^2}\,\dd x = \int_0^\infty \me^{-u} \frac{1}{2a}\,\dd u = \frac{1}{2a} \left[ -\me^{-u} \right]_0^\infty = \frac{1}{2a} (0 - (-1)) = \frac{1}{2a}. \qedhere
   \]
 \end{proof}
 
 We can show Integral \ref{int:gaussian} using polar coordinates as follows:
 \begin{proof}[Proof of Integral \ref{int:gaussian}]
-  Let $I = \int_0^\infty e^{-ax^2}\,\mathrm{d}x$. Then
+  Let $I = \int_0^\infty \me^{-ax^2}\,\dd x$. Then
   \[
-    I^2 = \left( \int_0^\infty e^{-ax^2}\,\mathrm{d}x \right) \left( \int_0^\infty e^{-ay^2}\,\mathrm{d}y \right) = \int_0^\infty \int_0^\infty e^{-a(x^2 + y^2)}\,\mathrm{d}x\,\mathrm{d}y.
+    I^2 = \left( \int_0^\infty \me^{-ax^2}\,\dd x \right) \left( \int_0^\infty \me^{-ay^2}\,\dd y \right) = \int_0^\infty \int_0^\infty \me^{-a(x^2 + y^2)}\,\dd x\,\dd y.
   \]
-  Converting to polar coordinates, where $x = r\cos\theta$ and $y = r\sin\theta$, we have $x^2 + y^2 = r^2$ and $\mathrm{d}x\,\mathrm{d}y = r\,\mathrm{d}r\,\mathrm{d}\theta$. The limits of integration for $r$ are from $0$ to $\infty$, and for $\theta$ are from $0$ to $\pi/2$. Thus,
+  Converting to polar coordinates, where $x = r\cos\theta$ and $y = r\sin\theta$, we have $x^2 + y^2 = r^2$ and $\dd x\,\dd y = r\,\dd r\,\dd\theta$. The limits of integration for $r$ are from $0$ to $\infty$, and for $\theta$ are from $0$ to $\mpi/2$. Thus,
   \[
-    I^2 = \int_0^{\pi/2} \int_0^\infty e^{-ar^2} r\,\mathrm{d}r\,\mathrm{d}\theta.
+    I^2 = \int_0^{\mpi/2} \int_0^\infty \me^{-ar^2} r\,\dd r\,\dd\theta.
   \]
   The inner integral is the same as Integral \ref{int:linear} we just evaluated, so we have
   \[
-    I^2 = \int_0^{\pi/2} \frac{1}{2a}\,\mathrm{d}\theta = \frac{\pi}{4a}.
+    I^2 = \int_0^{\mpi/2} \frac{1}{2a}\,\dd\theta = \frac{\mpi}{4a}.
   \]
   Taking the square root gives
   \[
-    I = \sqrt{\frac{\pi}{4a}} = \frac{\sqrt{\pi}}{2\sqrt{a}}. \qedhere
+    I = \sqrt{\frac{\mpi}{4a}} = \frac{\sqrt{\mpi}}{2\sqrt{a}}. \qedhere
   \]
 \end{proof}
 
 Integral \ref{int:quadratic} can be derived by differentiating Integral \ref{int:gaussian} with respect to $a$:
 \begin{proof}[Proof of Integral \ref{int:quadratic}]
-  Let $I(a) = \int_0^\infty e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{2} a^{-1/2}$. Differentiating both sides with respect to $a$ yields
+  Let $I(a) = \int_0^\infty \me^{-ax^2}\,\dd x = \frac{\sqrt{\mpi}}{2} a^{-1/2}$. Differentiating both sides with respect to $a$ yields
   \[
-    \frac{\mathrm{d}}{\mathrm{d}a} I(a) = \int_0^\infty \frac{\partial}{\partial a} \left( e^{-ax^2} \right)\,\mathrm{d}x = \int_0^\infty (-x^2) e^{-ax^2}\,\mathrm{d}x.
+    \frac{\dd}{\dd a} I(a) = \int_0^\infty \frac{\partial}{\partial a} \left( \me^{-ax^2} \right)\,\dd x = \int_0^\infty (-x^2) \me^{-ax^2}\,\dd x.
   \]
   On the other hand, differentiating the evaluated result gives
   \[
-    \frac{\mathrm{d}}{\mathrm{d}a} \left( \frac{\sqrt{\pi}}{2} a^{-1/2} \right) = \frac{\sqrt{\pi}}{2} \left( -\frac{1}{2} \right) a^{-3/2} = -\frac{\sqrt{\pi}}{4a^{3/2}}.
+    \frac{\dd}{\dd a} \left( \frac{\sqrt{\mpi}}{2} a^{-1/2} \right) = \frac{\sqrt{\mpi}}{2} \left( -\frac{1}{2} \right) a^{-3/2} = -\frac{\sqrt{\mpi}}{4a^{3/2}}.
   \]
   Equating the two expressions and multiplying by $-1$, we obtain
   \[
-    \int_0^\infty x^2 e^{-ax^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{4a^{3/2}}. \qedhere
+    \int_0^\infty x^2 \me^{-ax^2}\,\dd x = \frac{\sqrt{\mpi}}{4a^{3/2}}. \qedhere
   \]
 \end{proof}
 This can also be derived using integration by parts:
 \begin{proof}[Alternative Proof of Integral \ref{int:quadratic}]
-  Let $u = x$ and $\mathrm{d}v = x e^{-ax^2}\,\mathrm{d}x$. Then $\mathrm{d}u = \mathrm{d}x$ and $v = -\frac{1}{2a} e^{-ax^2}$. Applying integration by parts gives
+  Let $u = x$ and $\dd v = x \me^{-ax^2}\,\dd x$. Then $\dd u = \dd x$ and $v = -\frac{1}{2a} \me^{-ax^2}$. Applying integration by parts gives
   \[
-    \int_0^\infty x^2 e^{-ax^2}\,\mathrm{d}x = uv \bigg|_0^\infty - \int_0^\infty v\,\mathrm{d}u = \left[ -\frac{x}{2a} e^{-ax^2} \right]_0^\infty + \frac{1}{2a} \int_0^\infty e^{-ax^2}\,\mathrm{d}x.
+    \int_0^\infty x^2 \me^{-ax^2}\,\dd x = uv \bigg|_0^\infty - \int_0^\infty v\,\dd u = \left[ -\frac{x}{2a} \me^{-ax^2} \right]_0^\infty + \frac{1}{2a} \int_0^\infty \me^{-ax^2}\,\dd x.
   \]
   Evaluating the boundary term, we have
   \[
-    \lim_{x \to \infty} -\frac{x}{2a} e^{-ax^2} = \lim_{x \to \infty} \frac{-1}{4a^2 x e^{ax^2}} = 0 \quad \text{and} \quad -\frac{0}{2a} e^{-a \cdot 0^2} = 0.
+    \lim_{x \to \infty} -\frac{x}{2a} \me^{-ax^2} = \lim_{x \to \infty} \frac{-1}{4a^2 x \me^{ax^2}} = 0 \quad \text{and} \quad -\frac{0}{2a} \me^{-a \cdot 0^2} = 0.
   \]
   Thus, the boundary term is zero, and the remaining integral is the same as Integral \ref{int:gaussian} we evaluated earlier. Therefore,
   \[
-    \int_0^\infty x^2 e^{-ax^2}\,\mathrm{d}x = \frac{1}{2a} \cdot \frac{\sqrt{\pi}}{2\sqrt{a}} = \frac{\sqrt{\pi}}{4a^{3/2}}. \qedhere
+    \int_0^\infty x^2 \me^{-ax^2}\,\dd x = \frac{1}{2a} \cdot \frac{\sqrt{\mpi}}{2\sqrt{a}} = \frac{\sqrt{\mpi}}{4a^{3/2}}. \qedhere
   \]
 \end{proof}
 
 For the higher-order integral, we can use the substitution $u = ax^2$ again:
 \begin{proof}[Proof of Integral \ref{int:general}]
-  Let $u = ax^2$, then $x = \left(\frac{u}{a}\right)^{1/2}$ and $\mathrm{d}x = \frac{1}{2\sqrt{a}} u^{-1/2}\,\mathrm{d}u$. The limits of integration remain $0$ to $\infty$. Substituting these into the integral gives
+  Let $u = ax^2$, then $x = \left(\frac{u}{a}\right)^{1/2}$ and $\dd x = \frac{1}{2\sqrt{a}} u^{-1/2}\,\dd u$. The limits of integration remain $0$ to $\infty$. Substituting these into the integral gives
   \[
-    \int_0^\infty x^n e^{-ax^2}\,\mathrm{d}x = \int_0^\infty \left(\frac{u}{a}\right)^{n/2} e^{-u} \frac{1}{2\sqrt{a}} u^{-1/2}\,\mathrm{d}u = \frac{1}{2} a^{-\frac{n+1}{2}} \int_0^\infty u^{\frac{n-1}{2}} e^{-u}\,\mathrm{d}u.
+    \int_0^\infty x^n \me^{-ax^2}\,\dd x = \int_0^\infty \left(\frac{u}{a}\right)^{n/2} \me^{-u} \frac{1}{2\sqrt{a}} u^{-1/2}\,\dd u = \frac{1}{2} a^{-\frac{n+1}{2}} \int_0^\infty u^{\frac{n-1}{2}} \me^{-u}\,\dd u.
   \]
   The remaining integral is the Gamma function evaluated at $\frac{n+1}{2}$, so we have
   \[
-    \int_0^\infty x^n e^{-ax^2}\,\mathrm{d}x = \frac{1}{2} a^{-\frac{n+1}{2}} \Gamma\left( \frac{n+1}{2} \right). \qedhere
+    \int_0^\infty x^n \me^{-ax^2}\,\dd x = \frac{1}{2} a^{-\frac{n+1}{2}} \Gamma\left( \frac{n+1}{2} \right). \qedhere
   \]
 \end{proof}
 
 Integrals related to trigonometric functions can be evaluated using integration by parts and mathematical induction:
 
 \begin{proof}[Proof of Integral \ref{int:sin-cos}]
-  Let $I_n = \int_0^{2\pi} \sin^n \theta\,\mathrm{d}\theta$.
+  Let $I_n = \int_0^{2\mpi} \sin^n \theta\,\dd\theta$.
 
   Basis step: For $n = 0$ and $n = 1$, we have
   \begin{align*}
-    I_0 &= \int_0^{2\pi} 1\,\mathrm{d}\theta = 2\pi, \\
-    I_1 &= \int_0^{2\pi} \sin \theta\,\mathrm{d}\theta = 0.
+    I_0 &= \int_0^{2\mpi} 1\,\dd\theta = 2\mpi, \\
+    I_1 &= \int_0^{2\mpi} \sin \theta\,\dd\theta = 0.
   \end{align*}
 
   Inductive step: Assume that the formula holds for all $k < n$. For $n \geq 2$, we have
   \begin{align*}
-    I_n &= \int_0^{2\pi} \sin^n \theta\,\mathrm{d}\theta = \int_0^{2\pi} \sin^{n-1} \theta\, \mathrm{d}(-\cos \theta) \\
-    &= -\sin^{n-1} \theta \cos \theta \bigg|_0^{2\pi} + (n-1) \int_0^{2\pi} \sin^{n-2} \theta \cos^2 \theta\,\mathrm{d}\theta \\
-    &= (n-1) \int_0^{2\pi} \sin^{n-2} \theta (1 - \sin^2 \theta)\,\mathrm{d}\theta \\
+    I_n &= \int_0^{2\mpi} \sin^n \theta\,\dd\theta = \int_0^{2\mpi} \sin^{n-1} \theta\, \dd(-\cos \theta) \\
+    &= -\sin^{n-1} \theta \cos \theta \bigg|_0^{2\mpi} + (n-1) \int_0^{2\mpi} \sin^{n-2} \theta \cos^2 \theta\,\dd\theta \\
+    &= (n-1) \int_0^{2\mpi} \sin^{n-2} \theta (1 - \sin^2 \theta)\,\dd\theta \\
     &= (n-1) I_{n-2} - (n-1) I_n.
   \end{align*}
   Rearranging gives
@@ -212,31 +212,31 @@ Integrals related to trigonometric functions can be evaluated using integration 
   By mathematical induction, we can conclude that
   \[
     I_n = \begin{cases}
-      2\pi, & \text{if $n = 0$}, \\
-      \frac{(n-1)!!}{n!!} \cdot 2\pi, & \text{if $n$ is even}, \\
+      2\mpi, & \text{if $n = 0$}, \\
+      \frac{(n-1)!!}{n!!} \cdot 2\mpi, & \text{if $n$ is even}, \\
       0, & \text{if $n$ is odd}.
     \end{cases}
   \]
 
-  The integral for $\cos^n \theta$ can be evaluated similarly, or we can use the fact that $\sin^n \theta$ and $\cos^n \theta$ have the same integral over $[0, 2\pi]$ due to symmetry.
+  The integral for $\cos^n \theta$ can be evaluated similarly, or we can use the fact that $\sin^n \theta$ and $\cos^n \theta$ have the same integral over $[0, 2\mpi]$ due to symmetry.
 \end{proof}
 
 While $n = 2$, we can also evaluate the integral directly using the power-reduction formula:
 \[
-  \int_0^{2\pi} \sin^2 \theta\,\mathrm{d}\theta = \int_0^{2\pi} \frac{1 - \cos(2\theta)}{2}\,\mathrm{d}\theta = \pi.
+  \int_0^{2\mpi} \sin^2 \theta\,\dd\theta = \int_0^{2\mpi} \frac{1 - \cos(2\theta)}{2}\,\dd\theta = \mpi.
 \]
 For the integral of $\sin \theta \cos \theta$, we can use the double-angle identity:
 \[
-  \int_0^{2\pi} \sin \theta \cos \theta\,\mathrm{d}\theta = \int_0^{2\pi} \frac{1}{2} \sin(2\theta)\,\mathrm{d}\theta = 0.
+  \int_0^{2\mpi} \sin \theta \cos \theta\,\dd\theta = \int_0^{2\mpi} \frac{1}{2} \sin(2\theta)\,\dd\theta = 0.
 \]
-The integral over $[0, \pi/2]$ can be evaluated using the same method.
+The integral over $[0, \mpi/2]$ can be evaluated using the same method.
 
 \section{Special Functions}
 
 \begin{definition}[Gamma Function]\index{Gamma function}
   The \emph{Gamma function}, denoted by $\Gamma(z)$, is an extension of the factorial function to complex (and real) numbers. For $z > 0$, it is defined by the integral
   \[
-    \Gamma(z) = \int_0^\infty t^{z-1} e^{-t}\,\mathrm{d}t.
+    \Gamma(z) = \int_0^\infty t^{z-1} \me^{-t}\,\dd t.
   \]
 \end{definition}
 
@@ -245,14 +245,14 @@ The integral over $[0, \pi/2]$ can be evaluated using the same method.
   \begin{enumerate}
     \item $\Gamma(z+1) = z \Gamma(z)$ for any $z > 0$.
     \item If $n$ is a positive integer, $\Gamma(n) = (n-1)!$.
-    \item $\Gamma(1/2) = \sqrt{\pi}$.
+    \item $\Gamma(1/2) = \sqrt{\mpi}$.
   \end{enumerate}
 \end{proposition}
 
 \begin{definition}[Beta Function]\index{Beta function}
   The \emph{Beta function}, denoted by $\mathrm{B}(x, y)$, is defined for $x, y > 0$ by the integral
   \[
-    \mathrm{B}(x, y) = \int_0^1 t^{x-1} (1-t)^{y-1}\,\mathrm{d}t.
+    \mathrm{B}(x, y) = \int_0^1 t^{x-1} (1-t)^{y-1}\,\dd t.
   \]
 \end{definition}
 
@@ -268,6 +268,6 @@ The integral over $[0, \pi/2]$ can be evaluated using the same method.
 \begin{theorem}[Euler's Formula]\index{Euler's formula}
   For any real number $\theta$, we have
   \[
-    e^{\mathrm{i} \theta} = \cos \theta + \mathrm{i} \sin \theta.
+    \me^{\mi \theta} = \cos \theta + \mi \sin \theta.
   \]
 \end{theorem}

@@ -10,21 +10,21 @@
 \end{theorem}
 
 \begin{theorem}[Chebyshev's Law of Large Numbers]
-  Let \(X_1, X_2, \ldots\) be an independent sequence with finite variance, and there exists a constant \(K\) such that \(\mathrm{Var}(X_i) \leq K\) for all \(i\). Then for any \(\varepsilon > 0\), we have
+  Let \(X_1, X_2, \ldots\) be an independent sequence with finite variance, and there exists a constant \(K\) such that \(\Var(X_i) \leq K\) for all \(i\). Then for any \(\varepsilon > 0\), we have
   \[
-    \lim_{n \to \infty} P\!\left\{ \left| \frac{1}{n} \sum_{i=1}^n X_i - \frac{1}{n} \sum_{i=1}^n \mathbb{E}(X_i) \right| < \varepsilon \right\} = 1.
+    \lim_{n \to \infty} P\!\left\{ \left| \frac{1}{n} \sum_{i=1}^n X_i - \frac{1}{n} \sum_{i=1}^n \E(X_i) \right| < \varepsilon \right\} = 1.
   \]
 \end{theorem}
 
 \begin{theorem}[Khinchin's Law of Large Numbers]
-  Let \(X_1, X_2, \ldots\) be an independent and identically distributed (IID) sequence with \(\mathbb{E}(X_i^k) = \mu_k < \infty\) for all \(k \in \mathbb{N}\). Then for any \(\varepsilon > 0\), we have
+  Let \(X_1, X_2, \ldots\) be an independent and identically distributed (IID) sequence with \(\E(X_i^k) = \mu_k < \infty\) for all \(k \in \N\). Then for any \(\varepsilon > 0\), we have
   \[
     \lim_{n \to \infty} P\!\left\{ \left| \frac{1}{n} \sum_{i=1}^n X_i^k - \mu_k \right| < \varepsilon \right\} = 1.
   \]
 \end{theorem}
 
 \begin{example}
-  Let \(X_1, X_2, \ldots\) be an IID sequence with \(\mathbb{E}(X_i) = \mu\) and \(\mathrm{Var}(X_i) = \sigma^2\). Then for any \(\varepsilon > 0\), we have
+  Let \(X_1, X_2, \ldots\) be an IID sequence with \(\E(X_i) = \mu\) and \(\Var(X_i) = \sigma^2\). Then for any \(\varepsilon > 0\), we have
   \[
     \frac{1}{n} \sum_{i=1}^n X_i^2 \xrightarrow{P} \sigma^2 + \mu^2.
   \]
@@ -33,7 +33,7 @@
 \section{The Central Limit Theorem}
 
 \begin{theorem}[Levy's Central Limit Theorem]
-  Let \(X_1, X_2, \ldots\) be an IID sequence with \(\mathbb{E}(X_i) = \mu\) and \(\mathrm{Var}(X_i) = \sigma^2\). Then for any \(x \in \mathbb{R}\), we have
+  Let \(X_1, X_2, \ldots\) be an IID sequence with \(\E(X_i) = \mu\) and \(\Var(X_i) = \sigma^2\). Then for any \(x \in \R\), we have
   \[
     \lim_{n \to \infty} P\!\left\{ \frac{\sum_{i=1}^n X_i - n\mu}{\sigma \sqrt{n}} \leq x \right\} = \Phi(x),
   \]
@@ -44,7 +44,7 @@
 \end{theorem}
 
 \begin{example}
-  In order to protect the sovereignty of territorial waters, we prepare to launch 900 missile strikes against enemy targets. Suppose that the number of missiles hitting the target \(X_k\) in \(k\)-th strike follows identical distribution and is independent of each other. If \(\mathbb{E}(X_k) = 4\) and \(\mathrm{Var}(X_k) = 1.21\) \((k = 1, 2, \dots, 900)\), then calculate the probability of the event that the total number of missiles hitting the target is between 3534 and 3699.
+  In order to protect the sovereignty of territorial waters, we prepare to launch 900 missile strikes against enemy targets. Suppose that the number of missiles hitting the target \(X_k\) in \(k\)-th strike follows identical distribution and is independent of each other. If \(\E(X_k) = 4\) and \(\Var(X_k) = 1.21\) \((k = 1, 2, \dots, 900)\), then calculate the probability of the event that the total number of missiles hitting the target is between 3534 and 3699.
 \end{example}
 \begin{solution}
   By using Levy's Central Limit Theorem, we have
@@ -59,18 +59,18 @@
 \end{solution}
 
 \begin{theorem}[De Moivre-Laplace Central Limit Theorem]
-  Suppose that \(Y_n \sim \mathrm{B}(n, p) (0 < p < 1)\). Then for any \(x \in \mathbb{R}\), we have
+  Suppose that \(Y_n \sim \mathrm{B}(n, p) (0 < p < 1)\). Then for any \(x \in \R\), we have
   \[
     \lim_{n \to \infty} P\!\left\{ \frac{Y_n - np}{\sqrt{np(1-p)}} \leq x \right\} = \Phi(x).
   \]
 \end{theorem}
 
 \begin{theorem}[Liapunov's Central Limit Theorem]
-  Let \(X_1, X_2, \ldots\) be an independent sequence with \(\mathbb{E}(X_i) = \mu_i\) and \(\mathrm{Var}(X_i) = \sigma_i^2 \neq 0\) for all \(i\). If there exists a constant \(\delta > 0\) such that
+  Let \(X_1, X_2, \ldots\) be an independent sequence with \(\E(X_i) = \mu_i\) and \(\Var(X_i) = \sigma_i^2 \neq 0\) for all \(i\). If there exists a constant \(\delta > 0\) such that
   \[
-    \lim_{n \to \infty} \frac{\sum_{i=1}^n \mathbb{E}\!\left( |X_i - \mu_i|^{2+\delta} \right)}{\left( \sum_{i=1}^n \sigma_i^2 \right)^{1 + \delta/2}} = 0,
+    \lim_{n \to \infty} \frac{\sum_{i=1}^n \E\!\left( |X_i - \mu_i|^{2+\delta} \right)}{\left( \sum_{i=1}^n \sigma_i^2 \right)^{1 + \delta/2}} = 0,
   \]
-  then for any \(x \in \mathbb{R}\), we have
+  then for any \(x \in \R\), we have
   \[
     \lim_{n \to \infty} P\!\left\{ \frac{\sum_{i=1}^n X_i - \sum_{i=1}^n \mu_i}{\sqrt{\sum_{i=1}^n \sigma_i^2}} \leq x \right\} = \Phi(x).
   \]

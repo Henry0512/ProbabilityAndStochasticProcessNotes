@@ -15,21 +15,21 @@
   \[
     F(x_1, x_2, \dots, x_n; t_1, t_2, \dots, t_n) = F(x_1, x_2, \dots, x_n; t_1 + h, t_2 + h, \dots, t_n + h),
   \]
-  for \(x_1, x_2, \dots, x_n \in \mathbb{R}\).
+  for \(x_1, x_2, \dots, x_n \in \R\).
 \end{definition}
 
 \begin{theorem}
   Suppose that the process \(\{X_t\}_{t \in T}\) is strict-sense stationary and of second moments. Then,
   \begin{enumerate}
-    \item for all \(t \in T\), \(\mu_X(t) = \mathbb{E}[X_t]\) is a constant.
-    \item \(R_X(s, t) = \mathbb{E}[X_s X_t]\) depends only on the time difference \(t - s\) for all \(s, t \in T\).
+    \item for all \(t \in T\), \(\mu_X(t) = \E[X_t]\) is a constant.
+    \item \(R_X(s, t) = \E[X_s X_t]\) depends only on the time difference \(t - s\) for all \(s, t \in T\).
   \end{enumerate}
 \end{theorem}
 
 Furthermore,
 \begin{align*}
-  C_X(t, t + \tau) &= \mathbb{E}[(X_t - \mu_X(t))(X_{t + \tau} - \mu_X(t + \tau))] \\
-  &= \mathbb{E}[X_t X_{t + \tau}] - \mathbb{E}[X_t \mu_X] - \mathbb{E}[\mu_X X_{t + \tau}] + \mathbb{E}[\mu_X^2] \\
+  C_X(t, t + \tau) &= \E[(X_t - \mu_X(t))(X_{t + \tau} - \mu_X(t + \tau))] \\
+  &= \E[X_t X_{t + \tau}] - \E[X_t \mu_X] - \E[\mu_X X_{t + \tau}] + \E[\mu_X^2] \\
   &= R_X(\tau) - \mu_X^2 = C_X(\tau)
 \end{align*}
 depends only on \(\tau\) and
@@ -39,10 +39,10 @@ depends only on \(\tau\) and
 is a constant for all \(t \in T\).
 
 \begin{example}
-  Supppose that \(\{X_n\}_{n \geq 0}\) are IID random sequences, each of which has a uniform distribution in the interval \((0, 1)\). Is \(\{X_n\}_{n \geq 0}\) a strict-sense stationary process? Determine the value \(\mathbb{E}[X_n]\) and \(\mathbb{E}[X_n X_m], n, m = 0, 1, 2, \dots\).
+  Supppose that \(\{X_n\}_{n \geq 0}\) are IID random sequences, each of which has a uniform distribution in the interval \((0, 1)\). Is \(\{X_n\}_{n \geq 0}\) a strict-sense stationary process? Determine the value \(\E[X_n]\) and \(\E[X_n X_m], n, m = 0, 1, 2, \dots\).
 \end{example}
 \begin{solution}
-  Suppose that the distribution function of \(X_n\) is \(F(x)\). Then for all \(k, h \in \mathbb{N}\) and \(0 < n_1 < n_2 < \dots < n_k\), the joint distribution function of \((X_{n_1}, X_{n_2}, \dots, X_{n_k})\) and \((X_{n_1 + h}, X_{n_2 + h}, \dots, X_{n_k + h})\) are both
+  Suppose that the distribution function of \(X_n\) is \(F(x)\). Then for all \(k, h \in \N\) and \(0 < n_1 < n_2 < \dots < n_k\), the joint distribution function of \((X_{n_1}, X_{n_2}, \dots, X_{n_k})\) and \((X_{n_1 + h}, X_{n_2 + h}, \dots, X_{n_k + h})\) are both
   \begin{align*}
     F(x_1, x_2, \dots, x_k) &= P(X_{n_1} \leq x_1, X_{n_2} \leq x_2, \dots, X_{n_k} \leq x_k) \\
     &= P(X_{n_1} \leq x_1) P(X_{n_2} \leq x_2) \cdots P(X_{n_k} \leq x_k) \\
@@ -52,18 +52,18 @@ is a constant for all \(t \in T\).
 
   The expected value of \(X_n\) is
   \[
-    \mathbb{E}[X_n] = \frac{1}{2},
+    \E[X_n] = \frac{1}{2},
   \]
   since \(X_n\) is uniformly distributed on the interval \((0, 1)\).
 
   For \(n = m\),
   \[
-    \mathbb{E}[X_n X_m] = \mathbb{E}[X_n^2] = \int_0^1 x^2 \, \mathrm{d}x = \frac{1}{3}.
+    \E[X_n X_m] = \E[X_n^2] = \int_0^1 x^2 \, \dd x = \frac{1}{3}.
   \]
   
   For \(n \neq m\),
   \[
-    \mathbb{E}[X_n X_m] = \mathbb{E}[X_n] \mathbb{E}[X_m] = \left(\frac{1}{2}\right)^2 = \frac{1}{4},
+    \E[X_n X_m] = \E[X_n] \E[X_m] = \left(\frac{1}{2}\right)^2 = \frac{1}{4},
   \]
   due to the independence of \(X_n\) and \(X_m\).
 \end{solution}
@@ -73,12 +73,12 @@ is a constant for all \(t \in T\).
 \begin{definition}
   A process \(\{X_t\}_{t \in T}\) is called a \emph{wide-sense stationary process} (WSS) if it is of second order and satisfies the following conditions:
   \begin{enumerate}
-    \item for all \(t \in T\), \(\mu_X(t) = \mathbb{E}[X_t]\) is a constant.
+    \item for all \(t \in T\), \(\mu_X(t) = \E[X_t]\) is a constant.
     \item for all \(t, t + \tau \in T\), \(R_X(t, t + \tau) = R_X(\tau)\) depends only on the time difference \(\tau\).
   \end{enumerate}
   In particular, a random sequence \(\{X_n\}_{n \geq 0}\) is called a stationary random sequence (or time sequence) in the wide sense if it is of second order and satisfies the following conditions:
   \begin{enumerate}
-    \item for all \(n \geq 0\), \(\mathbb{E}[X_n]\) is a constant.
+    \item for all \(n \geq 0\), \(\E[X_n]\) is a constant.
     \item for all \(m, n \geq 0\), \(R_X(n, n + m) = R_X(m)\) depends only on the time difference \(m\).
   \end{enumerate}
 \end{definition}
@@ -96,20 +96,20 @@ is a constant for all \(t \in T\).
 \begin{proof}
   First,
   \[
-    \mathbb{E}[Z_n] = \begin{cases}
-      \mathbb{E}[X_n] = 0, & \text{if } n \text{ is odd}, \\
-      \mathbb{E}[Y_n] = 0, & \text{if } n \text{ is even},
+    \E[Z_n] = \begin{cases}
+      \E[X_n] = 0, & \text{if } n \text{ is odd}, \\
+      \E[Y_n] = 0, & \text{if } n \text{ is even},
     \end{cases}
   \]
   so the mean of \(Z_n\) is a constant.
   Next, for the autocorrelation function of \(Z_n\), for all \(n, m \geq 1\),
   \[
-    R_Z(n, m) = \mathrm{Cov}(Z_n, Z_m) + \mathbb{E}[Z_n] = \mathrm{Cov}(Z_n, Z_m).
+    R_Z(n, m) = \Cov(Z_n, Z_m) + \E[Z_n] = \Cov(Z_n, Z_m).
   \]
   \begin{enumerate}
     \item If \(n = m\), then
     \[
-      R_Z(n, m) = \mathrm{Var}(Z_n) = \begin{cases}
+      R_Z(n, m) = \Var(Z_n) = \begin{cases}
         1, & \text{if } n \text{ is odd}, \\
         1, & \text{if } n \text{ is even},
       \end{cases}
@@ -117,7 +117,7 @@ is a constant for all \(t \in T\).
     since \(Y_n \sim \mathrm{U}(-\sqrt{3}, \sqrt{3})\) has variance \(\frac{(2\sqrt{3})^2}{12} = 1\).
     \item If \(n \neq m\), then \(Z_n\) and \(Z_m\) are independent because they depend on different independent random sequences. Thus,
     \[
-      R_Z(n, m) = \mathrm{Cov}(Z_n, Z_m) = 0.
+      R_Z(n, m) = \Cov(Z_n, Z_m) = 0.
     \]
   \end{enumerate}
   Therefore, for all \(n, m \geq 1\),
@@ -151,21 +151,21 @@ is a constant for all \(t \in T\).
 \end{proposition}
 
 \begin{proposition}
-  A function \(R(\tau)\) is the autocorrelation function of a WSS process if and only if it is an even function and is non-negative definite, i.e., for all \(n \in \mathbb{N}\), for all \(t_1 < t_2 < \dots < t_n\), and for all real vector \((a_1, a_2, \dots, a_n)\),
+  A function \(R(\tau)\) is the autocorrelation function of a WSS process if and only if it is an even function and is non-negative definite, i.e., for all \(n \in \N\), for all \(t_1 < t_2 < \dots < t_n\), and for all real vector \((a_1, a_2, \dots, a_n)\),
   \[
     \sum_{i = 1}^n \sum_{j = 1}^n a_i a_j R(t_i - t_j) \geq 0.
   \]
 \end{proposition}
 
 \begin{example}
-  Suppose that \(\{X_n\}_{n \in \mathbb{Z}}\) is a pairwise uncorrelated random sequence, i.e., \(C_X(n, m) = 0\) for all \(n \neq m\), and \(\mathbb{E}[X_n] = 0\), \(\mathrm{Var}(X_n) = \sigma^2\) for all \(n\). Prove that \(\{X_n\}_{n \in \mathbb{Z}}\) is WSS.
+  Suppose that \(\{X_n\}_{n \in \Z}\) is a pairwise uncorrelated random sequence, i.e., \(C_X(n, m) = 0\) for all \(n \neq m\), and \(\E[X_n] = 0\), \(\Var(X_n) = \sigma^2\) for all \(n\). Prove that \(\{X_n\}_{n \in \Z}\) is WSS.
 \end{example}
 \begin{proof}
-  For all \(n \in \mathbb{Z}\),
+  For all \(n \in \Z\),
   \[
-    \mathbb{E}[X_n] = 0,
+    \E[X_n] = 0,
   \]
-  and for all \(n, m \in \mathbb{Z}\),
+  and for all \(n, m \in \Z\),
   \[
     R_X(n, m) = \begin{cases}
       \sigma^2, & n = m, \\
@@ -173,12 +173,12 @@ is a constant for all \(t \in T\).
     \end{cases}
   \]
   
-  Thus, for all \(n, m \in \mathbb{Z}\),
+  Thus, for all \(n, m \in \Z\),
   \[
     R_X(n, m) = R_X(|n - m|).
   \]
   
-  Therefore, \(\{X_n\}_{n \in \mathbb{Z}}\) is WSS.
+  Therefore, \(\{X_n\}_{n \in \Z}\) is WSS.
 \end{proof}
 
 \begin{example}
@@ -186,24 +186,24 @@ is a constant for all \(t \in T\).
   \[
     Y_t = X_t \cos(\omega_0 t + \Theta),
   \]
-  where \(X_t\) and \(\Theta\) are independent, \(\Theta \sim \mathrm{U}(0, 2\pi)\), and \(\omega_0\) is a constant. Prove that \(\{Y_t\}\) is also a stationary process.
+  where \(X_t\) and \(\Theta\) are independent, \(\Theta \sim \mathrm{U}(0, 2\mpi)\), and \(\omega_0\) is a constant. Prove that \(\{Y_t\}\) is also a stationary process.
 \end{example}
 \begin{proof}
   For all \(t\),
   \[
-    \mathbb{E}[Y_t] = \mathbb{E}[X_t] \mathbb{E}[\cos(\omega_0 t + \Theta)] = 0,
+    \E[Y_t] = \E[X_t] \E[\cos(\omega_0 t + \Theta)] = 0,
   \]
-  since \(\Theta\) is uniformly distributed in the interval \((0, 2\pi)\).
+  since \(\Theta\) is uniformly distributed in the interval \((0, 2\mpi)\).
 
   For all \(s, t\),
   \begin{align*}
-    R_Y(s, t) &= \mathbb{E}[Y_s Y_t] = \mathbb{E}[X_s X_t] \mathbb{E}[\cos(\omega_0 s + \Theta) \cos(\omega_0 t + \Theta)] \\
-    &= R_X(s, t) \cdot \mathbb{E}\left[\frac{\cos(\omega_0 (s - t)) + \cos(\omega_0 (s + t) + 2\Theta)}{2}\right] \\
+    R_Y(s, t) &= \E[Y_s Y_t] = \E[X_s X_t] \E[\cos(\omega_0 s + \Theta) \cos(\omega_0 t + \Theta)] \\
+    &= R_X(s, t) \cdot \E\left[\frac{\cos(\omega_0 (s - t)) + \cos(\omega_0 (s + t) + 2\Theta)}{2}\right] \\
     &= R_X(s, t) \cdot \frac{\cos(\omega_0 (s - t))}{2},
   \end{align*}
   since the expected value of the second term involves integrating a cosine function over two periods, which results in zero:
   \[
-    \mathbb{E}[\cos(\omega_0 (s + t) + 2\Theta)] = \int_0^{2\pi} \cos(\omega_0 (s + t) + 2\theta) \cdot \frac{1}{2\pi} \, \mathrm{d}\theta = 0.
+    \E[\cos(\omega_0 (s + t) + 2\Theta)] = \int_0^{2\mpi} \cos(\omega_0 (s + t) + 2\theta) \cdot \frac{1}{2\mpi} \, \dd\theta = 0.
   \]
   Thus, \(R_Y(s, t)\) depends only on the time difference \(s - t\).
 
@@ -215,9 +215,9 @@ is a constant for all \(t \in T\).
 \section{Power Spectral Density of Stationary Processes}
 
 \begin{definition}[Fourier Transform]\index{Fourier transform}\index{frequency spectrum}
-  Suppose that \(x_t (t \in \mathbb{R})\) is a deterministic real-valued function satisfying the Dirichlet condition. Then the Fourier transform of \(x_t\) defined by
+  Suppose that \(x_t (t \in \R)\) is a deterministic real-valued function satisfying the Dirichlet condition. Then the Fourier transform of \(x_t\) defined by
   \[
-    F(\omega) = \int_{-\infty}^\infty x_t e^{-\mathrm{i} \omega t} \, \mathrm{d}t.
+    F(\omega) = \int_{-\infty}^\infty x_t \me^{-\mi \omega t} \, \dd t.
   \]
   The Fourier transform \(F(\omega)\) of \(x_t\) is often called the \emph{frequency spectrum} of \(x_t\).
 \end{definition}
@@ -225,14 +225,14 @@ is a constant for all \(t \in T\).
 \begin{definition}[Inverse Fourier Transform]\index{inverse Fourier transform}
   Suppose that \(F(\omega)\) is the Fourier transform of a deterministic real-valued function \(x_t\). Then the inverse Fourier transform of \(F(\omega)\) defined by
   \[
-    x_t = \frac{1}{2\pi} \int_{-\infty}^\infty F(\omega) e^{\mathrm{i} \omega t} \, \mathrm{d}\omega.
+    x_t = \frac{1}{2\mpi} \int_{-\infty}^\infty F(\omega) \me^{\mi \omega t} \, \dd\omega.
   \]
 \end{definition}
 
 \begin{definition}[Continuity in Mean Square]\index{continuity in mean square}
   A process \(\{X_t\}_{t \in T}\) is said to be \emph{continuous in mean square} at \(t_0 \in T\) if
   \[
-    \lim_{\varepsilon \to 0} \mathbb{E}\left[(X_{t_0 + \varepsilon} - X_{t_0})^2\right] = 0,
+    \lim_{\varepsilon \to 0} \E\left[(X_{t_0 + \varepsilon} - X_{t_0})^2\right] = 0,
   \]
   denoted by
   \[
@@ -252,49 +252,49 @@ is a constant for all \(t \in T\).
   \]
   that is,
   \[
-    \lim_{\varepsilon \to 0} \mathbb{E}\left[\left(\frac{X_{t + \varepsilon} - X_t}{\varepsilon} - X_t'\right)^2\right] = 0.
+    \lim_{\varepsilon \to 0} \E\left[\left(\frac{X_{t + \varepsilon} - X_t}{\varepsilon} - X_t'\right)^2\right] = 0.
   \]
 \end{definition}
 
 \begin{theorem}
   Suppose that the mean and the autocorrelation function of \(X_t\) are \(\mu_X(t)\) and \(R_X(s, t)\), respectively. Then
   \[
-    \mu_{X'}(t) = \mathbb{E}[X_t'] = \frac{\mathrm{d}}{\mathrm{d}t} \mathbb{E}[X_t] = \mu_X'(t),
+    \mu_{X'}(t) = \E[X_t'] = \frac{\dd}{\dd t} \E[X_t] = \mu_X'(t),
   \]
   and
   \[
-    R_{X'}(s, t) = \mathbb{E}[X_s' X_t'] = \frac{\partial^2}{\partial s \partial t} \mathbb{E}[X_s X_t] = \frac{\partial^2}{\partial s \partial t} R_X(s, t).
+    R_{X'}(s, t) = \E[X_s' X_t'] = \frac{\partial^2}{\partial s \partial t} \E[X_s X_t] = \frac{\partial^2}{\partial s \partial t} R_X(s, t).
   \]
 \end{theorem}
 
 \begin{theorem}[Wiener-Khinchin Theorem]\index{Wiener-Khinchin theorem}\label{thm:Wiener-Khinchin}
   Suppose that \(R_X(\tau)\) is the autocorrelation function of a WSS process \(\{X_t\}\) and \(S_X(\omega)\) is its power spectral density. If
   \[
-    \int_{-\infty}^\infty |R_X(\tau)| \, \mathrm{d}\tau < \infty,
+    \int_{-\infty}^\infty |R_X(\tau)| \, \dd\tau < \infty,
   \]
   then
   \[
-    S_X(\omega) = \int_{-\infty}^\infty R_X(\tau) e^{-\mathrm{i} \omega \tau} \, \mathrm{d}\tau,
+    S_X(\omega) = \int_{-\infty}^\infty R_X(\tau) \me^{-\mi \omega \tau} \, \dd\tau,
   \]
   and
   \[
-    R_X(\tau) = \frac{1}{2\pi} \int_{-\infty}^\infty S_X(\omega) e^{\mathrm{i} \omega \tau} \, \mathrm{d}\omega.
+    R_X(\tau) = \frac{1}{2\mpi} \int_{-\infty}^\infty S_X(\omega) \me^{\mi \omega \tau} \, \dd\omega.
   \]
 \end{theorem}
 
 \begin{example}
-  Find the power spectral density for the stochastic process \(X_t = a \cos(\omega_0 t + \Theta)\), where \(a\) and \(\omega_0\) are constants and \(\Theta\) is a random variable uniformly distributed in the interval \((0, 2\pi)\).
+  Find the power spectral density for the stochastic process \(X_t = a \cos(\omega_0 t + \Theta)\), where \(a\) and \(\omega_0\) are constants and \(\Theta\) is a random variable uniformly distributed in the interval \((0, 2\mpi)\).
 \end{example}
 \begin{solution}
   The mean of \(X_t\) is
   \[
-    \mu_X(t) = \mathbb{E}[X_t] = \mathbb{E}[a \cos(\omega_0 t + \Theta)] = \int_0^{2\pi} a \cos(\omega_0 t + \theta) \cdot \frac{1}{2\pi} \, \mathrm{d}\theta = 0,
+    \mu_X(t) = \E[X_t] = \E[a \cos(\omega_0 t + \Theta)] = \int_0^{2\mpi} a \cos(\omega_0 t + \theta) \cdot \frac{1}{2\mpi} \, \dd\theta = 0,
   \]
   since the integral of \(\cos(\omega_0 t + \theta)\) over one period is zero.
 
   The autocorrelation function of \(X_t\) is
   \[
-    R_X(s, t) = \mathbb{E}[X_s X_t] = a^2 \mathbb{E}[\cos(\omega_0 s + \Theta) \cos(\omega_0 t + \Theta)] = \frac{a^2}{2} \cos(\omega_0 (s - t)),
+    R_X(s, t) = \E[X_s X_t] = a^2 \E[\cos(\omega_0 s + \Theta) \cos(\omega_0 t + \Theta)] = \frac{a^2}{2} \cos(\omega_0 (s - t)),
   \]
   as calculated in the proof of the previous example. Thus, the autocorrelation function of \(X_t\),
   \[
@@ -304,8 +304,8 @@ is a constant for all \(t \in T\).
   
   Thus, \(X_t\) is a WSS process. By Theorem~\ref{thm:Wiener-Khinchin}, the power spectral density of \(X_t\) is
   \begin{align*}
-    S_X(\omega) &= \int_{-\infty}^\infty R_X(\tau) e^{-\mathrm{i} \omega \tau} \, \mathrm{d}\tau = \frac{a^2}{2} \int_{-\infty}^\infty \cos(\omega_0 \tau) e^{-\mathrm{i} \omega \tau} \, \mathrm{d}\tau \\
-    &= \frac{a^2}{4} \int_{-\infty}^\infty e^{\mathrm{i} (\omega_0 - \omega) \tau} + e^{-\mathrm{i} (\omega_0 + \omega) \tau} \, \mathrm{d}\tau = \frac{\pi a^2}{2} [\delta(\omega - \omega_0) + \delta(\omega + \omega_0)],
+    S_X(\omega) &= \int_{-\infty}^\infty R_X(\tau) \me^{-\mi \omega \tau} \, \dd\tau = \frac{a^2}{2} \int_{-\infty}^\infty \cos(\omega_0 \tau) \me^{-\mi \omega \tau} \, \dd\tau \\
+    &= \frac{a^2}{4} \int_{-\infty}^\infty \me^{\mi (\omega_0 - \omega) \tau} + \me^{-\mi (\omega_0 + \omega) \tau} \, \dd\tau = \frac{\mpi a^2}{2} [\delta(\omega - \omega_0) + \delta(\omega + \omega_0)],
   \end{align*}
   where \(\delta(\cdot)\) is the Dirac delta function.
 \end{solution}

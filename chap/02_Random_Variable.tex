@@ -3,11 +3,11 @@
 \section{The Definition of a Random Variable}
 
 \begin{definition}[Random Variable]\index{random variable}
-  A \emph{random variable} (r.v.) is a function \(X: \Omega \to \mathbb{R}\) that assigns a real number to each outcome in the sample space \(\Omega\).
+  A \emph{random variable} (r.v.) is a function \(X: \Omega \to \R\) that assigns a real number to each outcome in the sample space \(\Omega\).
 \end{definition}
 
 \begin{remark}
-  Let \((\Omega, \mathcal{F}, P)\) be a probability space. In measure-theoretic probability, a random variable is defined as a measurable function \(X: \Omega \to \mathbb{R}\), s.t. \(X^{-1}(B) = \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{F}\) for all \(B \in \mathcal{B}(\mathbb{R})\), where \(\mathcal{B}(\mathbb{R})\) is the Borel \(\sigma\)-algebra on \(\mathbb{R}\).
+  Let \((\Omega, \mathcal{F}, P)\) be a probability space. In measure-theoretic probability, a random variable is defined as a measurable function \(X: \Omega \to \R\), s.t. \(X^{-1}(B) = \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{F}\) for all \(B \in \mathcal{B}(\R)\), where \(\mathcal{B}(\R)\) is the Borel \(\sigma\)-algebra on \(\R\).
 \end{remark}
 
 \begin{definition}[Discrete Random Variable]\index{discrete random variable}
@@ -19,14 +19,14 @@
 \begin{definition}[Probability Mass Function]\index{probability mass function}
   For a discrete random variable \(X\), the \emph{probability (mass) function} (p.f.) is defined as
   \[
-    p(x) = P(X = x), \quad x \in \mathbb{R}.
+    p(x) = P(X = x), \quad x \in \R.
   \]
 \end{definition}
 
 \begin{proposition}
   The function \(p(x)\) satisfies the following properties:
   \begin{enumerate}
-    \item \(p(x) \geq 0\) for all \(x \in \mathbb{R}\).
+    \item \(p(x) \geq 0\) for all \(x \in \R\).
     \item \(\sum_{i = 1}^\infty p(x_i) = 1\), where \(\{x_i\}\) is the set of all possible values of \(X\).
   \end{enumerate}
 \end{proposition}
@@ -81,21 +81,21 @@
 \begin{theorem}[Poisson Limit Theorem]\index{Poisson limit theorem}
   Suppose that \(\lambda > 0\) is a constant and \(n\) is a positive integer. If \(\lim_{n \to \infty} np_n = \lambda\), then for any fixed \(k = 0, 1, 2, \dots\), we have
   \[
-    \lim_{n \to \infty} \binom{n}{k} p^k (1 - p)^{n - k} = \frac{\lambda^k e^{-\lambda}}{k!}.
+    \lim_{n \to \infty} \binom{n}{k} p^k (1 - p)^{n - k} = \frac{\lambda^k \me^{-\lambda}}{k!}.
   \]
 \end{theorem}
 
 \begin{definition}[Poisson Distribution]\index{Poisson distribution}
   A discrete random variable \(X\) is said to have a \emph{Poisson distribution} with parameter \(\lambda > 0\) if its probability mass function is given by
   \[
-    P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, \quad k = 0, 1, 2, \dots.
+    P(X = k) = \frac{\lambda^k \me^{-\lambda}}{k!}, \quad k = 0, 1, 2, \dots.
   \]
   We denote this distribution by \(X \sim \mathrm{Poi}(\lambda)\).
 \end{definition}
 
 The sum of the probabilities of a Poisson distribution is
 \[
-  \sum_{k = 0}^\infty \frac{\lambda^k e^{-\lambda}}{k!} = e^{-\lambda} \sum_{k = 0}^\infty \frac{\lambda^k}{k!} = e^{-\lambda} e^{\lambda} = 1.
+  \sum_{k = 0}^\infty \frac{\lambda^k \me^{-\lambda}}{k!} = \me^{-\lambda} \sum_{k = 0}^\infty \frac{\lambda^k}{k!} = \me^{-\lambda} \me^{\lambda} = 1.
 \]
 
 \begin{definition}[Geometric Distribution]\index{geometric distribution}
@@ -190,16 +190,16 @@ The relationship between the p.f.\@ \(p(x)\) and the d.f.\@ \(F(x)\) of a discre
 \section{Continuous Random Variables}
 
 \begin{definition}[Continuous Random Variable]\index{continuous random variable}\index{probability density function}
-  A random variable \(X\) is said to be \emph{continuous random variable} if there is a non-negative function \(f(x)\) defined on \(\mathbb{R}\) such that
+  A random variable \(X\) is said to be \emph{continuous random variable} if there is a non-negative function \(f(x)\) defined on \(\R\) such that
   \[
-    F(x) = P(X \leq x) = \int_{-\infty}^x f(t)\,\mathrm{d}t, \quad -\infty < x < \infty.
+    F(x) = P(X \leq x) = \int_{-\infty}^x f(t)\,\dd t, \quad -\infty < x < \infty.
   \]
   \(f(x)\) is called the \emph{probability density function} (p.d.f.) of \(X\).
 \end{definition}
 
-\(X\) is called a \emph{continuous} r.v.\@ because \(F(x)\) is continuous. We can show that \(P(X = x) = 0\) for any \(x \in \mathbb{R}\) if \(X\) is a continuous r.v.
+\(X\) is called a \emph{continuous} r.v.\@ because \(F(x)\) is continuous. We can show that \(P(X = x) = 0\) for any \(x \in \R\) if \(X\) is a continuous r.v.
 \begin{proof}
-  For any \(x \in \mathbb{R}\), the event \(\{X = x\}\) can be expressed as a limit of nested intervals:
+  For any \(x \in \R\), the event \(\{X = x\}\) can be expressed as a limit of nested intervals:
   \[
     \{X = x\} = \{x \leq X \leq x\} = \bigcap_{n=1}^{\infty} \left\{x - \frac{1}{n} < X \leq x\right\}.
   \]
@@ -210,21 +210,21 @@ The relationship between the p.f.\@ \(p(x)\) and the d.f.\@ \(F(x)\) of a discre
   Now, using the c.d.f.\@ definition directly, the probability of any half-open interval is:
   \begin{align*}
     P\!\left(x - \frac{1}{n} < X \leq x\right) & = F(x) - F\!\left(x - \frac{1}{n}\right) \\
-    & = \int_{-\infty}^{x} f(t)\,\mathrm{d}t - \int_{-\infty}^{x - 1/n} f(t)\,\mathrm{d}t = \int_{x - 1/n}^{x} f(t)\,\mathrm{d}t.
+    & = \int_{-\infty}^{x} f(t)\,\dd t - \int_{-\infty}^{x - 1/n} f(t)\,\dd t = \int_{x - 1/n}^{x} f(t)\,\dd t.
   \end{align*}
   Since $f$ is non-negative and integrable, and the interval \([x - \frac{1}{n},\, x]\) has length \(\frac{1}{n} \to 0\):
   \[
-    0 \leq P(X = x) = \lim_{n\to\infty} \int_{x-1/n}^{x} f(t)\,\mathrm{d}t = \int_{x}^{x} f(t)\,\mathrm{d}t = 0.
+    0 \leq P(X = x) = \lim_{n\to\infty} \int_{x-1/n}^{x} f(t)\,\dd t = \int_{x}^{x} f(t)\,\dd t = 0.
   \]
   The last equality follows because the integral of any locally integrable function over a set of measure zero (a single point) is zero.
 \end{proof}
 
 We can calculate the following probabilities by using the p.d.f.\@ \(f(x)\):
 \begin{align*}
-  P(x_1 < X \leq x_2) & = F(x_2) - F(x_1) = \int_{x_1}^{x_2} f(t)\,\mathrm{d}t, \\
-  P(X < x) & = P(X \leq x) - P(X = x) = F(x) - 0 = \int_{-\infty}^x f(t)\,\mathrm{d}t, \\
-  P(X > x) & = 1 - P(X \leq x) = 1 - F(x) = \int_x^\infty f(t)\,\mathrm{d}t, \\
-  P(X \in I) & = \int_I f(t)\,\mathrm{d}t, \quad \text{for any interval } I.
+  P(x_1 < X \leq x_2) & = F(x_2) - F(x_1) = \int_{x_1}^{x_2} f(t)\,\dd t, \\
+  P(X < x) & = P(X \leq x) - P(X = x) = F(x) - 0 = \int_{-\infty}^x f(t)\,\dd t, \\
+  P(X > x) & = 1 - P(X \leq x) = 1 - F(x) = \int_x^\infty f(t)\,\dd t, \\
+  P(X \in I) & = \int_I f(t)\,\dd t, \quad \text{for any interval } I.
 \end{align*}
 
 The relationship between the p.d.f.\@ \(f(x)\) and the d.f.\@ \(F(x)\) of a continuous r.v.\@ is given by the Fundamental Theorem of Calculus:
@@ -237,7 +237,7 @@ The relationship between the p.d.f.\@ \(f(x)\) and the d.f.\@ \(F(x)\) of a cont
   \[
     f(x) = \begin{cases}
       0, & x \leq 0, \\
-      k e^{-3x}, & x > 0.
+      k \me^{-3x}, & x > 0.
     \end{cases}
   \]
   \begin{enumerate}
@@ -248,24 +248,24 @@ The relationship between the p.d.f.\@ \(f(x)\) and the d.f.\@ \(F(x)\) of a cont
 \end{example}
 \begin{solution}
   \begin{enumerate}
-    \item Since \(\int_{-\infty}^\infty f(x)\,\mathrm{d}x = 1\), we have
+    \item Since \(\int_{-\infty}^\infty f(x)\,\dd x = 1\), we have
     \[
-      \int_{-\infty}^\infty f(x)\,\mathrm{d}x = \int_0^\infty k e^{-3x}\,\mathrm{d}x = \frac{k}{3} = 1 \implies k = 3.
+      \int_{-\infty}^\infty f(x)\,\dd x = \int_0^\infty k \me^{-3x}\,\dd x = \frac{k}{3} = 1 \implies k = 3.
     \]
     \item For \(x > 0\), we have
     \[
-      F(x) = \int_{-\infty}^x f(t)\,\mathrm{d}t = \int_0^x 3 e^{-3t}\,\mathrm{d}t = 1 - e^{-3x}.
+      F(x) = \int_{-\infty}^x f(t)\,\dd t = \int_0^x 3 \me^{-3t}\,\dd t = 1 - \me^{-3x}.
     \]
     For \(x \leq 0\), we have \(F(x) = P(X \leq x) =  0\). Therefore,
     \[
       F(x) = \begin{cases}
         0, & x \leq 0, \\
-        1 - e^{-3x}, & x > 0.
+        1 - \me^{-3x}, & x > 0.
       \end{cases}
     \]
     \item We have
     \[
-      P\{X > 0.1\} = 1 - P\{X \leq 0.1\} = 1 - F(0.1) = 1 - (1 - e^{-0.3}) = e^{-0.3}. \qedhere
+      P\{X > 0.1\} = 1 - P\{X \leq 0.1\} = 1 - F(0.1) = 1 - (1 - \me^{-0.3}) = \me^{-0.3}. \qedhere
     \]
   \end{enumerate}
 \end{solution}
@@ -274,8 +274,8 @@ The relationship between the p.d.f.\@ \(f(x)\) and the d.f.\@ \(F(x)\) of a cont
   Determine the constants \(A\) and \(B\) such that the function
   \[
     F(x) = \begin{cases}
-      A e^{x}, & x < 0, \\
-      B - A e^{-x}, & x \geq 0,
+      A \me^{x}, & x < 0, \\
+      B - A \me^{-x}, & x \geq 0,
     \end{cases}
   \]
   is a d.f.\@ of a continuous r.v.\@ \(X\), and find the corresponding p.d.f.\@ \(f(x)\).
@@ -284,7 +284,7 @@ The relationship between the p.d.f.\@ \(f(x)\) and the d.f.\@ \(F(x)\) of a cont
 \begin{solution}
   Since \(F(x)\) is a d.f.\@, we have
   \[
-    \lim_{x \to \infty} F(x) = \lim_{x \to \infty} (B - A e^{-x}) = B = 1.
+    \lim_{x \to \infty} F(x) = \lim_{x \to \infty} (B - A \me^{-x}) = B = 1.
   \]
   Since \(F(x)\) is continuous at \(x = 0\), we have
   \[
@@ -293,15 +293,15 @@ The relationship between the p.d.f.\@ \(f(x)\) and the d.f.\@ \(F(x)\) of a cont
   Therefore,
   \[
     F(x) = \begin{cases}
-      \frac{1}{2} e^{x}, & x < 0, \\
-      1 - \frac{1}{2} e^{-x}, & x \geq 0,
+      \frac{1}{2} \me^{x}, & x < 0, \\
+      1 - \frac{1}{2} \me^{-x}, & x \geq 0,
     \end{cases}
   \]
   and
   \[
     f(x) = F'(x) = \begin{cases}
-      \frac{1}{2} e^{x}, & x < 0, \\
-      \frac{1}{2} e^{-x}, & x \geq 0.
+      \frac{1}{2} \me^{x}, & x < 0, \\
+      \frac{1}{2} \me^{-x}, & x \geq 0.
     \end{cases} \qedhere
   \]
 \end{solution}
@@ -356,7 +356,7 @@ The d.f.\@ of \(X \sim \mathrm{U}(a, b)\) is given by
     \]
     Therefore,
     \[
-      P(1 < X < 5) = \int_1^5 f(x)\,\mathrm{d}x = \int_2^5 \frac{1}{4}\,\mathrm{d}x = \frac{3}{4}.
+      P(1 < X < 5) = \int_1^5 f(x)\,\dd x = \int_2^5 \frac{1}{4}\,\dd x = \frac{3}{4}.
     \]
     \item If \(a < 0\), we have
     \[
@@ -371,7 +371,7 @@ The d.f.\@ of \(X \sim \mathrm{U}(a, b)\) is given by
     \]
     Therefore,
     \[
-      P(1 < X < 5) = \int_1^5 f(x)\,\mathrm{d}x = \int_1^5 \frac{1}{12}\,\mathrm{d}x = \frac{1}{3}. \qedhere
+      P(1 < X < 5) = \int_1^5 f(x)\,\dd x = \int_1^5 \frac{1}{12}\,\dd x = \frac{1}{3}. \qedhere
     \]
   \end{enumerate}
 \end{solution}
@@ -380,7 +380,7 @@ The d.f.\@ of \(X \sim \mathrm{U}(a, b)\) is given by
   The distribution of a random variable \(X\) is called the \emph{exponential distribution} with parameter \(\lambda > 0\) if its p.d.f.\@ is given by
   \[
     f(x) = \begin{cases}
-      \lambda e^{-\lambda x}, & x > 0, \\
+      \lambda \me^{-\lambda x}, & x > 0, \\
       0, & x \leq 0.
     \end{cases}
   \]
@@ -390,7 +390,7 @@ The d.f.\@ of \(X \sim \mathrm{U}(a, b)\) is given by
 The d.f.\@ of \(X \sim \mathrm{Exp}(\lambda)\) is given by
 \[
   F(x) = \begin{cases}
-    1 - e^{-\lambda x}, & x > 0, \\
+    1 - \me^{-\lambda x}, & x > 0, \\
     0, & x \leq 0.
   \end{cases}
 \]
@@ -402,11 +402,11 @@ The d.f.\@ of \(X \sim \mathrm{Exp}(\lambda)\) is given by
 \begin{proof}
   \((\Rightarrow)\) Suppose that \(X \sim \mathrm{Exp}(\lambda)\). For any \(s, t > 0\), we have
   \[
-    P\{X \geq s + t | X  \geq s\} = \frac{P\{X \geq s + t\}}{P\{X \geq s\}} = \frac{e^{-\lambda (s + t)}}{e^{-\lambda s}} = e^{-\lambda t}.
+    P\{X \geq s + t | X  \geq s\} = \frac{P\{X \geq s + t\}}{P\{X \geq s\}} = \frac{\me^{-\lambda (s + t)}}{\me^{-\lambda s}} = \me^{-\lambda t}.
   \]
   Since
   \[
-    P\{X \geq t\} = e^{-\lambda t},
+    P\{X \geq t\} = \me^{-\lambda t},
   \]
   we have \(P\{X \geq s + t | X  \geq s\} = P\{X \geq t\}\).
 
@@ -432,14 +432,14 @@ The d.f.\@ of \(X \sim \mathrm{Exp}(\lambda)\) is given by
 
   Substituting \(h(x)\) back in terms of \(g(x)\):
   \[
-    \ln(g(x)) = cx \implies g(x) = e^{cx}.
+    \ln(g(x)) = cx \implies g(x) = \me^{cx}.
   \]
 
   Because \(g(x)\) is a survival probability, it cannot exceed \(1\) and must decrease to \(0\) as \(x \to \infty\). Since \(g(x) \leq 1\), \(c\) must be \(\leq 0\). Since \(\lim_{x \to \infty} g(x) = 0\) (a requirement for a proper random variable), \(c\) cannot be \(0\).
 
   Therefore, \(c\) must be strictly negative. Let us define \(c = -\lambda\) where \(\lambda > 0\). We then have:
   \[
-    g(x) = P(X \geq x) = e^{-\lambda x}.
+    g(x) = P(X \geq x) = \me^{-\lambda x}.
   \]
   This is exactly the survival function of an Exponential distribution with rate parameter $\lambda$. Hence, $X \sim \mathrm{Exp}(\lambda)$.
 \end{proof}
@@ -452,27 +452,27 @@ The d.f.\@ of \(X \sim \mathrm{Exp}(\lambda)\) is given by
   Let \(X\) be the total lifetime of the radio, then \(X \sim \mathrm{Exp}(0.1)\). We seek
   \begin{align*}
     P(X \leq 15 | X > 5) & = 1 - P(X > 15 | X > 5) = 1 - P(X > 10) \\
-    & = P(X \leq 10) = 1 - e^{-0.1 \cdot 10} = 1 - e^{-1}. \qedhere
+    & = P(X \leq 10) = 1 - \me^{-0.1 \cdot 10} = 1 - \me^{-1}. \qedhere
   \end{align*}
 \end{solution}
 
 \paragraph{Relationship between Poisson and Exponential Distributions.} Suppose the number of the occurrences of a certain event \(N(t)\) in a time interval of length \(t\) follows a Poisson distribution with parameter \(\lambda t\), i.e., \(N(t) \sim \mathrm{Poi}(\lambda t)\). Then the waiting time \(T\) until the first occurrence of the event has an exponential distribution with parameter \(\lambda\), i.e., \(T \sim \mathrm{Exp}(\lambda)\). In fact, we have
 \[
-  P(T > t) = P\{N(t) = 0\} = \frac{(\lambda t)^0}{0!} e^{-\lambda t} = e^{-\lambda t},
+  P(T > t) = P\{N(t) = 0\} = \frac{(\lambda t)^0}{0!} \me^{-\lambda t} = \me^{-\lambda t},
 \]
-thus \(P(T \leq t) = 1 - e^{-\lambda t}\) for any \(t > 0\), which means \(T \sim \mathrm{Exp}(\lambda)\).
+thus \(P(T \leq t) = 1 - \me^{-\lambda t}\) for any \(t > 0\), which means \(T \sim \mathrm{Exp}(\lambda)\).
 
 \begin{definition}[Normal Distribution]\index{normal distribution}\index{Gaussian distribution}
   The distribution of a random variable \(X\) is called the \emph{normal distribution} (or \emph{Gaussian distribution}) with parameters \(\mu\) and \(\sigma > 0\) if its p.d.f.\@ is given by
   \[
-    f(x) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x - \mu)^2}{2\sigma^2}}, \quad -\infty < x < \infty.
+    f(x) = \frac{1}{\sqrt{2\mpi} \sigma} \me^{-\frac{(x - \mu)^2}{2\sigma^2}}, \quad -\infty < x < \infty.
   \]
   We denote this distribution by \(X \sim \mathrm{N}(\mu, \sigma^2)\). Particularly, if \(\mu = 0\) and \(\sigma = 1\), we call it the \emph{standard normal distribution}.
 \end{definition}
 
 The p.d.f.\@ of the standard normal distribution is given by
 \[
-  \phi(z) = \frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{2}}, \quad -\infty < z < \infty.
+  \phi(z) = \frac{1}{\sqrt{2\mpi}} \me^{-\frac{z^2}{2}}, \quad -\infty < z < \infty.
 \]
 
 \begin{figure}[tbp]
@@ -513,21 +513,21 @@ The p.d.f.\@ of the standard normal distribution is given by
 
 The p.d.f.\@ of the normal distribution is obviously non-negative. We can show that the integral of the normal p.d.f.\@ is 1 by using the substitution \(z = \frac{x - \mu}{\sigma}\):
 \[
-  \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x - \mu)^2}{2\sigma^2}}\,\mathrm{d}x = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{-\frac{z^2}{2}}\,\mathrm{d}z \quad (z = \frac{x - \mu}{\sigma})
+  \int_{-\infty}^\infty \frac{1}{\sqrt{2\mpi} \sigma} \me^{-\frac{(x - \mu)^2}{2\sigma^2}}\,\dd x = \frac{1}{\sqrt{2\mpi}} \int_{-\infty}^\infty \me^{-\frac{z^2}{2}}\,\dd z \quad (z = \frac{x - \mu}{\sigma})
 \]
 By Theorem~\ref{thm:important_integrals}, we have
 \[
-  \int_{-\infty}^\infty e^{-\frac{z^2}{2}}\,\mathrm{d}z = 2 \int_{0}^{\infty} e^{-\frac{z^2}{2}}\,\mathrm{d}z = \sqrt{2\pi}.
+  \int_{-\infty}^\infty \me^{-\frac{z^2}{2}}\,\dd z = 2 \int_{0}^{\infty} \me^{-\frac{z^2}{2}}\,\dd z = \sqrt{2\mpi}.
 \]
 Therefore, the integral of the normal p.d.f.\@ is 1.
 
 The d.f.\@ of \(X \sim \mathrm{N}(\mu, \sigma^2)\) is given by
 \[
-  F(x) = \frac{1}{\sqrt{2\pi} \sigma} \int_{-\infty}^x e^{-\frac{(t - \mu)^2}{2\sigma^2}}\,\mathrm{d}t, \quad -\infty < x < \infty,
+  F(x) = \frac{1}{\sqrt{2\mpi} \sigma} \int_{-\infty}^x \me^{-\frac{(t - \mu)^2}{2\sigma^2}}\,\dd t, \quad -\infty < x < \infty,
 \]
 and the d.f.\@ of the standard normal distribution is given by
 \[
-  \Phi(z) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^z e^{-\frac{t^2}{2}}\,\mathrm{d}t, \quad -\infty < z < \infty.
+  \Phi(z) = \frac{1}{\sqrt{2\mpi}} \int_{-\infty}^z \me^{-\frac{t^2}{2}}\,\dd t, \quad -\infty < z < \infty.
 \]
 
 \begin{theorem}
@@ -539,11 +539,11 @@ and the d.f.\@ of the standard normal distribution is given by
   \begin{align*}
     P(Z \leq x) & = P\!\left(\frac{X - \mu}{\sigma} \leq x\right) \\
     & = P(X \leq \sigma x + \mu) \\
-    & = \frac{1}{\sqrt{2\pi} \sigma} \int_{-\infty}^{\sigma x + \mu} e^{-\frac{(t - \mu)^2}{2\sigma^2}}\,\mathrm{d}t.
+    & = \frac{1}{\sqrt{2\mpi} \sigma} \int_{-\infty}^{\sigma x + \mu} \me^{-\frac{(t - \mu)^2}{2\sigma^2}}\,\dd t.
   \end{align*}
   Therefore,
   \[
-    f_Z(x) = \frac{\mathrm{d}}{\mathrm{d}x} P(Z \leq x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(t - \mu)^2}{2\sigma^2}} \sigma \bigg|_{t = \sigma x + \mu} = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}, \quad -\infty < x < \infty,
+    f_Z(x) = \frac{\dd}{\dd x} P(Z \leq x) = \frac{1}{\sqrt{2\mpi}\sigma} \me^{-\frac{(t - \mu)^2}{2\sigma^2}} \sigma \bigg|_{t = \sigma x + \mu} = \frac{1}{\sqrt{2\mpi}} \me^{-\frac{x^2}{2}}, \quad -\infty < x < \infty,
   \]
   which is the p.d.f.\@ of the standard normal distribution.
 \end{proof}
@@ -602,13 +602,13 @@ Mapping a discrete r.v.\@ to another discrete r.v.\@ will not change the nature 
 \begin{solution}
   Since \(Y = 2X + 1\), we have
   \[
-    F_Y(y) = P\{Y \leq y\} = P\{2X + 1 \leq y\} = P\left\{X \leq \frac{y - 1}{2}\right\} = \int_{-\infty}^{(y - 1)/2} f_X(x)\,\mathrm{d}x.
+    F_Y(y) = P\{Y \leq y\} = P\{2X + 1 \leq y\} = P\left\{X \leq \frac{y - 1}{2}\right\} = \int_{-\infty}^{(y - 1)/2} f_X(x)\,\dd x.
   \]
   \begin{enumerate}
     \item If \(y \leq 1\), we have \(F_Y(y) = 0\).
     \item If \(1 < y < 9\), we have
     \[
-      F_Y(y) = \int_0^{(y - 1)/2} \frac{x}{8}\,\mathrm{d}x = \frac{(y - 1)^2}{64}.
+      F_Y(y) = \int_0^{(y - 1)/2} \frac{x}{8}\,\dd x = \frac{(y - 1)^2}{64}.
     \]
     \item If \(y \geq 9\), we have \(F_Y(y) = 1\).
   \end{enumerate}
@@ -634,7 +634,7 @@ Mapping a discrete r.v.\@ to another discrete r.v.\@ will not change the nature 
   Let \(X\) be a continuous r.v.\@ having p.d.f.\@ \(f_X\). Suppose that \(g(x)\) is a strictly monotonic, differentiable function of \(x\). Then the r.v.\@ \(Y = g(X)\) has p.d.f.\@
   \[
     f_Y(y) = \begin{cases}
-      f_X(g^{-1}(y)) \left|\frac{\mathrm{d}}{\mathrm{d}y} g^{-1}(y)\right|, & \text{if } y = g(x) \text{ for some } x, \\
+      f_X(g^{-1}(y)) \left|\frac{\dd}{\dd y} g^{-1}(y)\right|, & \text{if } y = g(x) \text{ for some } x, \\
       0, & \text{otherwise},
     \end{cases}
   \]
@@ -647,15 +647,15 @@ Mapping a discrete r.v.\@ to another discrete r.v.\@ will not change the nature 
 \begin{solution}
   Since \(X \sim \mathrm{N}(0, 1)\), we have
   \[
-    f_X(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}, \quad -\infty < x < \infty.
+    f_X(x) = \frac{1}{\sqrt{2\mpi}} \me^{-\frac{x^2}{2}}, \quad -\infty < x < \infty.
   \]
   \begin{enumerate}
     \item If \(y < 0\), we have \(f_Y(y) = 0\).
     \item If \(y \geq 0\), we have
     \begin{align*}
-      f_Y(y) & = f_X(\sqrt{y}) \left|\frac{\mathrm{d}}{\mathrm{d}y} \sqrt{y}\right| + f_X(-\sqrt{y}) \left|\frac{\mathrm{d}}{\mathrm{d}y} (-\sqrt{y})\right| \\
+      f_Y(y) & = f_X(\sqrt{y}) \left|\frac{\dd}{\dd y} \sqrt{y}\right| + f_X(-\sqrt{y}) \left|\frac{\dd}{\dd y} (-\sqrt{y})\right| \\
       & = \frac{f_X(\sqrt{y}) + f_X(-\sqrt{y})}{2\sqrt{y}} \\
-      & = \frac{1}{\sqrt{2 \pi}} y^{-\frac{1}{2}} e^{-\frac{y}{2}}.
+      & = \frac{1}{\sqrt{2 \mpi}} y^{-\frac{1}{2}} \me^{-\frac{y}{2}}.
     \end{align*}
   \end{enumerate}
   This indicates that \(Y\) has a \emph{chi-square distribution} with one degree of freedom, i.e., \(Y \sim \chi^2(1)\), which is a special case of the gamma distribution.
@@ -666,7 +666,7 @@ Mapping a discrete r.v.\@ to another discrete r.v.\@ will not change the nature 
 \begin{definition}[Expectation]\index{expectation}
   Suppose that the p.f.\@ of a discrete random variable \(X\) is \(P(X = x_k) = p_k, k = 1, 2, \dots\). The \emph{expectation} of \(X\) is defined as
   \[
-    \mathbb{E}(X) = \sum_{k = 1}^\infty x_k p_k,
+    \E(X) = \sum_{k = 1}^\infty x_k p_k,
   \]
   if \(\sum_{k = 1}^\infty x_k p_k\) is absolutely convergent.
 \end{definition}
@@ -674,71 +674,71 @@ Mapping a discrete r.v.\@ to another discrete r.v.\@ will not change the nature 
 \begin{definition}[Expectation]\index{expectation}
   Suppose that the p.d.f.\@ of \(X\) is \(f(x)\). The \emph{expectation} of \(X\) is defined as
   \[
-    \mathbb{E}(X) = \int_{-\infty}^\infty x f(x)\,\mathrm{d}x,
+    \E(X) = \int_{-\infty}^\infty x f(x)\,\dd x,
   \]
   if the integral converges.
 \end{definition}
 
 The expectation of the uniform distribution \(X \sim \mathrm{U}(a, b)\) is given by
 \[
-  \mathbb{E}(X) = \int_a^b x \frac{1}{b - a}\,\mathrm{d}x = \frac{a + b}{2}.
+  \E(X) = \int_a^b x \frac{1}{b - a}\,\dd x = \frac{a + b}{2}.
 \]
 
 The expectation of the exponential distribution \(X \sim \mathrm{Exp}(\lambda)\) is given by
 \begin{align*}
-  \mathbb{E}(X) & = \int_0^\infty x \lambda e^{-\lambda x}\,\mathrm{d}x = \int_0^\infty x\,\mathrm{d}(-e^{-\lambda x}) \\
-  & = \left[-x e^{-\lambda x}\right]_0^\infty + \int_0^\infty e^{-\lambda x}\,\mathrm{d}x = \frac{1}{\lambda},
+  \E(X) & = \int_0^\infty x \lambda \me^{-\lambda x}\,\dd x = \int_0^\infty x\,\dd(-\me^{-\lambda x}) \\
+  & = \left[-x \me^{-\lambda x}\right]_0^\infty + \int_0^\infty \me^{-\lambda x}\,\dd x = \frac{1}{\lambda},
 \end{align*}
 which can be interpreted as the average frequency of the occurrence of the event.
 
 The expectation of the normal distribution \(X \sim \mathrm{N}(\mu, \sigma^2)\) can be calculated by
 \[
-  \mathbb{E}(X) = \int_{-\infty}^\infty x \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x - \mu)^2}{2\sigma^2}}\,\mathrm{d}x.
+  \E(X) = \int_{-\infty}^\infty x \frac{1}{\sqrt{2\mpi} \sigma} \me^{-\frac{(x - \mu)^2}{2\sigma^2}}\,\dd x.
 \]
 Let \(y = \frac{x - \mu}{\sigma}\), then
 \begin{align*}
-  \mathbb{E}(X) & = \int_{-\infty}^\infty (\sigma y + \mu) \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}}\,\mathrm{d}y \\
-  & = \sigma \int_{-\infty}^\infty y \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}}\,\mathrm{d}y + \mu \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}}\,\mathrm{d}y \\
+  \E(X) & = \int_{-\infty}^\infty (\sigma y + \mu) \frac{1}{\sqrt{2\mpi}} \me^{-\frac{y^2}{2}}\,\dd y \\
+  & = \sigma \int_{-\infty}^\infty y \frac{1}{\sqrt{2\mpi}} \me^{-\frac{y^2}{2}}\,\dd y + \mu \int_{-\infty}^\infty \frac{1}{\sqrt{2\mpi}} \me^{-\frac{y^2}{2}}\,\dd y \\
   & = 0 + \mu = \mu.
 \end{align*}
 
 \begin{theorem}
   The mathematical expectation of a function \(g(X)\) of a r.v.\@ \(X\) can be calculated by
   \[
-    \mathbb{E}[g(X)] = \begin{cases}
+    \E[g(X)] = \begin{cases}
       \sum_{i = 1}^\infty g(x_i) p(x_i), & \text{if } X \text{ is discrete}, \\
-      \int_{-\infty}^\infty g(x) f(x)\,\mathrm{d}x, & \text{if } X \text{ is continuous}.
+      \int_{-\infty}^\infty g(x) f(x)\,\dd x, & \text{if } X \text{ is continuous}.
     \end{cases}
   \]
-  The expectation \(\mathbb{E}[g(X)]\) will exist if and only if \(\sum_{i = 1}^\infty |g(x_i)| p(x_i) < \infty\) for discrete \(X\) or \(\int_{-\infty}^\infty |g(x)| f(x)\,\mathrm{d}x < \infty\) for continuous \(X\).
+  The expectation \(\E[g(X)]\) will exist if and only if \(\sum_{i = 1}^\infty |g(x_i)| p(x_i) < \infty\) for discrete \(X\) or \(\int_{-\infty}^\infty |g(x)| f(x)\,\dd x < \infty\) for continuous \(X\).
 \end{theorem}
 
 \begin{proposition}
   Some properties of expectation are as follows:
   \begin{enumerate}
-    \item \(\mathbb{E}(c) = c\) for any constant \(c\).
-    \item \(\mathbb{E}(cX) = c \mathbb{E}(X)\) for any constant \(c\).
-    \item \(\mathbb{E}(X + Y) = \mathbb{E}(X) + \mathbb{E}(Y)\) for any r.v.\@ \(X\) and \(Y\).
-    \item \(\mathbb{E}[X - \mathbb{E}(X)]^2 = \mathbb{E}[X^2 - 2X\mathbb{E}(X) + (\mathbb{E}(X))^2] = \mathbb{E}(X^2) - [\mathbb{E}(X)]^2\).
+    \item \(\E(c) = c\) for any constant \(c\).
+    \item \(\E(cX) = c \E(X)\) for any constant \(c\).
+    \item \(\E(X + Y) = \E(X) + \E(Y)\) for any r.v.\@ \(X\) and \(Y\).
+    \item \(\E[X - \E(X)]^2 = \E[X^2 - 2X\E(X) + (\E(X))^2] = \E(X^2) - [\E(X)]^2\).
   \end{enumerate}
 \end{proposition}
 
 \begin{example}
-  Suppose that \(X \sim \mathrm{N}(\mu, \sigma^2)\), find the expectation of \(Y = e^X\).
+  Suppose that \(X \sim \mathrm{N}(\mu, \sigma^2)\), find the expectation of \(Y = \me^X\).
 \end{example}
 \begin{solution}
   Since \(X \sim \mathrm{N}(\mu, \sigma^2)\), we have
   \begin{align*}
-    \mathbb{E}(Y) & = \mathbb{E}(e^X) = \int_{-\infty}^\infty e^x \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x - \mu)^2}{2\sigma^2}}\,\mathrm{d}x \\
-    & = \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi} \sigma} \exp\left(-\frac{x^2 -2(\mu + \sigma^2)x + (\mu + \sigma^2)^2 - 2\mu\sigma^2 - \sigma^4}{2\sigma^2}\right)\,\mathrm{d}x \\
-    & = e^{\mu + \frac{\sigma^2}{2}} \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x - \mu - \sigma^2)^2}{2\sigma^2}}\,\mathrm{d}x = e^{\mu + \frac{\sigma^2}{2}}. \qedhere
+    \E(Y) & = \E(\me^X) = \int_{-\infty}^\infty \me^x \frac{1}{\sqrt{2\mpi} \sigma} \me^{-\frac{(x - \mu)^2}{2\sigma^2}}\,\dd x \\
+    & = \int_{-\infty}^\infty \frac{1}{\sqrt{2\mpi} \sigma} \exp\left(-\frac{x^2 -2(\mu + \sigma^2)x + (\mu + \sigma^2)^2 - 2\mu\sigma^2 - \sigma^4}{2\sigma^2}\right)\,\dd x \\
+    & = \me^{\mu + \frac{\sigma^2}{2}} \int_{-\infty}^\infty \frac{1}{\sqrt{2\mpi} \sigma} \me^{-\frac{(x - \mu - \sigma^2)^2}{2\sigma^2}}\,\dd x = \me^{\mu + \frac{\sigma^2}{2}}. \qedhere
   \end{align*}
 \end{solution}
 
 \begin{definition}[Variance]\index{variance}
   The \emph{variance} of a r.v.\@ \(X\) is defined as
   \[
-    \mathrm{Var}(X) = \mathbb{E}[X - \mathbb{E}(X)]^2 = \mathbb{E}(X^2) - [\mathbb{E}(X)]^2,
+    \Var(X) = \E[X - \E(X)]^2 = \E(X^2) - [\E(X)]^2,
   \]
   if the expectation exists.
 \end{definition}
@@ -746,30 +746,30 @@ Let \(y = \frac{x - \mu}{\sigma}\), then
 \begin{proposition}
   Some properties of variance are as follows:
   \begin{enumerate}
-    \item \(\mathrm{Var}(c) = 0\) for any constant \(c\).
-    \item \(\mathrm{Var}(cX) = c^2 \mathrm{Var}(X)\) for any constant \(c\).
-    \item \(\mathrm{Var}(X) = 0\) if and only if \(P(X = \mathbb{E}(X)) = 1\).
+    \item \(\Var(c) = 0\) for any constant \(c\).
+    \item \(\Var(cX) = c^2 \Var(X)\) for any constant \(c\).
+    \item \(\Var(X) = 0\) if and only if \(P(X = \E(X)) = 1\).
   \end{enumerate}
 \end{proposition}
 
 \begin{theorem}[Chebyshev's Inequality]\index{Chebyshev's inequality}
-  Suppose that \(\mathbb{E}(X) = \mu\) and \(\mathrm{Var}(X) = \sigma^2\). Then for any \(\varepsilon > 0\), we have
+  Suppose that \(\E(X) = \mu\) and \(\Var(X) = \sigma^2\). Then for any \(\varepsilon > 0\), we have
   \[
     P(|X - \mu| \geq \varepsilon) \leq \frac{\sigma^2}{\varepsilon^2}.
   \]
 \end{theorem}
 
 \begin{example}[Standarization]
-  Suppose that the expectation and variance of a r.v.\@ \(X\) are \(\mathbb{E}(X)\) and \(\mathrm{Var}(X)\). Find the expectation and variance of \(Y = \frac{X - \mathbb{E}(X)}{\sqrt{\mathrm{Var}(X)}}\).
+  Suppose that the expectation and variance of a r.v.\@ \(X\) are \(\E(X)\) and \(\Var(X)\). Find the expectation and variance of \(Y = \frac{X - \E(X)}{\sqrt{\Var(X)}}\).
 \end{example}
 \begin{solution}
-  Since \(Y = \frac{X - \mathbb{E}(X)}{\sqrt{\mathrm{Var}(X)}}\), we have
+  Since \(Y = \frac{X - \E(X)}{\sqrt{\Var(X)}}\), we have
   \[
-    \mathbb{E}(Y) = \frac{\mathbb{E}(X) - \mathbb{E}(X)}{\sqrt{\mathrm{Var}(X)}} = 0,
+    \E(Y) = \frac{\E(X) - \E(X)}{\sqrt{\Var(X)}} = 0,
   \]
   and
   \[
-    \mathrm{Var}(Y) = \frac{\mathrm{Var}[X - \mathbb{E}(X)]}{\mathrm{Var}(X)} = \frac{\mathrm{Var}(X)}{\mathrm{Var}(X)} = 1. \qedhere
+    \Var(Y) = \frac{\Var[X - \E(X)]}{\Var(X)} = \frac{\Var(X)}{\Var(X)} = 1. \qedhere
   \]
 \end{solution}
 
@@ -784,7 +784,7 @@ Let \(y = \frac{x - \mu}{\sigma}\), then
     \midrule
     Bernoulli & $p$ & $P(X = 1) = p, P(X = 0) = 1 - p$ & $p$ & $p(1 - p)$ \\
     Binomial & $n, p$ & $\binom{n}{k} p^k (1 - p)^{n - k}$ & $np$ & $np(1 - p)$ \\
-    Poisson & $\lambda$ & $\frac{\lambda^k e^{-\lambda}}{k!}$ & $\lambda$ & $\lambda$ \\
+    Poisson & $\lambda$ & $\frac{\lambda^k \me^{-\lambda}}{k!}$ & $\lambda$ & $\lambda$ \\
     Geometric & $p$ & $p (1 - p)^{k - 1}$ & $\frac{1}{p}$ & $\frac{1 - p}{p^2}$ \\
     Pascal & $k, p$ & $\binom{n - 1}{k - 1} p^k (1 - p)^{n - k}$ & $\frac{k}{p}$ & $\frac{k(1 - p)}{p^2}$ \\
     Hypergeometric & $N, M, n$ & $\frac{\binom{M}{m} \binom{N - M}{n - m}}{\binom{N}{n}}$ & $\frac{nM}{N}$ & $\frac{nM(N - M)(N - n)}{N^2(N - 1)}$ \\
@@ -801,8 +801,8 @@ Let \(y = \frac{x - \mu}{\sigma}\), then
     Distribution & Parameter(s) & p.d.f.\@ & d.f.\@ & Expectation & Variance \\
     \midrule
     Uniform & \(a < b\) & \(\frac{1}{b - a}\) for \(a < x < b\) & \(\frac{x - a}{b - a}\) for \(a < x < b\) & \(\frac{a + b}{2}\) & \(\frac{(b - a)^2}{12}\) \\
-    Exponential & \(\lambda > 0\) & \(\lambda e^{-\lambda x}\) for \(x > 0\) & \(1 - e^{-\lambda x}\) for \(x > 0\) & \(\frac{1}{\lambda}\) & \(\frac{1}{\lambda^2}\) \\
-    Normal & \(\mu, \sigma\) & \(\frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x - \mu)^2}{2\sigma^2}}\) & \(\int_{-\infty}^x f(t)\,dt\) & \(\mu\) & \(\sigma^2\) \\
+    Exponential & \(\lambda > 0\) & \(\lambda \me^{-\lambda x}\) for \(x > 0\) & \(1 - \me^{-\lambda x}\) for \(x > 0\) & \(\frac{1}{\lambda}\) & \(\frac{1}{\lambda^2}\) \\
+    Normal & \(\mu, \sigma\) & \(\frac{1}{\sqrt{2\mpi} \sigma} \me^{-\frac{(x - \mu)^2}{2\sigma^2}}\) & \(\int_{-\infty}^x f(t)\,dt\) & \(\mu\) & \(\sigma^2\) \\
     \bottomrule
   \end{tabular}
 \end{table}

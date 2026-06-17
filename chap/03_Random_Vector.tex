@@ -18,7 +18,7 @@
   \begin{enumerate}
     \item (Monotonicity) If \(y_2 > y_1\), then \(F(x, y_2) \geq F(x, y_1)\) for any \(x\); if \(x_2 > x_1\), then \(F(x_2, y) \geq F(x_1, y)\) for any \(y\).
     \item (Right-continuity) \(\lim_{x \to x_0^+} F(x, y) = F(x_0, y)\) for any \(y\); \(\lim_{y \to y_0^+} F(x, y) = F(x, y_0)\) for any \(x\).
-    \item \(0 \leq F(x, y) \leq 1\) for all \(x, y \in \mathbb{R}\), and
+    \item \(0 \leq F(x, y) \leq 1\) for all \(x, y \in \R\), and
     \begin{align*}
       F(x, -\infty) = \lim_{y \to -\infty} F(x, y) = 0, &\quad F(-\infty, y) = \lim_{x \to -\infty} F(x, y) = 0, \\
       F(-\infty, -\infty) = \lim_{x \to -\infty} \lim_{y \to -\infty} F(x, y) = 0, &\quad F(\infty, \infty) = \lim_{x \to \infty} \lim_{y \to \infty} F(x, y) = 1.
@@ -34,7 +34,7 @@
 \begin{example}
   The joint d.f.\@ of a bivariate random variable \((X, Y)\) is given by
   \[
-    F(x, y) = A \left(B + \arctan\frac{x}{2}\right) \left(C + \arctan\frac{y}{2}\right), \quad x, y \in \mathbb{R}.
+    F(x, y) = A \left(B + \arctan\frac{x}{2}\right) \left(C + \arctan\frac{y}{2}\right), \quad x, y \in \R.
   \]
   \begin{enumerate}
     \item Find the values of the constants \(A, B, C\).
@@ -46,12 +46,12 @@
     \item Since \(F(x, y)\) is a joint d.f.\@, it must satisfy the properties stated in the previous proposition. In particular, we have
     \[
       \begin{cases}
-        F(-\infty, y) = 0 \implies A (B - \frac{\pi}{2}) (C + \arctan\frac{y}{2}) = 0, \\
-        F(x, -\infty) = 0 \implies A (B + \arctan\frac{x}{2}) (C - \frac{\pi}{2}) = 0, \\
-        F(\infty, \infty) = 1 \implies A (B + \frac{\pi}{2}) (C + \frac{\pi}{2}) = 1.
+        F(-\infty, y) = 0 \implies A (B - \frac{\mpi}{2}) (C + \arctan\frac{y}{2}) = 0, \\
+        F(x, -\infty) = 0 \implies A (B + \arctan\frac{x}{2}) (C - \frac{\mpi}{2}) = 0, \\
+        F(\infty, \infty) = 1 \implies A (B + \frac{\mpi}{2}) (C + \frac{\mpi}{2}) = 1.
       \end{cases}
     \]
-    Solving these equations, we find \(A = \frac{1}{\pi^2}\), \(B = \frac{\pi}{2}\), and \(C = \frac{\pi}{2}\).
+    Solving these equations, we find \(A = \frac{1}{\mpi^2}\), \(B = \frac{\mpi}{2}\), and \(C = \frac{\mpi}{2}\).
     \item We have
     \[
       P(0 < X \leq 2, 0 < Y \leq 3) = F(2, 3) - F(2, 0) - F(0, 3) + F(0, 0)
@@ -104,23 +104,23 @@
 \begin{definition}[Joint Probability Density Function]\index{joint probability density function}\index{jointly continuous}
   For a bivariate random variable \((X, Y)\), if there exists a non-negative function \(f(x, y)\) such that
   \[
-    F(x, y) = P(X \leq x, Y \leq y) = \int_{-\infty}^x \int_{-\infty}^y f(u, v) \, \mathrm{d}u \, \mathrm{d}v,
+    F(x, y) = P(X \leq x, Y \leq y) = \int_{-\infty}^x \int_{-\infty}^y f(u, v) \, \dd u \, \dd v,
   \]
-  for all \(x, y \in \mathbb{R}\), then \(X\) and \(Y\) are called \emph{jointly continuous}, and the function \(f(x, y)\) is called the \emph{joint probability density function} (joint p.d.f.\@) of \((X, Y)\).
+  for all \(x, y \in \R\), then \(X\) and \(Y\) are called \emph{jointly continuous}, and the function \(f(x, y)\) is called the \emph{joint probability density function} (joint p.d.f.\@) of \((X, Y)\).
 \end{definition}
 
 \begin{proposition}
   For a jointly continuous bivariate random variable \((X, Y)\) with joint p.d.f.\@ \(f(x, y)\), we have
   \begin{enumerate}
-    \item \(f(x, y) \geq 0\) for all \(x, y \in \mathbb{R}\).
-    \item \(\iint_{\mathbb{R}^2} f(x, y) \, \mathrm{d}x \, \mathrm{d}y = 1\).
+    \item \(f(x, y) \geq 0\) for all \(x, y \in \R\).
+    \item \(\iint_{\R^2} f(x, y) \, \dd x \, \dd y = 1\).
     \item If \(f(x, y)\) is continuous at a point \((x, y)\), then
     \[
       f(x, y) = \frac{\partial^2 F(x, y)}{\partial x \partial y} = \lim_{\Delta x,\Delta y\to0^+}\frac{P(x<X\le x+\Delta x,\ y<Y\le y+\Delta y)}{\Delta x,\Delta y}.
     \]
-    \item For any \(G \subseteq \mathbb{R}^2\), we have
+    \item For any \(G \subseteq \R^2\), we have
     \[
-      P\{(X, Y) \in G\} = \iint_G f(x, y) \, \mathrm{d}x \, \mathrm{d}y.
+      P\{(X, Y) \in G\} = \iint_G f(x, y) \, \dd x \, \dd y.
     \]
   \end{enumerate}
 \end{proposition}
@@ -138,7 +138,7 @@
 \begin{definition}[Bivariate Normal Distribution]\index{bivariate normal distribution}
   A bivariate random variable \((X, Y)\) is said to have a \emph{bivariate normal distribution} with parameters \(\mu_1, \mu_2, \sigma_1 > 0, \sigma_2 > 0\), and \(|\rho| < 1\) if its joint p.d.f.\@ is given by
   \[
-    f(x, y) = \frac{1}{2\pi \sigma_1 \sigma_2 \sqrt{1 - \rho^2}} e^{-\frac{1}{2(1 - \rho^2)} \left[\frac{(x - \mu_1)^2}{\sigma_1^2} - 2\rho \frac{(x - \mu_1)(y - \mu_2)}{\sigma_1 \sigma_2} + \frac{(y - \mu_2)^2}{\sigma_2^2}\right]}.
+    f(x, y) = \frac{1}{2\mpi \sigma_1 \sigma_2 \sqrt{1 - \rho^2}} \me^{-\frac{1}{2(1 - \rho^2)} \left[\frac{(x - \mu_1)^2}{\sigma_1^2} - 2\rho \frac{(x - \mu_1)(y - \mu_2)}{\sigma_1 \sigma_2} + \frac{(y - \mu_2)^2}{\sigma_2^2}\right]}.
   \]
   We denote this distribution by \((X, Y) \sim \mathrm{N}(\mu_1, \mu_2; \sigma_1^2, \sigma_2^2; \rho)\).
 \end{definition}
@@ -147,7 +147,7 @@
   Suppose that \((X, Y) \sim f(x, y)\) with
   \[
     f(x, y) = \begin{cases}
-      A e^{-(2x + 3y)}, & x \geq 0, y \geq 0 \\
+      A \me^{-(2x + 3y)}, & x \geq 0, y \geq 0 \\
       0, & \text{otherwise}.
     \end{cases}
   \]
@@ -158,18 +158,18 @@
 \end{example}
 \begin{solution}
   \begin{enumerate}
-    \item Since \(f(x, y)\) is a joint p.d.f.\@, it must satisfy the property that \(\iint_{\mathbb{R}^2} f(x, y) \, \mathrm{d}x \, \mathrm{d}y = 1\). Therefore, we have
+    \item Since \(f(x, y)\) is a joint p.d.f.\@, it must satisfy the property that \(\iint_{\R^2} f(x, y) \, \dd x \, \dd y = 1\). Therefore, we have
     \begin{align*}    
-      \iint_{\mathbb{R}^2} f(x, y) \, \mathrm{d}x \, \mathrm{d}y &= \int_0^\infty \int_0^\infty A e^{-(2x + 3y)} \, \mathrm{d}x \, \mathrm{d}y \\
-      &= A \int_0^\infty e^{-2x} \, \mathrm{d}x \int_0^\infty e^{-3y} \, \mathrm{d}y \\
-      &= A \left(-\frac{1}{2} e^{-2x}\right)\Big|_0^\infty \left(-\frac{1}{3} e^{-3y}\right)\Big|_0^\infty = \frac{1}{6} A = 1.
+      \iint_{\R^2} f(x, y) \, \dd x \, \dd y &= \int_0^\infty \int_0^\infty A \me^{-(2x + 3y)} \, \dd x \, \dd y \\
+      &= A \int_0^\infty \me^{-2x} \, \dd x \int_0^\infty \me^{-3y} \, \dd y \\
+      &= A \left(-\frac{1}{2} \me^{-2x}\right)\Big|_0^\infty \left(-\frac{1}{3} \me^{-3y}\right)\Big|_0^\infty = \frac{1}{6} A = 1.
     \end{align*}
     Solving for \(A\), we find \(A = 6\).
     \item We can compute the desired probability as follows:
     \begin{align*}
-      P(X < 2, Y < 1) &= \iint_{0 \leq x < 2, 0 \leq y < 1} f(x, y) \, \mathrm{d}x \, \mathrm{d}y \\
-      &= \int_0^2 \int_0^1 6 e^{-(2x + 3y)} \, \mathrm{d}y \, \mathrm{d}x = 6 \int_0^2 e^{-2x} \, \mathrm{d}x \int_0^1 e^{-3y} \, \mathrm{d}y \\
-      &= 6 \left(-\frac{1}{2} e^{-2x}\right)\Big|_0^2 \left(-\frac{1}{3} e^{-3y}\right)\Big|_0^1 = (1 - e^{-3})(1 - e^{-4}). \qedhere
+      P(X < 2, Y < 1) &= \iint_{0 \leq x < 2, 0 \leq y < 1} f(x, y) \, \dd x \, \dd y \\
+      &= \int_0^2 \int_0^1 6 \me^{-(2x + 3y)} \, \dd y \, \dd x = 6 \int_0^2 \me^{-2x} \, \dd x \int_0^1 \me^{-3y} \, \dd y \\
+      &= 6 \left(-\frac{1}{2} \me^{-2x}\right)\Big|_0^2 \left(-\frac{1}{3} \me^{-3y}\right)\Big|_0^1 = (1 - \me^{-3})(1 - \me^{-4}). \qedhere
     \end{align*}
   \end{enumerate}
 \end{solution}
@@ -178,7 +178,7 @@
   Suppose that the joint p.d.f.\@ of \(X, Y\) is given by
   \[
     f(x, y) = \begin{cases}
-      e^{-y}, & 0 < x < y \\
+      \me^{-y}, & 0 < x < y \\
       0, & \text{otherwise}.
     \end{cases}
   \]
@@ -186,9 +186,9 @@
 \end{example}
 \begin{solution}
   \begin{align*}
-    P(X + Y \leq 1) &= \iint_{x + y \leq 1} f(x, y) \, \mathrm{d}x \, \mathrm{d}y \\
-    &= \int_0^\frac{1}{2} \mathrm{d}x \int_x^{1 - x} e^{-y} \, \mathrm{d}y \\
-    &= 1 + e^{-1} - 2e^{-\frac{1}{2}}. \qedhere
+    P(X + Y \leq 1) &= \iint_{x + y \leq 1} f(x, y) \, \dd x \, \dd y \\
+    &= \int_0^\frac{1}{2} \dd x \int_x^{1 - x} \me^{-y} \, \dd y \\
+    &= 1 + \me^{-1} - 2e^{-\frac{1}{2}}. \qedhere
   \end{align*}
 \end{solution}
 
@@ -212,12 +212,12 @@ The marginal p.f.\@ of \(X\) and \(Y\) are given by
 
 In the case of jointly continuous bivariate random variables, the marginal distributions can be expressed in terms of the joint p.d.f.\@ as
 \begin{align*}
-  F_X(x) &= P(X \leq x) = \int_{-\infty}^x \left[\int_{-\infty}^\infty f(u, y) \, \mathrm{d}y \right] \mathrm{d}u, \\
-  F_Y(y) &= P(Y \leq y) = \int_{-\infty}^y \left[\int_{-\infty}^\infty f(x, v) \, \mathrm{d}x \right] \mathrm{d}v.
+  F_X(x) &= P(X \leq x) = \int_{-\infty}^x \left[\int_{-\infty}^\infty f(u, y) \, \dd y \right] \dd u, \\
+  F_Y(y) &= P(Y \leq y) = \int_{-\infty}^y \left[\int_{-\infty}^\infty f(x, v) \, \dd x \right] \dd v.
 \end{align*}
 The marginal p.d.f.\@ of \(X\) and \(Y\) is given by
 \[
-  f_X(x) = \int_{-\infty}^\infty f(x, y) \, \mathrm{d}y, \quad f_Y(y) = \int_{-\infty}^\infty f(x, y) \, \mathrm{d}x.
+  f_X(x) = \int_{-\infty}^\infty f(x, y) \, \dd y, \quad f_Y(y) = \int_{-\infty}^\infty f(x, y) \, \dd x.
 \]
 
 \begin{example}
@@ -227,7 +227,7 @@ The marginal p.d.f.\@ of \(X\) and \(Y\) is given by
   Since \(X, Y\) have the uniform distribution on the region \(D_1\), we have
   \[
     f(x, y) = \begin{cases}
-      \frac{1}{\pi}, & x^2 + y^2 \leq 1, \\
+      \frac{1}{\mpi}, & x^2 + y^2 \leq 1, \\
       0, & \text{otherwise}.
     \end{cases}
   \]
@@ -235,13 +235,13 @@ The marginal p.d.f.\@ of \(X\) and \(Y\) is given by
     \item When \(|x| > 1\), \(f(x, y) = 0\) for all \(y\), so \(f_X(x) = 0\).
     \item When \(|x| \leq 1\), we have
     \[
-      f_X(x) = \int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} \frac{1}{\pi} \, \mathrm{d}y = \frac{2}{\pi}\sqrt{1 - x^2}.
+      f_X(x) = \int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} \frac{1}{\mpi} \, \dd y = \frac{2}{\mpi}\sqrt{1 - x^2}.
     \]
   \end{enumerate}
   That is,
   \[
     f_X(x) = \begin{cases}
-      \frac{2}{\pi}\sqrt{1 - x^2}, & -1 \leq x \leq 1, \\
+      \frac{2}{\mpi}\sqrt{1 - x^2}, & -1 \leq x \leq 1, \\
       0, & \text{otherwise}.
     \end{cases} \qedhere
   \]
@@ -257,7 +257,7 @@ The marginal p.d.f.\@ of \(X\) and \(Y\) is given by
 \begin{proof}
   Since \((X, Y) \sim \mathrm{N}(\mu_1, \mu_2; \sigma_1^2, \sigma_2^2; \rho)\), the joint p.d.f.\@ of \(X\) and \(Y\) is given by
   \[
-    f(x, y) = \frac{1}{2\pi \sigma_1 \sigma_2 \sqrt{1 - \rho^2}} e^{-\frac{1}{2(1 - \rho^2)} \left[\frac{(x - \mu_1)^2}{\sigma_1^2} - 2\rho \frac{(x - \mu_1)(y - \mu_2)}{\sigma_1 \sigma_2} + \frac{(y - \mu_2)^2}{\sigma_2^2}\right]}.
+    f(x, y) = \frac{1}{2\mpi \sigma_1 \sigma_2 \sqrt{1 - \rho^2}} \me^{-\frac{1}{2(1 - \rho^2)} \left[\frac{(x - \mu_1)^2}{\sigma_1^2} - 2\rho \frac{(x - \mu_1)(y - \mu_2)}{\sigma_1 \sigma_2} + \frac{(y - \mu_2)^2}{\sigma_2^2}\right]}.
   \]
   Since
   \[
@@ -265,13 +265,13 @@ The marginal p.d.f.\@ of \(X\) and \(Y\) is given by
   \]
   we can calculate the marginal p.d.f.\@ of \(X\) as follows:
   \begin{align*}
-    f_X(x) &= \int_{-\infty}^\infty f(x, y) \, \mathrm{d}y \\
-    &= \int_{-\infty}^\infty \frac{1}{2\pi \sigma_1 \sigma_2 \sqrt{1 - \rho^2}} e^{-\frac{1}{2(1 - \rho^2)} \left[\frac{(x - \mu_1)^2}{\sigma_1^2} + \left(\frac{y - \mu_2}{\sigma_2} - \rho \frac{x - \mu_1}{\sigma_1}\right)^2 - \rho^2 \frac{(x - \mu_1)^2}{\sigma_1^2}\right]} \, \mathrm{d}y \\
-    &= \frac{1}{2\pi \sigma_1 \sigma_2 \sqrt{1 - \rho^2}} e^{-\frac{(x - \mu_1)^2}{2\sigma_1^2}} \int_{-\infty}^\infty e^{-\frac{1}{2(1 - \rho^2)}\left(\frac{y - \mu_2}{\sigma_2} - \rho \frac{x - \mu_1}{\sigma_1}\right)^2} \, \mathrm{d}y.
+    f_X(x) &= \int_{-\infty}^\infty f(x, y) \, \dd y \\
+    &= \int_{-\infty}^\infty \frac{1}{2\mpi \sigma_1 \sigma_2 \sqrt{1 - \rho^2}} \me^{-\frac{1}{2(1 - \rho^2)} \left[\frac{(x - \mu_1)^2}{\sigma_1^2} + \left(\frac{y - \mu_2}{\sigma_2} - \rho \frac{x - \mu_1}{\sigma_1}\right)^2 - \rho^2 \frac{(x - \mu_1)^2}{\sigma_1^2}\right]} \, \dd y \\
+    &= \frac{1}{2\mpi \sigma_1 \sigma_2 \sqrt{1 - \rho^2}} \me^{-\frac{(x - \mu_1)^2}{2\sigma_1^2}} \int_{-\infty}^\infty \me^{-\frac{1}{2(1 - \rho^2)}\left(\frac{y - \mu_2}{\sigma_2} - \rho \frac{x - \mu_1}{\sigma_1}\right)^2} \, \dd y.
   \end{align*}
-  Let \(t = \frac{1}{\sqrt{1 - \rho^2}} \left(\frac{y - \mu_2}{\sigma_2} - \rho \frac{x - \mu_1}{\sigma_1}\right)\), then \(\mathrm{d}t = \frac{1}{\sqrt{1 - \rho^2}} \frac{1}{\sigma_2} \, \mathrm{d}y\). Therefore,
+  Let \(t = \frac{1}{\sqrt{1 - \rho^2}} \left(\frac{y - \mu_2}{\sigma_2} - \rho \frac{x - \mu_1}{\sigma_1}\right)\), then \(\dd t = \frac{1}{\sqrt{1 - \rho^2}} \frac{1}{\sigma_2} \, \dd y\). Therefore,
   \[
-    f_X(x) = \frac{1}{2\pi \sigma_1} e^{-\frac{(x - \mu_1)^2}{2\sigma_1^2}} \int_{-\infty}^\infty e^{-\frac{t^2}{2}} \, \mathrm{d}t = \frac{1}{\sqrt{2\pi} \sigma_1} e^{-\frac{(x - \mu_1)^2}{2\sigma_1^2}}.
+    f_X(x) = \frac{1}{2\mpi \sigma_1} \me^{-\frac{(x - \mu_1)^2}{2\sigma_1^2}} \int_{-\infty}^\infty \me^{-\frac{t^2}{2}} \, \dd t = \frac{1}{\sqrt{2\mpi} \sigma_1} \me^{-\frac{(x - \mu_1)^2}{2\sigma_1^2}}.
   \]
   So \(X \sim \mathrm{N}(\mu_1, \sigma_1^2)\). By symmetry, we can also show that \(Y \sim \mathrm{N}(\mu_2, \sigma_2^2)\).
 \end{proof}
@@ -307,7 +307,7 @@ For a continuous random variable $Y$, the probability of exactly observing $Y = 
 \begin{definition}[Conditional Distribution Function]\index{conditional distribution function}
   In the case of a jointly continuous bivariate random variable \((X, Y)\) with joint p.d.f.\@ \(f(x, y)\), for any \(x\), the limit
   \[
-    F_{X | Y}(x | y) = \lim_{\varepsilon \to 0^+} P\{X \leq x | y - \varepsilon < Y \leq y + \varepsilon\} = \int_{-\infty}^{x} \frac{f(u, y)}{f_Y(y)} \, \mathrm{d}u
+    F_{X | Y}(x | y) = \lim_{\varepsilon \to 0^+} P\{X \leq x | y - \varepsilon < Y \leq y + \varepsilon\} = \int_{-\infty}^{x} \frac{f(u, y)}{f_Y(y)} \, \dd u
   \]
   is called \emph{conditional distribution function} (conditional d.f.\@) of \(X\) given \(Y = y\) if it exists, provided that \(f_Y(y) > 0\).
 \end{definition}
@@ -339,8 +339,8 @@ For a continuous random variable $Y$, the probability of exactly observing $Y = 
   \]
   Thus, the marginal p.d.f.\@ of \(Y\) is given by
   \[
-    f_Y(y) = \int_{-\infty}^\infty f(x, y) \, \mathrm{d}x = \begin{cases}
-      \int_0^y \frac{1}{1 - x} \, \mathrm{d}x = -\ln(1 - y), & 0 < y < 1, \\
+    f_Y(y) = \int_{-\infty}^\infty f(x, y) \, \dd x = \begin{cases}
+      \int_0^y \frac{1}{1 - x} \, \dd x = -\ln(1 - y), & 0 < y < 1, \\
       0, & \text{otherwise}.
     \end{cases} \qedhere
   \]
@@ -363,11 +363,11 @@ For a continuous random variable $Y$, the probability of exactly observing $Y = 
   \begin{enumerate}
     \item The marginal p.d.f.\@ of \(X\) is given by
     \[
-      f_X(x) = \int_{-\infty}^\infty f(x, y) \, \mathrm{d}y = \int_0^x 3x \, \mathrm{d}y = 3x^2, \quad 0 < x < 1,
+      f_X(x) = \int_{-\infty}^\infty f(x, y) \, \dd y = \int_0^x 3x \, \dd y = 3x^2, \quad 0 < x < 1,
     \]
     and the marginal p.d.f.\@ of \(Y\) is given by
     \[
-      f_Y(y) = \int_{-\infty}^\infty f(x, y) \, \mathrm{d}x = \int_y^1 3x \, \mathrm{d}x = \frac{3}{2}(1 - y^2), \quad 0 < y < 1.
+      f_Y(y) = \int_{-\infty}^\infty f(x, y) \, \dd x = \int_y^1 3x \, \dd x = \frac{3}{2}(1 - y^2), \quad 0 < y < 1.
     \]
     For other values of \(x\) and \(y\), the marginal p.d.f.\@s are zero.
     \item If \(0 < y < 1\), the conditional p.d.f.\@ of \(X\) given \(Y = y\) is given by
@@ -394,7 +394,7 @@ For a continuous random variable $Y$, the probability of exactly observing $Y = 
 \section{Independence of Variables}
 
 \begin{definition}[Independence]\index{independence}
-  A bivariate random variable \((X, Y)\) is said to be \emph{independent} if for any \(x, y \in \mathbb{R}\), we have
+  A bivariate random variable \((X, Y)\) is said to be \emph{independent} if for any \(x, y \in \R\), we have
   \[
     P(X \leq x, Y \leq y) = P(X \leq x) P(Y \leq y),
   \]
@@ -420,7 +420,7 @@ For a continuous random variable $Y$, the probability of exactly observing $Y = 
     &= P\{X = x_i\} P\{Y = y_j\} = p_{i \cdot} p_{\cdot j}.
   \end{align*}
 
-  \((\Leftarrow)\) Suppose that there exist two sequences of non-negative numbers \(\{p_{i \cdot}\}\) and \(\{p_{\cdot j}\}\) such that \(p_{ij} = p_{i \cdot} p_{\cdot j}\) for all \(i, j\). Then for any \(x, y \in \mathbb{R}\), we have
+  \((\Leftarrow)\) Suppose that there exist two sequences of non-negative numbers \(\{p_{i \cdot}\}\) and \(\{p_{\cdot j}\}\) such that \(p_{ij} = p_{i \cdot} p_{\cdot j}\) for all \(i, j\). Then for any \(x, y \in \R\), we have
   \[
     F(x, y) = \sum_{x_i \leq x} \sum_{y_j \leq y} p_{ij} = \sum_{x_i \leq x} \sum_{y_j \leq y} p_{i \cdot} p_{\cdot j} = \left(\sum_{x_i \leq x} p_{i \cdot}\right) \left(\sum_{y_j \leq y} p_{\cdot j}\right) = F_X(x) F_Y(y). \qedhere
   \]
@@ -432,13 +432,13 @@ For a continuous random variable $Y$, the probability of exactly observing $Y = 
 \begin{proof}
   \((\Rightarrow)\) Suppose that \((X, Y)\) is independent. Then for any continuous point \((x, y)\) of \(f(x, y)\), we have
   \[
-    f(x, y) = \frac{\partial^2 F(x, y)}{\partial x \partial y} = \frac{\partial^2 F_X(x) F_Y(y)}{\partial x \partial y} = \frac{\mathrm{d} F_X(x)}{\mathrm{d}x} \cdot \frac{\mathrm{d} F_Y(y)}{\mathrm{d}y} = f_X(x) f_Y(y).
+    f(x, y) = \frac{\partial^2 F(x, y)}{\partial x \partial y} = \frac{\partial^2 F_X(x) F_Y(y)}{\partial x \partial y} = \frac{\dd F_X(x)}{\dd x} \cdot \frac{\dd F_Y(y)}{\dd y} = f_X(x) f_Y(y).
   \]
 
-  \((\Leftarrow)\) Suppose that \(f(x, y) = f_X(x) f_Y(y)\) at any continuous point of \(f(x, y)\). Then for any \(x, y \in \mathbb{R}\), we have
+  \((\Leftarrow)\) Suppose that \(f(x, y) = f_X(x) f_Y(y)\) at any continuous point of \(f(x, y)\). Then for any \(x, y \in \R\), we have
   \begin{align*}
-    F(x, y) &= \int_{-\infty}^x \int_{-\infty}^y f(u, v) \, \mathrm{d}v \, \mathrm{d}u = \int_{-\infty}^x \int_{-\infty}^y f_X(u) f_Y(v) \, \mathrm{d}v \, \mathrm{d}u \\
-    &= \left(\int_{-\infty}^x f_X(u) \, \mathrm{d}u\right) \left(\int_{-\infty}^y f_Y(v) \, \mathrm{d}v\right) = F_X(x) F_Y(y). \qedhere
+    F(x, y) &= \int_{-\infty}^x \int_{-\infty}^y f(u, v) \, \dd v \, \dd u = \int_{-\infty}^x \int_{-\infty}^y f_X(u) f_Y(v) \, \dd v \, \dd u \\
+    &= \left(\int_{-\infty}^x f_X(u) \, \dd u\right) \left(\int_{-\infty}^y f_Y(v) \, \dd v\right) = F_X(x) F_Y(y). \qedhere
   \end{align*}
 \end{proof}
 
@@ -473,24 +473,24 @@ Suppose that the joint p.d.f.\@ of \(X, Y\) is \(f(x, y)\). Let \(Z = X + Y\). W
 
 The d.f.\@ of \(Z\) is given by
 \[
-  F_Z(z) = P(Z \leq z) = \iint_{x + y \leq z} f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \int_{-\infty}^\infty \mathrm{d}x \int_{-\infty}^{z - x} f(x, y) \, \mathrm{d}y.
+  F_Z(z) = P(Z \leq z) = \iint_{x + y \leq z} f(x, y) \, \dd x \, \dd y = \int_{-\infty}^\infty \dd x \int_{-\infty}^{z - x} f(x, y) \, \dd y.
 \]
-Let \(u = y + x\), then \(\mathrm{d}u = \mathrm{d}y\). Therefore,
+Let \(u = y + x\), then \(\dd u = \dd y\). Therefore,
 \[
-  F_Z(z) = \int_{-\infty}^\infty \mathrm{d}x \int_{-\infty}^{z} f(x, u - x) \, \mathrm{d}u = \int_{-\infty}^z \mathrm{d}u \int_{-\infty}^\infty f(x, u - x) \, \mathrm{d}x.
+  F_Z(z) = \int_{-\infty}^\infty \dd x \int_{-\infty}^{z} f(x, u - x) \, \dd u = \int_{-\infty}^z \dd u \int_{-\infty}^\infty f(x, u - x) \, \dd x.
 \]
 By differentiating \(F_Z(z)\) with respect to \(z\), we can obtain the p.d.f.\@ of \(Z\) as follows:
 \[
-  f_Z(z) = \int_{-\infty}^\infty f(x, z - x) \, \mathrm{d}x.
+  f_Z(z) = \int_{-\infty}^\infty f(x, z - x) \, \dd x.
 \]
 By symmetry, we can also show that
 \[
-  f_Z(z) = \int_{-\infty}^\infty f(z - y, y) \, \mathrm{d}y.
+  f_Z(z) = \int_{-\infty}^\infty f(z - y, y) \, \dd y.
 \]
 
 If \(X\) and \(Y\) are independent, then \(f(x, y) = f_X(x) f_Y(y)\). In this case, the p.d.f.\@ of \(Z\) can be expressed as
 \[
-  f_Z(z) = \int_{-\infty}^\infty f_X(x) f_Y(z - x) \, \mathrm{d}x = \int_{-\infty}^\infty f_X(z - y) f_Y(y) \, \mathrm{d}y.
+  f_Z(z) = \int_{-\infty}^\infty f_X(x) f_Y(z - x) \, \dd x = \int_{-\infty}^\infty f_X(z - y) f_Y(y) \, \dd y.
 \]
 
 \begin{proposition}
@@ -522,67 +522,67 @@ Thus,
 \section{Numerical Characteristics of Random Vectors}
 
 \begin{theorem}
-  Let \(X\) and \(Y\) be jointly distributed random variables with p.f.\@ \(p(x, y)\) or p.d.f.\@ \(f(x, y)\). Then the expected value of a function \(h(X, Y)\), denoted by \(\mathbb{E}[h(X, Y)]\), is given by
+  Let \(X\) and \(Y\) be jointly distributed random variables with p.f.\@ \(p(x, y)\) or p.d.f.\@ \(f(x, y)\). Then the expected value of a function \(h(X, Y)\), denoted by \(\E[h(X, Y)]\), is given by
   \[
-    \mathbb{E}[h(X, Y)] = \begin{cases}
+    \E[h(X, Y)] = \begin{cases}
       \sum_{x} \sum_{y} h(x, y) p(x, y), & \text{if } (X, Y) \text{ is discrete}, \\
-      \int_{-\infty}^\infty \int_{-\infty}^\infty h(x, y) f(x, y) \, \mathrm{d}x \, \mathrm{d}y, & \text{if } (X, Y) \text{ is continuous}.
+      \int_{-\infty}^\infty \int_{-\infty}^\infty h(x, y) f(x, y) \, \dd x \, \dd y, & \text{if } (X, Y) \text{ is continuous}.
     \end{cases}
   \]
   The expectation exists if and only if the corresponding series or integral converges absolutely.
 \end{theorem}
 
 \begin{proposition}
-  \(\displaystyle \mathbb{E} \left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \mathbb{E}(X_i)\).
+  \(\displaystyle \E \left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \E(X_i)\).
 \end{proposition}
 
 \begin{proposition}
   If \(X_1, X_2, \dots, X_n\) are independent, then
   \[
-    \mathbb{E} \left(\prod_{i=1}^n X_i\right) = \prod_{i=1}^n \mathbb{E}(X_i).
+    \E \left(\prod_{i=1}^n X_i\right) = \prod_{i=1}^n \E(X_i).
   \]
 \end{proposition}
 
 \begin{proposition}
   If \(X_1, X_2, \dots, X_n\) are independent, then
   \[
-    \mathrm{Var} \left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \mathrm{Var}(X_i).
+    \Var \left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \Var(X_i).
   \]
 \end{proposition}
 
 \begin{definition}[Covariance]\index{covariance}
   The \emph{covariance} of two random variables \(X\) and \(Y\) is defined as
   \[
-    \mathrm{Cov}(X, Y) = \mathbb{E}[(X - \mathbb{E}(X))(Y - \mathbb{E}(Y))] = \mathbb{E}(XY) - \mathbb{E}(X) \mathbb{E}(Y).
+    \Cov(X, Y) = \E[(X - \E(X))(Y - \E(Y))] = \E(XY) - \E(X) \E(Y).
   \]
 \end{definition}
 
 \begin{proposition}
   Some properties of covariance are as follows:
   \begin{enumerate}
-    \item \(\mathrm{Cov}(X, X) = \mathrm{Var}(X)\).
-    \item \(\mathrm{Cov}(X, Y) = \mathrm{Cov}(Y, X)\).
-    \item \(\mathrm{Cov}(X, C) = 0\) for any constant \(C\).
-    \item If \(X\) and \(Y\) are independent, then \(\mathrm{Cov}(X, Y) = 0\).
-    \item\label{prop:covariance:linear} \(\mathrm{Cov}(aX + b, cY + d) = ac \mathrm{Cov}(X, Y)\) for any constants \(a, b, c\) and \(d\).
-    \item \(\mathrm{Cov}(X_1 + X_2, Y) = \mathrm{Cov}(X_1, Y) + \mathrm{Cov}(X_2, Y)\).
-    \item \(\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2 \mathrm{Cov}(X, Y)\).
+    \item \(\Cov(X, X) = \Var(X)\).
+    \item \(\Cov(X, Y) = \Cov(Y, X)\).
+    \item \(\Cov(X, C) = 0\) for any constant \(C\).
+    \item If \(X\) and \(Y\) are independent, then \(\Cov(X, Y) = 0\).
+    \item\label{prop:covariance:linear} \(\Cov(aX + b, cY + d) = ac \Cov(X, Y)\) for any constants \(a, b, c\) and \(d\).
+    \item \(\Cov(X_1 + X_2, Y) = \Cov(X_1, Y) + \Cov(X_2, Y)\).
+    \item \(\Var(X + Y) = \Var(X) + \Var(Y) + 2 \Cov(X, Y)\).
   \end{enumerate}
 \end{proposition}
 
 \begin{proof}[Proof of Property \ref{prop:covariance:linear}]
   We have
   \begin{align*}
-    \mathrm{Cov}(aX + b, cY + d) &= \mathbb{E}[(aX + b - \mathbb{E}(aX + b))(cY + d - \mathbb{E}(cY + d))] \\
-    &= \mathbb{E}[(aX - a\mathbb{E}(X))(cY - c\mathbb{E}(Y))] \\
-    &= ac \mathbb{E}[(X - \mathbb{E}(X))(Y - \mathbb{E}(Y))] = ac \mathrm{Cov}(X, Y). \qedhere
+    \Cov(aX + b, cY + d) &= \E[(aX + b - \E(aX + b))(cY + d - \E(cY + d))] \\
+    &= \E[(aX - a\E(X))(cY - c\E(Y))] \\
+    &= ac \E[(X - \E(X))(Y - \E(Y))] = ac \Cov(X, Y). \qedhere
   \end{align*}
 \end{proof}
 
 \begin{definition}[Correlation Coefficient]\index{correlation coefficient}
   The \emph{correlation coefficient} of two random variables \(X\) and \(Y\) is defined as
   \[
-    \rho(X, Y) = \frac{\mathrm{Cov}(X, Y)}{\sqrt{\mathrm{Var}(X)} \sqrt{\mathrm{Var}(Y)}}.
+    \rho(X, Y) = \frac{\Cov(X, Y)}{\sqrt{\Var(X)} \sqrt{\Var(Y)}}.
   \]
 \end{definition}
 
@@ -604,21 +604,21 @@ The correlation coefficient \(\rho(X, Y)\) is a measure of the linear relationsh
 \end{example}
 \begin{solution}
   \begin{align*}
-    \mathbb{E}(X) &= \int_{-\infty}^\infty \int_{-\infty}^\infty x f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \int_0^1 3x^2 \, \mathrm{d}x \int_0^x \mathrm{d}y = \frac{3}{4}, \\
-    \mathbb{E}(X^2) &= \int_{-\infty}^\infty \int_{-\infty}^\infty x^2 f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \int_0^1 3x^3 \, \mathrm{d}x \int_0^x \mathrm{d}y = \frac{3}{5}, \\
-    \mathbb{E}(Y) &= \int_{-\infty}^\infty \int_{-\infty}^\infty y f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \int_0^1 3x \,\mathrm{d}x \int_0^x y \, \mathrm{d}y = \frac{3}{8}, \\
-    \mathbb{E}(Y^2) &= \int_{-\infty}^\infty \int_{-\infty}^\infty y^2 f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \int_0^1 3x \,\mathrm{d}x \int_0^x y^2 \, \mathrm{d}y = \frac{1}{5}, \\
-    \mathbb{E}(XY) &= \int_{-\infty}^\infty \int_{-\infty}^\infty xy f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \int_0^1 3x^2 \,\mathrm{d}x \int_0^x y \, \mathrm{d}y = \frac{3}{10}.
+    \E(X) &= \int_{-\infty}^\infty \int_{-\infty}^\infty x f(x, y) \, \dd x \, \dd y = \int_0^1 3x^2 \, \dd x \int_0^x \dd y = \frac{3}{4}, \\
+    \E(X^2) &= \int_{-\infty}^\infty \int_{-\infty}^\infty x^2 f(x, y) \, \dd x \, \dd y = \int_0^1 3x^3 \, \dd x \int_0^x \dd y = \frac{3}{5}, \\
+    \E(Y) &= \int_{-\infty}^\infty \int_{-\infty}^\infty y f(x, y) \, \dd x \, \dd y = \int_0^1 3x \,\dd x \int_0^x y \, \dd y = \frac{3}{8}, \\
+    \E(Y^2) &= \int_{-\infty}^\infty \int_{-\infty}^\infty y^2 f(x, y) \, \dd x \, \dd y = \int_0^1 3x \,\dd x \int_0^x y^2 \, \dd y = \frac{1}{5}, \\
+    \E(XY) &= \int_{-\infty}^\infty \int_{-\infty}^\infty xy f(x, y) \, \dd x \, \dd y = \int_0^1 3x^2 \,\dd x \int_0^x y \, \dd y = \frac{3}{10}.
   \end{align*}
   Therefore,
   \begin{align*}
-    \mathrm{Cov}(X, Y) &= \mathbb{E}(XY) - \mathbb{E}(X) \mathbb{E}(Y) = \frac{3}{10} - \frac{3}{4} \cdot \frac{3}{8} = \frac{3}{160}, \\
-    \mathrm{Var}(X) &= \mathbb{E}(X^2) - (\mathbb{E}(X))^2 = \frac{3}{5} - \left(\frac{3}{4}\right)^2 = \frac{3}{80}, \\
-    \mathrm{Var}(Y) &= \mathbb{E}(Y^2) - (\mathbb{E}(Y))^2 = \frac{1}{5} - \left(\frac{3}{8}\right)^2 = \frac{19}{320}.
+    \Cov(X, Y) &= \E(XY) - \E(X) \E(Y) = \frac{3}{10} - \frac{3}{4} \cdot \frac{3}{8} = \frac{3}{160}, \\
+    \Var(X) &= \E(X^2) - (\E(X))^2 = \frac{3}{5} - \left(\frac{3}{4}\right)^2 = \frac{3}{80}, \\
+    \Var(Y) &= \E(Y^2) - (\E(Y))^2 = \frac{1}{5} - \left(\frac{3}{8}\right)^2 = \frac{19}{320}.
   \end{align*}
   Thus,
   \[
-    \rho(X, Y) = \frac{\mathrm{Cov}(X, Y)}{\sqrt{\mathrm{Var}(X)} \sqrt{\mathrm{Var}(Y)}} = \frac{\frac{3}{160}}{\sqrt{\frac{3}{80}} \sqrt{\frac{19}{320}}} = \frac{3}{\sqrt{57}}. \qedhere
+    \rho(X, Y) = \frac{\Cov(X, Y)}{\sqrt{\Var(X)} \sqrt{\Var(Y)}} = \frac{\frac{3}{160}}{\sqrt{\frac{3}{80}} \sqrt{\frac{19}{320}}} = \frac{3}{\sqrt{57}}. \qedhere
   \]
 \end{solution}
 
@@ -628,13 +628,13 @@ The correlation coefficient \(\rho(X, Y)\) is a measure of the linear relationsh
 \begin{proof}
   Since \(\xi = aX + b\) and \(\eta = cY + d\), we have
   \begin{align*}
-    \mathrm{Cov}(\xi, \eta) &= \mathrm{Cov}(aX + b, cY + d) = ac \mathrm{Cov}(X, Y), \\
-    \mathrm{Var}(\xi) &= \mathrm{Var}(aX + b) = a^2 \mathrm{Var}(X), \\
-    \mathrm{Var}(\eta) &= \mathrm{Var}(cY + d) = c^2 \mathrm{Var}(Y).
+    \Cov(\xi, \eta) &= \Cov(aX + b, cY + d) = ac \Cov(X, Y), \\
+    \Var(\xi) &= \Var(aX + b) = a^2 \Var(X), \\
+    \Var(\eta) &= \Var(cY + d) = c^2 \Var(Y).
   \end{align*}
   Therefore,
   \[
-    \rho(\xi, \eta) = \frac{\mathrm{Cov}(\xi, \eta)}{\sqrt{\mathrm{Var}(\xi)} \sqrt{\mathrm{Var}(\eta)}} = \frac{ac \mathrm{Cov}(X, Y)}{\sqrt{a^2 \mathrm{Var}(X)} \sqrt{c^2 \mathrm{Var}(Y)}} = \rho(X, Y). \qedhere
+    \rho(\xi, \eta) = \frac{\Cov(\xi, \eta)}{\sqrt{\Var(\xi)} \sqrt{\Var(\eta)}} = \frac{ac \Cov(X, Y)}{\sqrt{a^2 \Var(X)} \sqrt{c^2 \Var(Y)}} = \rho(X, Y). \qedhere
   \]
 \end{proof}
 
@@ -646,7 +646,7 @@ The correlation coefficient \(\rho(X, Y)\) is a measure of the linear relationsh
   Suppose that the joint p.d.f.\@ of \(X, Y\) is given by
   \[
     f(x, y) = \begin{cases}
-      \frac{1}{\pi}, & x^2 + y^2 \leq 1, \\
+      \frac{1}{\mpi}, & x^2 + y^2 \leq 1, \\
       0, & \text{otherwise}.
     \end{cases}
   \]
@@ -659,37 +659,37 @@ The correlation coefficient \(\rho(X, Y)\) is a measure of the linear relationsh
   \begin{enumerate}
     \item Evaluating the following integrals using the result of Theorem \ref{thm:important_integrals}, we have
     \begin{align*}
-      \mathbb{E}(X) &= \int_{-\infty}^\infty \int_{-\infty}^\infty x f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \frac{1}{\pi} \int_{-1}^1 x \, \mathrm{d}x \int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} \, \mathrm{d}y = 0, \\
-      \mathbb{E}(X^2) &= \int_{-\infty}^\infty \int_{-\infty}^\infty x^2 f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \frac{1}{\pi} \int_{0}^{2\pi} \int_{0}^{1} r^3 \cos^2 \theta \, \mathrm{d}r \, \mathrm{d}\theta = \frac{1}{4}.
+      \E(X) &= \int_{-\infty}^\infty \int_{-\infty}^\infty x f(x, y) \, \dd x \, \dd y = \frac{1}{\mpi} \int_{-1}^1 x \, \dd x \int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} \, \dd y = 0, \\
+      \E(X^2) &= \int_{-\infty}^\infty \int_{-\infty}^\infty x^2 f(x, y) \, \dd x \, \dd y = \frac{1}{\mpi} \int_{0}^{2\mpi} \int_{0}^{1} r^3 \cos^2 \theta \, \dd r \, \dd\theta = \frac{1}{4}.
     \end{align*}
     Then,
     \[
-      \mathrm{Var}(X) = \mathbb{E}(X^2) - (\mathbb{E}(X))^2 = \frac{1}{4}.
+      \Var(X) = \E(X^2) - (\E(X))^2 = \frac{1}{4}.
     \]
-    By symmetry, we also have \(\mathbb{E}(Y) = 0\), \(\mathbb{E}(Y^2) = \frac{1}{4}\) and \(\mathrm{Var}(Y) = \frac{1}{4}\). Moreover,
+    By symmetry, we also have \(\E(Y) = 0\), \(\E(Y^2) = \frac{1}{4}\) and \(\Var(Y) = \frac{1}{4}\). Moreover,
     \[
-      \mathbb{E}(XY) = \int_{-\infty}^\infty \int_{-\infty}^\infty xy f(x, y) \, \mathrm{d}x \, \mathrm{d}y = \frac{1}{\pi} \int_{0}^{2\pi} \int_{0}^{1} r^3 \cos \theta \sin \theta \, \mathrm{d}r \, \mathrm{d}\theta = 0.
+      \E(XY) = \int_{-\infty}^\infty \int_{-\infty}^\infty xy f(x, y) \, \dd x \, \dd y = \frac{1}{\mpi} \int_{0}^{2\mpi} \int_{0}^{1} r^3 \cos \theta \sin \theta \, \dd r \, \dd\theta = 0.
     \]
     Therefore,
     \[
-      \mathrm{Cov}(X, Y) = \mathbb{E}(XY) - \mathbb{E}(X) \mathbb{E}(Y) = 0 - 0 = 0.
+      \Cov(X, Y) = \E(XY) - \E(X) \E(Y) = 0 - 0 = 0.
     \]
     Then
     \[
-      \rho(X, Y) = \frac{\mathrm{Cov}(X, Y)}{\sqrt{\mathrm{Var}(X)} \sqrt{\mathrm{Var}(Y)}} = 0,
+      \rho(X, Y) = \frac{\Cov(X, Y)}{\sqrt{\Var(X)} \sqrt{\Var(Y)}} = 0,
     \]
     which means that \(X\) and \(Y\) are uncorrelated.
     \item The marginal p.d.f.\@ of \(X\) is given by
     \[
-      f_X(x) = \int_{-\infty}^\infty f(x, y) \, \mathrm{d}y = \begin{cases}
-        \frac{2}{\pi}\sqrt{1 - x^2}, & -1 < x < 1, \\
+      f_X(x) = \int_{-\infty}^\infty f(x, y) \, \dd y = \begin{cases}
+        \frac{2}{\mpi}\sqrt{1 - x^2}, & -1 < x < 1, \\
         0, & \text{otherwise},
       \end{cases}
     \]
     and
     \[
-      f_Y(y) = \int_{-\infty}^\infty f(x, y) \, \mathrm{d}x = \begin{cases}
-        \frac{2}{\pi}\sqrt{1 - y^2}, & -1 < y < 1, \\
+      f_Y(y) = \int_{-\infty}^\infty f(x, y) \, \dd x = \begin{cases}
+        \frac{2}{\mpi}\sqrt{1 - y^2}, & -1 < y < 1, \\
         0, & \text{otherwise}.
       \end{cases}
     \]
@@ -704,22 +704,22 @@ The correlation coefficient \(\rho(X, Y)\) is a measure of the linear relationsh
 \begin{definition}[Origin Moment]\index{origin moment}
   The \(n\)-th \emph{origin moment} of a random variable \(X\) is defined as
   \[
-    m_n = \mathbb{E}(X^n).
+    m_n = \E(X^n).
   \]
   The \(n\)-th \emph{mixed origin moment} of two random variables \(X\) and \(Y\) is defined as
   \[
-    m_{n_1, n_2} = \mathbb{E}(X^{n_1} Y^{n_2}).
+    m_{n_1, n_2} = \E(X^{n_1} Y^{n_2}).
   \]
 \end{definition}
 
 \begin{definition}[Central Moment]\index{central moment}
   The \(n\)-th \emph{central moment} of a random variable \(X\) is defined as
   \[
-    \mu_n = \mathbb{E}[(X - \mathbb{E}(X))^n].
+    \mu_n = \E[(X - \E(X))^n].
   \]
   The \(n\)-th \emph{mixed central moment} of two random variables \(X\) and \(Y\) is defined as
   \[
-    \mu_{n_1, n_2} = \mathbb{E}[(X - \mathbb{E}(X))^{n_1} (Y - \mathbb{E}(Y))^{n_2}].
+    \mu_{n_1, n_2} = \E[(X - \E(X))^{n_1} (Y - \E(Y))^{n_2}].
   \]
 \end{definition}
 
@@ -733,13 +733,13 @@ The correlation coefficient \(\rho(X, Y)\) is a measure of the linear relationsh
       c_{n1} & c_{n2} & \cdots & c_{nn}
     \end{bmatrix},
   \]
-  if all the covariances \(c_{ij} = \mathrm{Cov}(X_i, X_j)\) exist for \(i, j = 1, 2, \dots, n\).
+  if all the covariances \(c_{ij} = \Cov(X_i, X_j)\) exist for \(i, j = 1, 2, \dots, n\).
 \end{definition}
 
 \begin{definition}[Multivariate Normal Distribution]\index{multivariate normal distribution}
   A random vector \(\mathbf{X} = (X_1, X_2, \dots, X_n)\) with mean vector \(\mu\) and covariance matrix \(\Sigma\) is said to have a \emph{multivariate normal distribution} if its joint p.d.f.\@ is given by
   \[
-    f_{\mathbf{X}}(\mathbf{x}) = \frac{1}{(2\pi)^{\frac{n}{2}} |\Sigma|^{\frac{1}{2}}} \exp\left(-\frac{1}{2} (\mathbf{x} - \mu)^T \Sigma^{-1} (\mathbf{x} - \mu)\right),
+    f_{\mathbf{X}}(\mathbf{x}) = \frac{1}{(2\mpi)^{\frac{n}{2}} |\Sigma|^{\frac{1}{2}}} \exp\left(-\frac{1}{2} (\mathbf{x} - \mu)^T \Sigma^{-1} (\mathbf{x} - \mu)\right),
   \]
   where \(\mathbf{x} = (x_1, x_2, \dots, x_n)\) and \(|\Sigma|\) is the determinant of \(\Sigma\).  
 \end{definition}
@@ -749,7 +749,7 @@ The correlation coefficient \(\rho(X, Y)\) is a measure of the linear relationsh
 \end{proposition}
 
 \begin{proposition}\label{prop:multivariate-normal-linear-transformation}
-  If \(\mathbf{Y} = \mathbf{A}\mathbf{X} + b\), where \(\mathbf{A}\) is an \(n \times n\) non-singular matrix and \(b\) is a (column) \(n\)-dimensional vector of constants, then \(\mathbf{Y} \sim \mathrm{N}(\mathbf{A}\mu + b, \mathbf{A} \Sigma \mathbf{A}^T)\), where \(\mu = \mathbb{E}(\mathbf{X})\) and \(\Sigma\) is the covariance matrix of the multivariate normal random variable \(\mathbf{X}\).
+  If \(\mathbf{Y} = \mathbf{A}\mathbf{X} + b\), where \(\mathbf{A}\) is an \(n \times n\) non-singular matrix and \(b\) is a (column) \(n\)-dimensional vector of constants, then \(\mathbf{Y} \sim \mathrm{N}(\mathbf{A}\mu + b, \mathbf{A} \Sigma \mathbf{A}^T)\), where \(\mu = \E(\mathbf{X})\) and \(\Sigma\) is the covariance matrix of the multivariate normal random variable \(\mathbf{X}\).
 \end{proposition}
 
 \begin{proposition}
@@ -766,8 +766,8 @@ The correlation coefficient \(\rho(X, Y)\) is a measure of the linear relationsh
 \begin{solution}
   Since \(X \sim \mathrm{N}(1, 2)\), \(Y \sim \mathrm{N}(0, 1)\) and \(X\) and \(Y\) are independent, we have
   \begin{align*}
-    \mathbb{E}(Z) &= 2 \mathbb{E}(X) - \mathbb{E}(Y) + 3 = 2 \cdot 1 - 0 + 3 = 5, \\
-    \mathrm{Var}(Z) &= 2^2 \mathrm{Var}(X) + (-1)^2 \mathrm{Var}(Y) = 2^2 \cdot 2 + (-1)^2 \cdot 1 = 3^3.
+    \E(Z) &= 2 \E(X) - \E(Y) + 3 = 2 \cdot 1 - 0 + 3 = 5, \\
+    \Var(Z) &= 2^2 \Var(X) + (-1)^2 \Var(Y) = 2^2 \cdot 2 + (-1)^2 \cdot 1 = 3^3.
   \end{align*}
   By Proposition \ref{prop:multivariate-normal-linear-combination}, \(Z\) has a normal distribution, i.e.,
   \[
@@ -775,21 +775,21 @@ The correlation coefficient \(\rho(X, Y)\) is a measure of the linear relationsh
   \]
   Thus, the p.d.f.\@ of \(Z\) is given by
   \[
-    f_Z(z) = \frac{1}{3\sqrt{2 \pi}} e^{-\frac{(z - 5)^2}{18}}. \qedhere
+    f_Z(z) = \frac{1}{3\sqrt{2 \mpi}} \me^{-\frac{(z - 5)^2}{18}}. \qedhere
   \]
 \end{solution}
 
 \begin{example}
-  Suppose that \(X \sim \mathrm{N}(0, 1)\), \(Y \sim \mathrm{N}(0, 1)\) and \(X\) and \(Y\) are independent. Calculate the value of \(\mathbb{E}(|X - Y|)\).
+  Suppose that \(X \sim \mathrm{N}(0, 1)\), \(Y \sim \mathrm{N}(0, 1)\) and \(X\) and \(Y\) are independent. Calculate the value of \(\E(|X - Y|)\).
 \end{example}
 \begin{solution}
   Let \(Z = X - Y\). Then \(Z \sim \mathrm{N}(0, 2)\), i.e.,
   \[
-    f_Z(z) = \frac{1}{2\sqrt{\pi}} e^{-\frac{z^2}{4}}.
+    f_Z(z) = \frac{1}{2\sqrt{\mpi}} \me^{-\frac{z^2}{4}}.
   \]
   Therefore,
   \[
-    \mathbb{E}(|X - Y|) = \mathbb{E}(|Z|) = \int_{-\infty}^\infty |z| \frac{1}{2\sqrt{\pi}} e^{-\frac{z^2}{4}} \, \mathrm{d}z = \frac{1}{\sqrt{\pi}} \int_0^\infty z e^{-\frac{z^2}{4}} \, \mathrm{d}z = \frac{2}{\sqrt{\pi}}. \qedhere
+    \E(|X - Y|) = \E(|Z|) = \int_{-\infty}^\infty |z| \frac{1}{2\sqrt{\mpi}} \me^{-\frac{z^2}{4}} \, \dd z = \frac{1}{\sqrt{\mpi}} \int_0^\infty z \me^{-\frac{z^2}{4}} \, \dd z = \frac{2}{\sqrt{\mpi}}. \qedhere
   \]
 \end{solution}
 
@@ -797,7 +797,7 @@ The correlation coefficient \(\rho(X, Y)\) is a measure of the linear relationsh
   Suppose that \((X, Y) \sim \mathrm{N}(0, 1, 3^2, 4^2, -\frac{1}{2})\), \(Z = \frac{X}{3} + \frac{Y}{2}\). Prove that \(X\) and \(Z\) are independent.
 \end{example}
 \begin{solution}
-  Since \((X, Y) \sim \mathrm{N}(0, 1, 3^2, 4^2, -\frac{1}{2})\), we have \(\mathrm{Var}(X) = 3^2\), \(\mathrm{Var}(Y) = 4^2\) and \(\rho(X, Y) = -\frac{1}{2}\). Note that
+  Since \((X, Y) \sim \mathrm{N}(0, 1, 3^2, 4^2, -\frac{1}{2})\), we have \(\Var(X) = 3^2\), \(\Var(Y) = 4^2\) and \(\rho(X, Y) = -\frac{1}{2}\). Note that
   \[
     \begin{bmatrix}
       X \\
@@ -812,7 +812,7 @@ The correlation coefficient \(\rho(X, Y)\) is a measure of the linear relationsh
   \]
   By Proposition \ref{prop:multivariate-normal-linear-transformation}, \((X, Z)\) has a bivariate normal distribution. Moreover,
   \begin{align*}
-    \mathrm{Cov}(X, Z) &= \mathrm{Cov}\!\left(X, \frac{X}{3} + \frac{Y}{2}\right) = \frac{1}{3} \mathrm{Cov}(X) + \frac{1}{2} \mathrm{Cov}(X, Y) \\
+    \Cov(X, Z) &= \Cov\!\left(X, \frac{X}{3} + \frac{Y}{2}\right) = \frac{1}{3} \Cov(X) + \frac{1}{2} \Cov(X, Y) \\
     &= \frac{1}{3} \cdot 3^2 + \frac{1}{2} \cdot (-\frac{1}{2}) \cdot 3 \cdot 4 = 0.
   \end{align*}
   Thus, \(X\) and \(Z\) are uncorrelated. Since \((X, Z)\) has a bivariate normal distribution, \(X\) and \(Z\) are independent. \qedhere
