@@ -263,7 +263,7 @@ The integral over $[0, \pi/2]$ can be evaluated using the same method.
   \]
 \end{proposition}
 
-\section{Fourier Analysis}
+\section{Complex Analysis}
 
 \begin{theorem}[Euler's Formula]\index{Euler's formula}
   For any real number $\theta$, we have
@@ -271,17 +271,3 @@ The integral over $[0, \pi/2]$ can be evaluated using the same method.
     e^{\mathrm{i} \theta} = \cos \theta + \mathrm{i} \sin \theta.
   \]
 \end{theorem}
-
-\begin{definition}[Fourier Transform]\index{Fourier transform}
-  The \emph{Fourier transform} of a function $f(t)$ is defined by
-  \[
-    \mathcal{F}\{f(t)\}(\omega) = \int_{-\infty}^\infty f(t) e^{-\mathrm{i} \omega t}\,\mathrm{d}t.
-  \]
-\end{definition}
-
-\begin{definition}[Inverse Fourier Transform]\index{inverse Fourier transform}
-  The \emph{inverse Fourier transform} of a function $F(\omega)$ is defined by
-  \[
-    \mathcal{F}^{-1}\{F(\omega)\}(t) = \frac{1}{2\pi} \int_{-\infty}^\infty F(\omega) e^{\mathrm{i} \omega t}\,\mathrm{d}\omega.
-  \]
-\end{definition}

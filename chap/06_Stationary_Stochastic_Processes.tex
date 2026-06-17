@@ -181,9 +181,53 @@ is a constant for all \(t \in T\).
   Therefore, \(\{X_n\}_{n \in \mathbb{Z}}\) is WSS.
 \end{proof}
 
+\begin{example}
+  Suppose that \(\{X_t\}\) is a stationary process and
+  \[
+    Y_t = X_t \cos(\omega_0 t + \Theta),
+  \]
+  where \(X_t\) and \(\Theta\) are independent, \(\Theta \sim \mathrm{U}(0, 2\pi)\), and \(\omega_0\) is a constant. Prove that \(\{Y_t\}\) is also a stationary process.
+\end{example}
+\begin{proof}
+  For all \(t\),
+  \[
+    \mathbb{E}[Y_t] = \mathbb{E}[X_t] \mathbb{E}[\cos(\omega_0 t + \Theta)] = 0,
+  \]
+  since \(\Theta\) is uniformly distributed in the interval \((0, 2\pi)\).
+
+  For all \(s, t\),
+  \begin{align*}
+    R_Y(s, t) &= \mathbb{E}[Y_s Y_t] = \mathbb{E}[X_s X_t] \mathbb{E}[\cos(\omega_0 s + \Theta) \cos(\omega_0 t + \Theta)] \\
+    &= R_X(s, t) \cdot \mathbb{E}\left[\frac{\cos(\omega_0 (s - t)) + \cos(\omega_0 (s + t) + 2\Theta)}{2}\right] \\
+    &= R_X(s, t) \cdot \frac{\cos(\omega_0 (s - t))}{2},
+  \end{align*}
+  since the expected value of the second term involves integrating a cosine function over two periods, which results in zero:
+  \[
+    \mathbb{E}[\cos(\omega_0 (s + t) + 2\Theta)] = \int_0^{2\pi} \cos(\omega_0 (s + t) + 2\theta) \cdot \frac{1}{2\pi} \, \mathrm{d}\theta = 0.
+  \]
+  Thus, \(R_Y(s, t)\) depends only on the time difference \(s - t\).
+
+  Therefore, \(\{Y_t\}\) is a stationary process.
+\end{proof}
+
 \section{Ergodicity of Stationary Processes}
 
 \section{Power Spectral Density of Stationary Processes}
+
+\begin{definition}[Fourier Transform]\index{Fourier transform}\index{frequency spectrum}
+  Suppose that \(x_t (t \in \mathbb{R})\) is a deterministic real-valued function satisfying the Dirichlet condition. Then the Fourier transform of \(x_t\) defined by
+  \[
+    F(\omega) = \int_{-\infty}^\infty x_t e^{-\mathrm{i} \omega t} \, \mathrm{d}t.
+  \]
+  The Fourier transform \(F(\omega)\) of \(x_t\) is often called the \emph{frequency spectrum} of \(x_t\).
+\end{definition}
+
+\begin{definition}[Inverse Fourier Transform]\index{inverse Fourier transform}
+  Suppose that \(F(\omega)\) is the Fourier transform of a deterministic real-valued function \(x_t\). Then the inverse Fourier transform of \(F(\omega)\) defined by
+  \[
+    x_t = \frac{1}{2\pi} \int_{-\infty}^\infty F(\omega) e^{\mathrm{i} \omega t} \, \mathrm{d}\omega.
+  \]
+\end{definition}
 
 \begin{definition}[Continuity in Mean Square]\index{continuity in mean square}
   A process \(\{X_t\}_{t \in T}\) is said to be \emph{continuous in mean square} at \(t_0 \in T\) if
@@ -223,7 +267,7 @@ is a constant for all \(t \in T\).
   \]
 \end{theorem}
 
-\begin{theorem}[Wiener-Khinchin Theorem]\index{Wiener-Khinchin theorem}
+\begin{theorem}[Wiener-Khinchin Theorem]\index{Wiener-Khinchin theorem}\label{thm:Wiener-Khinchin}
   Suppose that \(R_X(\tau)\) is the autocorrelation function of a WSS process \(\{X_t\}\) and \(S_X(\omega)\) is its power spectral density. If
   \[
     \int_{-\infty}^\infty |R_X(\tau)| \, \mathrm{d}\tau < \infty,
@@ -244,19 +288,21 @@ is a constant for all \(t \in T\).
 \begin{solution}
   The mean of \(X_t\) is
   \[
-    \mu_X(t) = \mathbb{E}[X_t] = a \mathbb{E}[\cos(\omega_0 t + \Theta)] = 0,
+    \mu_X(t) = \mathbb{E}[X_t] = \mathbb{E}[a \cos(\omega_0 t + \Theta)] = \int_0^{2\pi} a \cos(\omega_0 t + \theta) \cdot \frac{1}{2\pi} \, \mathrm{d}\theta = 0,
   \]
-  since \(\Theta\) is uniformly distributed in the interval \((0, 2\pi)\).
+  since the integral of \(\cos(\omega_0 t + \theta)\) over one period is zero.
 
   The autocorrelation function of \(X_t\) is
-  \begin{align*}
-    R_X(s, t) &= \mathbb{E}[X_s X_t] = a^2 \mathbb{E}[\cos(\omega_0 s + \Theta) \cos(\omega_0 t + \Theta)] \\
-    &= a^2 \mathbb{E}\left[\frac{\cos(\omega_0 (s - t)) + \cos(\omega_0 (s + t) + 2\Theta)}{2}\right] \\
-    &= \frac{a^2}{2} \cos(\omega_0 (s - t)),
-  \end{align*}
-  since the expected value of the second term is zero.
-
-  Thus, the power spectral density of \(X_t\) is
+  \[
+    R_X(s, t) = \mathbb{E}[X_s X_t] = a^2 \mathbb{E}[\cos(\omega_0 s + \Theta) \cos(\omega_0 t + \Theta)] = \frac{a^2}{2} \cos(\omega_0 (s - t)),
+  \]
+  as calculated in the proof of the previous example. Thus, the autocorrelation function of \(X_t\),
+  \[
+    R_X(\tau) = \frac{a^2}{2} \cos(\omega_0 \tau)
+  \]
+  depends only on the time difference \(\tau\).
+  
+  Thus, \(X_t\) is a WSS process. By Theorem~\ref{thm:Wiener-Khinchin}, the power spectral density of \(X_t\) is
   \begin{align*}
     S_X(\omega) &= \int_{-\infty}^\infty R_X(\tau) e^{-\mathrm{i} \omega \tau} \, \mathrm{d}\tau = \frac{a^2}{2} \int_{-\infty}^\infty \cos(\omega_0 \tau) e^{-\mathrm{i} \omega \tau} \, \mathrm{d}\tau \\
     &= \frac{a^2}{4} \int_{-\infty}^\infty e^{\mathrm{i} (\omega_0 - \omega) \tau} + e^{-\mathrm{i} (\omega_0 + \omega) \tau} \, \mathrm{d}\tau = \frac{\pi a^2}{2} [\delta(\omega - \omega_0) + \delta(\omega + \omega_0)],
