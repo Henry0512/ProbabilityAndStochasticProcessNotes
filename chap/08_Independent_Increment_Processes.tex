@@ -5,7 +5,7 @@
 \begin{definition}[Independent Increment Process]\index{independent increment process}
   A stochastic process \(\{X(t)\}_{t \geq 0}\) is said to have \emph{independent increments} if the set of the following random variables,
   \[
-    X_{s_1} - X_{0}, X_{t_1} - X_{s_1}, \dots, X_{t_n} - X_{s_n},
+    X_{s_1} - X_{0}, X_{t_1} - X_{s_1}, X_{t_2} - X_{s_2}, \dots, X_{t_n} - X_{s_n},
   \]
   are independent for all \(0 \leq s_1 < t_1 \leq s_2 < t_2 \leq \dots \leq s_n < t_n < \infty, n \geq 1\). Furthermore, if the distribution function of \(X_{t + s} - X_{s}\) is independent of \(s\), we say that \(\{X(t)\}_{t \geq 0}\) has \emph{stationary independent increments}. The stochastic process \(\{X(t)\}_{t \geq 0}\) is called stationary independent-increment process or homogeneous independent-increment process if it has stationary independent increments.
 \end{definition}
@@ -45,17 +45,35 @@
 \end{proposition}
 
 \begin{example}
-  Let \(\{N_t\}_{t \geq 0}\) be a Poisson process with rate \(\lambda > 0\). Find the values of \(\E[N_t^2]\) and \(\E[(N_t - N_s)^2]\) for all \(0 \leq s < t < \infty\).
+  Let \(\{N_t\}_{t \geq 0}\) be a Poisson process with rate \(\lambda > 0\). Find the values of
+  \begin{enumerate}
+    \item \(\E[N_t^2]\),
+    \item \(\E[(N_t - N_s)^2]\),
+    \item \(P\{N(s) = 1 | N(t) = 4\}\),
+    \item \(R_N(s, t)\).
+  \end{enumerate}
+  for all \(0 \leq s < t < \infty\).
 \end{example}
 \begin{solution}
-  Since \(N_t\) follows a Poisson distribution with mean \(\lambda t\), we have
-  \[
-    \E[N_t^2] = \Var_N[N_t] + (\E[N_t])^2 = \lambda t + (\lambda t)^2.
-  \]
-  Since \(N_t - N_s\) follows a Poisson distribution with mean \(\lambda (t - s)\), we have
-  \[
-    \E[(N_t - N_s)^2] = \Var_N[N_t - N_s] + (\E[N_t - N_s])^2 = \lambda (t - s) + (\lambda (t - s))^2. \qedhere
-  \]
+  \begin{enumerate}
+    \item Since \(N_t\) follows a Poisson distribution with mean \(\lambda t\), we have
+    \[
+      \E[N_t^2] = \Var_N[N_t] + (\E[N_t])^2 = \lambda t + (\lambda t)^2.
+    \]
+    \item Since \(N_t - N_s\) follows a Poisson distribution with mean \(\lambda (t - s)\), we have
+    \[
+      \E[(N_t - N_s)^2] = \Var_N[N_t - N_s] + (\E[N_t - N_s])^2 = \lambda (t - s) + (\lambda (t - s))^2.
+    \]
+    \item By the independent increment property of the Poisson process, we have
+    \begin{align*}
+      P\{N(s) &= 1 | N(t) = 4\} = \frac{P\{N(s) = 1\} P\{N(t) - N(s) = 3\}}{P\{N(t) = 4\}} \\
+      &= \frac{\me^{-\lambda s} \frac{(\lambda s)^1}{1!} \cdot \me^{-\lambda (t - s)} \frac{(\lambda (t - s))^3}{3!}}{\me^{-\lambda t} \frac{(\lambda t)^4}{4!}} = \frac{4s(t - s)^3}{t^4}.
+    \end{align*}
+    \item By the definition of the covariance function, we have
+    \[
+      R_N(s, t) = C_N(s, t) + \mu_N(s) \mu_N(t) = \lambda \min(s, t) + \lambda^2 s t. \qedhere
+    \]
+  \end{enumerate}
 \end{solution}
 
 \section{Gaussian Process}
@@ -66,3 +84,70 @@
     \mathbf{X} \sim \mathrm{N_k}(\boldsymbol{\mu}, \boldsymbol{\Sigma}).
   \]
 \end{definition}
+
+\begin{proposition}
+  Some properties of Gaussian processes are as follows:
+  \begin{enumerate}
+    \item Suppose that \(\{X_t\}_{t \in T}\) is a Gaussian process. Then it is strict-sense stationary if and only if it is wide-sense stationary.
+    \item \(\{X_t\}_{t \in T}\) is a Gaussian process if and only if any linear combination of its finite-dimensional distributions is normally distributed,i.e., for any \(t_1, t_2, \dots, t_k \in T\) and \(c_1, c_2, \dots, c_k \in \R\), the random variable \(Y = c_1 X_{t_1} + c_2 X_{t_2} + \dots + c_k X_{t_k}\) is normally distributed.
+  \end{enumerate}
+\end{proposition}
+
+\begin{example}
+  Suppose that \(\{X_t\}_{t \in T}\) is a Gaussian process with mean function \(\mu_X(t) = 0\) and autocorrelation function \(R_X(\tau) = \frac{1}{4} \me^{-2|\tau|}\). For all \(t \in T\), find \(P\{0.5 \leq X_t \leq 1\}\).
+\end{example}
+\begin{solution}
+  Since \(\{X_t\}_{t \in T}\) is a Gaussian process with mean function \(\mu_X(t) = 0\) and autocorrelation function \(R_X(\tau) = \frac{1}{4} \me^{-2|\tau|}\), we have
+  \[
+    \Var_X[X_t] = R_X(0) = \frac{1}{4}.
+  \]
+  Therefore, \(X_t \sim \mathrm{N}(0, \frac{1}{4})\). Hence,
+  \[
+    P\{0.5 \leq X_t \leq 1\} = P\left\{\frac{0.5 - 0}{\sqrt{\frac{1}{4}}} \leq Z \leq \frac{1 - 0}{\sqrt{\frac{1}{4}}}\right\} = P\{1 \leq Z \leq 2\} = \Phi(2) - \Phi(1),
+  \]
+  where \(Z = (X_t - 0)/\sqrt{\frac{1}{4}}\) follows a standard normal distribution.
+\end{solution}
+
+\section{Brownian Motion and Wiener Process}
+
+\begin{definition}[Wiener Process]\index{Wiener process}
+  A real-valued process \(\{W_t\}_{t \geq 0}\) is called a \emph{Wiener process} or \emph{Brownian motion} with parameter \(\sigma^2\) if it satisfies the following conditions:
+  \begin{enumerate}
+    \item \(W_0 = 0\).
+    \item The increments
+    \[
+      W_{t_1} - W_{t_0}, W_{t_2} - W_{t_1}, \dots, W_{t_n} - W_{t_{n - 1}}
+    \]
+    are independent for all \(0 = t_0 < t_1 < t_2 < \dots < t_n\).
+    \item \(W_t - W_s\) has a normal distribution with mean \(0\) and variance \(\sigma^2 (t - s)\) for all \(0 \leq s < t\).
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  Let \(\{W_t\}_{t \geq 0}\) be a Wiener process with parameter \(\sigma^2\). Then
+  \begin{enumerate}
+    \item \(\mu_W(t) = 0\).
+    \item \(C_W(s, t) = R_W(s, t) = \sigma^2 \min(s, t)\).
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  Since \(W_t\) has a normal distribution with mean \(0\) and variance \(\sigma^2 t\), we have \(\mu_W(t) = 0\). For the covariance function, we have
+  \[
+    C_W(s, t) = \Cov(W_s, W_t) = \E[W_s W_t] - \E[W_s] \E[W_t] = \E[W_s W_t].
+  \]
+  \begin{enumerate}
+    \item If \(s = t\), then \(C_W(s, t) = \E[W_s^2] = \Var_W[W_s] = \sigma^2 s\).
+    \item If \(s < t\), then we can write \(W_t\) as
+    \[
+      W_t = W_s + (W_t - W_s).
+    \]
+    Since \(W_s\) and \(W_t - W_s\) are independent and \(W_t - W_s\) has mean \(0\), we have
+    \[
+      C_W(s, t) = \E[W_s (W_s + (W_t - W_s))] = \E[W_s^2] + \E[W_s (W_t - W_s)] = \sigma^2 s. \qedhere
+    \]
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+  The Wiener process \(W_t\) is a Gaussian process.
+\end{proposition}

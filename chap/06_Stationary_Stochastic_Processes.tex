@@ -222,12 +222,28 @@ is a constant for all \(t \in T\).
   The Fourier transform \(F(\omega)\) of \(x_t\) is often called the \emph{frequency spectrum} of \(x_t\).
 \end{definition}
 
+\(F(\omega)\) is a complex-valued function of \(\omega\) and
+\[
+  F(-\omega) = \int_{-\infty}^\infty x_t \me^{\mi \omega t} \, \dd t = \overline{F(\omega)},
+\]
+where \(\overline{F(\omega)}\) is the complex conjugate of \(F(\omega)\). Thus, \(|F(-\omega)|^2 = |F(\omega)|^2\).
+
 \begin{definition}[Inverse Fourier Transform]\index{inverse Fourier transform}
   Suppose that \(F(\omega)\) is the Fourier transform of a deterministic real-valued function \(x_t\). Then the inverse Fourier transform of \(F(\omega)\) defined by
   \[
     x_t = \frac{1}{2\mpi} \int_{-\infty}^\infty F(\omega) \me^{\mi \omega t} \, \dd\omega.
   \]
 \end{definition}
+
+\begin{theorem}[Parseval's Theorem]\index{Parseval's theorem}
+  Suppose that \(x(t)\) is a deterministic real-valued function with Fourier transform \(F(\omega)\). Then
+  \[
+    \int_{-\infty}^\infty x^2(t) \, \dd t = \frac{1}{2\mpi} \int_{-\infty}^\infty |F(\omega)|^2 \, \dd\omega.
+  \]
+\end{theorem}
+\begin{remark}\index{energy spectral density}
+  \(|F(\omega)|^2\) is often called the \emph{energy spectral density} of \(x(t)\).
+\end{remark}
 
 \begin{definition}[Continuity in Mean Square]\index{continuity in mean square}
   A process \(\{X_t\}_{t \in T}\) is said to be \emph{continuous in mean square} at \(t_0 \in T\) if
@@ -266,6 +282,41 @@ is a constant for all \(t \in T\).
     R_{X'}(s, t) = \E[X_s' X_t'] = \frac{\partial^2}{\partial s \partial t} \E[X_s X_t] = \frac{\partial^2}{\partial s \partial t} R_X(s, t).
   \]
 \end{theorem}
+
+\begin{theorem}
+  If \(X_t\) is a WSS process, then it is mean square continuous if and only if its autocorrelation function \(R_X(\tau)\) is continuous at \(\tau = 0\).
+\end{theorem}
+
+\begin{definition}[Average Power]\index{average power}
+  Suppose that \(X_t\) is a mean-square continuous stationary process. The \emph{average power} of \(X_t\) is defined as
+  \[
+    Q := \lim_{T \to \infty} \E \left[\frac{1}{2T} \int_{-T}^T X_t^2 \, \dd t\right].
+  \]
+\end{definition}
+
+\begin{definition}[Power Spectral Density]\index{power spectral density}
+  Suppose that \(X_t\) is a mean-square continuous stationary process. The \emph{power spectral density} of \(X_t\) is defined as
+  \[
+    S_X(\omega) = \lim_{T \to \infty} \frac{1}{2T} \E\left[|F_T(\omega)|^2\right],
+  \]
+  where
+  \[
+    F_T(\omega) = \int_{-T}^T X_t \me^{-\mi \omega t} \, \dd t.
+  \]
+\end{definition}
+
+\begin{proposition}
+  Some properties of the power spectral density \(S_X(\omega)\) are as follows:
+  \begin{enumerate}
+    \item \(S_X(\omega)\) is non-negative for all \(\omega\).
+    \item \(S_X(\omega)\) is a real-valued and even function of \(\omega\), i.e., \(\overline{S_X(\omega)} = S_X(-\omega) = S_X(\omega)\).
+    \item If \(S_X(\omega)\) is a rational function, then it can be expressed as a ratio of two polynomials in \(\omega\),
+    \[
+      S_X(\omega) = S_0 \frac{\omega^{2n} + a_{2n-2}\omega^{2n-2} + \dots + a_0}{\omega^{2m} + b_{2m-2}\omega^{2m-2} + \dots + b_0},
+    \]
+    where \(a_{2n - i}, b_{2m - i} (i = 2, 4, \dots, 2n, j = 2, 4, \dots, 2m)\) are constants and \(S_0 > 0, m > n\), and the denominator polynomial has no real roots.
+  \end{enumerate}
+\end{proposition}
 
 \begin{theorem}[Wiener-Khinchin Theorem]\index{Wiener-Khinchin theorem}\label{thm:Wiener-Khinchin}
   Suppose that \(R_X(\tau)\) is the autocorrelation function of a WSS process \(\{X_t\}\) and \(S_X(\omega)\) is its power spectral density. If
