@@ -661,6 +661,10 @@ Mapping a discrete r.v.\@ to another discrete r.v.\@ will not change the nature 
   This indicates that \(Y\) has a \emph{chi-square distribution} with one degree of freedom, i.e., \(Y \sim \chi^2(1)\), which is a special case of the gamma distribution.
 \end{solution}
 
+\begin{proposition}
+  Given a continuous r.v.\@ \(X\) with d.f.\@ \(F_X(x)\) which is strictly increasing. Then the r.v.\@ \(Y = g(X) \sim \mathrm{U}(0, 1)\) if and only if \(g(x) = F_X(x)\).
+\end{proposition}
+
 \section{Expectation and Variance}
 
 \begin{definition}[Expectation]\index{expectation}
@@ -760,7 +764,7 @@ Let \(y = \frac{x - \mu}{\sigma}\), then
 \end{theorem}
 
 \begin{example}[Standarization]
-  Suppose that the expectation and variance of a r.v.\@ \(X\) are \(\E(X)\) and \(\Var(X)\). Find the expectation and variance of \(Y = \frac{X - \E(X)}{\sqrt{\Var(X)}}\).
+  Suppose that the expectation and variance of a r.v.\@ \(X\) are \(\E(X)\) and \(\Var(X)\), respectively. Find the expectation and variance of \(Y = \frac{X - \E(X)}{\sqrt{\Var(X)}}\).
 \end{example}
 \begin{solution}
   Since \(Y = \frac{X - \E(X)}{\sqrt{\Var(X)}}\), we have
