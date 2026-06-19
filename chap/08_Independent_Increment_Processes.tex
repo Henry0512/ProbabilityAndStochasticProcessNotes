@@ -49,7 +49,7 @@
   \begin{enumerate}
     \item \(\E[N_t^2]\),
     \item \(\E[(N_t - N_s)^2]\),
-    \item \(P\{N(s) = 1 | N(t) = 4\}\),
+    \item \(P\{N_s = 1 | N_t = 4\}\),
     \item \(R_N(s, t)\).
   \end{enumerate}
   for all \(0 \leq s < t < \infty\).
@@ -66,7 +66,7 @@
     \]
     \item By the independent increment property of the Poisson process, we have
     \begin{align*}
-      P\{N(s) &= 1 | N(t) = 4\} = \frac{P\{N(s) = 1\} P\{N(t) - N(s) = 3\}}{P\{N(t) = 4\}} \\
+      P\{N_s = 1 | N_t = 4\} &= \frac{P\{N_s = 1\} P\{N_t - N_s = 3\}}{P\{N_t = 4\}} \\
       &= \frac{\me^{-\lambda s} \frac{(\lambda s)^1}{1!} \cdot \me^{-\lambda (t - s)} \frac{(\lambda (t - s))^3}{3!}}{\me^{-\lambda t} \frac{(\lambda t)^4}{4!}} = \frac{4s(t - s)^3}{t^4}.
     \end{align*}
     \item By the definition of the covariance function, we have

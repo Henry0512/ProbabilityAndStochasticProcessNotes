@@ -181,7 +181,7 @@ is a constant for all \(t \in T\).
   Therefore, \(\{X_n\}_{n \in \Z}\) is WSS.
 \end{proof}
 
-\begin{example}
+\begin{example}\label{ex:cosine_wave_random_phase}
   Suppose that \(\{X_t\}\) is a stationary process and
   \[
     Y_t = X_t \cos(\omega_0 t + \Theta),
@@ -234,6 +234,24 @@ where \(\overline{F(\omega)}\) is the complex conjugate of \(F(\omega)\). Thus, 
     x_t = \frac{1}{2\mpi} \int_{-\infty}^\infty F(\omega) \me^{\mi \omega t} \, \dd\omega.
   \]
 \end{definition}
+
+\begin{table}
+  \caption{Fourier transforms of some common functions}
+  \begin{center}
+    \begin{tabular}{c c}
+      \toprule
+      \(x_t\) & \(F(\omega)\) \\
+      \midrule
+      \(\delta(t)\) & \(1\) \\
+      \(1\) & \(2\mpi \delta(\omega)\) \\
+      \(\me^{-\alpha |t|}\) & \(\frac{2\alpha}{\omega^2 + \alpha^2}\) \\
+      \(\me^{-\alpha t} u(t)\) & \(\frac{1}{\alpha + \mi \omega}\) \\
+      \(\sin(\omega_0 t)\) & \(-\mi \pi [\delta(\omega - \omega_0) - \delta(\omega + \omega_0)]\) \\
+      \(\cos(\omega_0 t)\) & \(\pi [\delta(\omega - \omega_0) + \delta(\omega + \omega_0)]\) \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{table}
 
 \begin{theorem}[Parseval's Theorem]\index{Parseval's theorem}
   Suppose that \(x(t)\) is a deterministic real-valued function with Fourier transform \(F(\omega)\). Then
@@ -306,6 +324,54 @@ where \(\overline{F(\omega)}\) is the complex conjugate of \(F(\omega)\). Thus, 
 \end{definition}
 
 \begin{proposition}
+  Let \(X_t\) be a stationary process with autocorrelation function \(R_X(\tau)\), then the average power of \(X_t\) is
+  \[
+    Q = \lim_{T \to \infty} \E\left[\frac{1}{2T} \int_{-T}^T X_t^2 \, \dd t\right] = \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^T \E[X_t^2] \, \dd t = R_X(0).
+  \]
+\end{proposition}
+
+\begin{example}
+  Find the average power for the sine wave with random phase
+  \[
+    X_t = a \sin(\omega_0 t + \Theta),
+  \]
+  where \(a\) and \(\omega_0\) are constants and \(\Theta\) is a random variable uniformly distributed in the interval \((0, 2\mpi)\).
+\end{example}
+\begin{proof}[Solution using the definition of average power]
+  The average power of \(X_t\) is
+  \[
+    Q = \lim_{T \to \infty} \E\left[\frac{1}{2T} \int_{-T}^T a^2 \sin^2(\omega_0 t + \Theta) \, \dd t\right] = \frac{a^2}{2},
+  \]
+  since the expected value of \(\sin^2(\omega_0 t + \Theta)\) is
+  \begin{align*}
+    \E[\sin^2(\omega_0 t + \Theta)] &= \E\left[\frac{1 - \cos(2(\omega_0 t + \Theta))}{2}\right] \\
+    &= \int_0^{2\mpi} \frac{1 - \cos(2(\omega_0 t + \theta))}{2} \cdot \frac{1}{2\mpi} \, \dd\theta = \frac{1}{2}. \qedhere
+  \end{align*}
+\end{proof}
+\begin{proof}[Solution using the autocorrelation function]
+  The mean of \(X_t\) is
+  \[
+    \mu_X(t) = \E[X_t] = \E[a \sin(\omega_0 t + \Theta)] = 0,
+  \]
+  since the integral of \(\sin(\omega_0 t + \theta)\) over one period is zero.
+
+  Similar to the calculation in Example~\ref{ex:cosine_wave_random_phase}, the autocorrelation function of \(X_t\) is
+  \[
+    R_X(s, t) = \E[X_s X_t] = a^2 \E[\sin(\omega_0 s + \Theta) \sin(\omega_0 t + \Theta)] = \frac{a^2}{2} \cos(\omega_0 (s - t)),
+  \]
+  Thus, the autocorrelation function of \(X_t\),
+  \[
+    R_X(\tau) = \frac{a^2}{2} \cos(\omega_0 \tau)
+  \]
+  depends only on the time difference \(\tau\).
+
+  Therefore, the average power of \(X_t\) is
+  \[
+    Q = R_X(0) = \frac{a^2}{2}. \qedhere
+  \]
+\end{proof}
+
+\begin{proposition}
   Some properties of the power spectral density \(S_X(\omega)\) are as follows:
   \begin{enumerate}
     \item \(S_X(\omega)\) is non-negative for all \(\omega\).
@@ -334,6 +400,36 @@ where \(\overline{F(\omega)}\) is the complex conjugate of \(F(\omega)\). Thus, 
 \end{theorem}
 
 \begin{example}
+  Find the power spectral density for the following exponential autocorrelation function:
+  \[
+    R_X(\tau) = A \me^{-\beta |\tau|}
+  \]
+  with parameters \(A > 0\) and \(\beta > 0\).
+\end{example}
+\begin{solution}
+  The power spectral density of \(X_t\) is
+  \begin{align*}
+    S_X(\omega) &= \int_{-\infty}^\infty A \me^{-\beta |\tau|} \me^{-\mi \omega \tau} \, \dd\tau = A \int_{-\infty}^0 \me^{\beta \tau} \me^{-\mi \omega \tau} \, \dd\tau + A \int_0^\infty \me^{-\beta \tau} \me^{-\mi \omega \tau} \, \dd\tau \\
+    &= A\left[\frac{1}{\beta - \mi \omega} + \frac{1}{\beta + \mi \omega}\right] = A\frac{2\beta}{\beta^2 + \omega^2}. \qedhere
+  \end{align*}
+\end{solution}
+
+\begin{example}
+  Assume that the power spectral density of a WSS process \(X_t\) is
+  \[
+    S_X(\omega) = \frac{\omega^2 + 4}{\omega^4 + 10\omega^2 + 9}.
+  \]
+  Find the autocorrelation function of \(X_t\).
+\end{example}
+\begin{solution}
+  The autocorrelation function of \(X_t\) is
+  \begin{align*}
+    R_X(\tau) &= \frac{1}{2\mpi} \int_{-\infty}^\infty \frac{\omega^2 + 4}{\omega^4 + 10\omega^2 + 9} \me^{\mi \omega \tau} \, \dd\omega = \frac{1}{2\mpi} \int_{-\infty}^\infty \frac{\omega^2 + 4}{(\omega^2 + 1)(\omega^2 + 9)} \me^{\mi \omega \tau} \, \dd\omega \\
+    &= \frac{1}{2\mpi} \int_{-\infty}^\infty \left[\frac{3/8}{\omega^2 + 1} + \frac{5/8}{\omega^2 + 9}\right] \me^{\mi \omega \tau} \, \dd\omega = \frac{3}{16} e^{-|\tau|} + \frac{5}{48} e^{-3|\tau|}. \qedhere
+  \end{align*}
+\end{solution}
+
+\begin{example}
   Find the power spectral density for the stochastic process \(X_t = a \cos(\omega_0 t + \Theta)\), where \(a\) and \(\omega_0\) are constants and \(\Theta\) is a random variable uniformly distributed in the interval \((0, 2\mpi)\).
 \end{example}
 \begin{solution}
@@ -343,11 +439,11 @@ where \(\overline{F(\omega)}\) is the complex conjugate of \(F(\omega)\). Thus, 
   \]
   since the integral of \(\cos(\omega_0 t + \theta)\) over one period is zero.
 
-  The autocorrelation function of \(X_t\) is
+  As calculated in the proof of Example~\ref{ex:cosine_wave_random_phase}, the autocorrelation function of \(X_t\) is
   \[
     R_X(s, t) = \E[X_s X_t] = a^2 \E[\cos(\omega_0 s + \Theta) \cos(\omega_0 t + \Theta)] = \frac{a^2}{2} \cos(\omega_0 (s - t)),
   \]
-  as calculated in the proof of the previous example. Thus, the autocorrelation function of \(X_t\),
+  Thus, the autocorrelation function of \(X_t\),
   \[
     R_X(\tau) = \frac{a^2}{2} \cos(\omega_0 \tau)
   \]
@@ -356,10 +452,22 @@ where \(\overline{F(\omega)}\) is the complex conjugate of \(F(\omega)\). Thus, 
   Thus, \(X_t\) is a WSS process. By Theorem~\ref{thm:Wiener-Khinchin}, the power spectral density of \(X_t\) is
   \begin{align*}
     S_X(\omega) &= \int_{-\infty}^\infty R_X(\tau) \me^{-\mi \omega \tau} \, \dd\tau = \frac{a^2}{2} \int_{-\infty}^\infty \cos(\omega_0 \tau) \me^{-\mi \omega \tau} \, \dd\tau \\
-    &= \frac{a^2}{4} \int_{-\infty}^\infty \me^{\mi (\omega_0 - \omega) \tau} + \me^{-\mi (\omega_0 + \omega) \tau} \, \dd\tau = \frac{\mpi a^2}{2} [\delta(\omega - \omega_0) + \delta(\omega + \omega_0)],
+    &= \frac{\mpi a^2}{2} [\delta(\omega - \omega_0) + \delta(\omega + \omega_0)],
   \end{align*}
   where \(\delta(\cdot)\) is the Dirac delta function.
 \end{solution}
+
+\begin{proposition}
+  Let \(X_t\) and \(Y_t\) be two WSS processes with autocorrelation functions \(R_X(\tau)\) and \(R_Y(\tau)\), respectively. If \(X_t\) and \(Y_t\) are uncorrelated, i.e., \(\E[X_t Y_s] = \E[X_t] \E[Y_s]\) for all \(t, s\), then the power spectral density and autocorrelation function of the process \(Z_t = aX_t + bY_t\) are
+  \[
+    S_Z(\omega) = a^2 S_X(\omega) + b^2 S_Y(\omega),
+  \]
+  and
+  \[
+    R_Z(\tau) = a^2 R_X(\tau) + b^2 R_Y(\tau),
+  \]
+  where \(a\) and \(b\) are constants.
+\end{proposition}
 
 \section{Linear and Time-Invariant Systems}
 
